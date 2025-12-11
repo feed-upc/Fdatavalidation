@@ -1,0 +1,23 @@
+@prefix tb: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#> .
+@prefix ab: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Rule: Add Report node to terminal operations
+# An operation is terminal if it has no tb:nextStep
+# The Report receives the output from the terminal operation as its input
+
+{
+    ?op a tb:Operation .
+    ?op tb:hasOutput ?output .
+    
+    # Operation does NOT have a nextStep (terminal operation)
+    ?op log:notIncludes { ?op tb:nextStep ?anything } .
+}
+=>
+{
+    # Create Report node, link it, and pass the output as input
+    ?op tb:nextStep _:report .
+    _:report a tb:Report .
+    _:report tb:hasInput ?output .
+} .

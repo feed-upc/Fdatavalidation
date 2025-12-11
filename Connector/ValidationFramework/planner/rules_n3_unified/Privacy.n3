@@ -1,0 +1,79 @@
+# N3 Logic Rule: Privacy Policy Transformation
+# Rule Chaining - Automatically chains from LoadData operation
+#
+# Transforms ODRL Privacy policies into anonymization/pseudonymization operations.
+
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix tb: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#> .
+@prefix ab: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Rule 1: Simple Privacy Duty → Anonymization Operation
+# Chains automatically when PolicyChecker with Privacy policy exists
+{
+    # Match PolicyChecker created by LoadData rule
+    ?pc a tb:PolicyChecker ;
+        tb:accordingTo ?policy ;
+        tb:validates ?dp ;
+        tb:nextStep ?loadOp .
+    
+    # LoadData operation from Layer1
+    ?loadOp a tb:Operation ;
+            tb:hasAbstract ab:LoadData .
+    
+    # Policy is Privacy with duty
+    ?policy a odrl:Privacy ;
+            odrl:duty ?duty .
+    
+    # Duty has action and target (simple case - no constraints)
+    ?duty odrl:action ?action ;
+          odrl:target ?target .
+}
+=>
+{
+    # Create privacy operation chained from LoadData
+    _:privacyOp a tb:Operation ;
+                tb:hasInput ?target ;      # Attribute to anonymize
+                tb:hasAbstract ?action ;    # Action (odrl:anonymize, etc.)
+                tb:hasOutput ab:data .
+    
+    # Chain from LoadData operation
+    ?loadOp tb:nextStep _:privacyOp .
+} .
+
+# Rule 2: Privacy with Refinement (e.g., Membership Inference threshold)
+# Chains when Privacy action has refinement constraint
+{
+    ?pc a tb:PolicyChecker ;
+        tb:accordingTo ?policy ;
+        tb:nextStep ?loadOp .
+    
+    ?loadOp a tb:Operation ;
+            tb:hasAbstract ab:LoadData .
+    
+    ?policy a odrl:Privacy ;
+            odrl:duty ?duty .
+    
+    ?duty odrl:action ?action ;
+          odrl:target ?target .
+    
+    # Action has refinement (e.g., MembershipInferenceAccuracyRefinement)
+    ?action odrl:refinement ?refinement .
+    
+    ?refinement odrl:leftOperand ?leftOp ;
+                odrl:operator ?operator ;
+                odrl:rightOperand ?threshold .
+}
+=>
+{
+    # Create privacy operation with refinement constraint
+    _:privacyOp a tb:Operation ;
+                tb:hasInput ?target ;
+                tb:hasAbstract ?action ;
+                tb:hasConstraint ?refinement ;
+                tb:hasOutput ab:data .
+    
+    ?loadOp tb:nextStep _:privacyOp .
+} .
