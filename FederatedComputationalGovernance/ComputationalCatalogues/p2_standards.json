@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "@vocab": "http://www.w3.org/ns/odrl/2/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dqv": "http://www.w3.org/ns/dqv#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "schema": "http://schema.org/",
+    "tb": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#",
+    "ab": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@graph": [
+    {
+      "@id": "ab:p2",
+      "@type": "dqv:QualityPolicy",
+      "dcterms:title": "Data Completeness Quality Policy",
+      "dcterms:description": "Policy ensuring data completeness by requiring at least 99% non-null values in Age attribute",
+      "dcterms:created": "2024-01-01",
+      "dcterms:creator": "Data Governance Team",
+      "duty": [
+        {
+          "@id": "ab:CompleteDuty",
+          "@type": "Duty",
+          "dcterms:title": "Completeness Requirement",
+          "dcterms:description": "Duty to ensure age data completeness meets minimum threshold",
+          "target": {
+            "@id": "schema:age",
+            "@type": "schema:PropertyValue",
+            "schema:name": "Age at Scan",
+            "schema:description": "Patient age in years at time of scan",
+            "schema:propertyID": "Age_at_scan_years",
+            "schema:unitText": "years"
+          },
+          "tb:physicalAttribute": {
+            "@id": "ab:Age_at_scan_years",
+            "@type": "tb:Attribute",
+            "tb:attribute": "Age_at_scan_years",
+            "schema:propertyID": "schema:age"
+          },
+          "constraint": [
+            {
+              "@id": "odrl:c1",
+              "@type": "Constraint",
+              "dcterms:title": "99% Completeness Threshold",
+              "dcterms:description": "Quality measurement must be greater than or equal to 99%",
+              "operator": "odrl:gteq",
+              "rightOperand": {
+                "@value": "99.0",
+                "@type": "xsd:float"
+              },
+              "leftOperand": [
+                {
+                  "@id": "ab:qM",
+                  "@type": "dqv:QualityMeasurement"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "ab:qM",
+      "@type": "dqv:QualityMeasurement",
+      "dcterms:title": "Age Completeness Measurement",
+      "dcterms:description": "Percentage of non-null values in Age_at_scan_years attribute",
+      "dqv:isMeasurementOf": [
+        {
+          "@id": "ab:percentageFromTotal",
+          "@type": "dqv:Metric",
+          "dcterms:title": "Percentage from Total Metric",
+          "dcterms:description": "Percentage of complete (non-null) values relative to total count",
+          "dqv:inDimension": [
+            {
+              "@id": "dqv:Completeness",
+              "@type": "dqv:Dimension",
+              "rdfs:label": "Completeness",
+              "rdfs:comment": "The degree to which data is not missing (W3C DQV standard dimension)"
+            }
+          ],
+          "dqv:expectedDataType": "xsd:float",
+          "schema:unitText": "percent",
+          "schema:minValue": 0.0,
+          "schema:maxValue": 100.0
+        }
+      ],
+      "dqv:computedOn": {
+        "@id": "schema:age",
+        "@type": "schema:PropertyValue",
+        "schema:propertyID": "Age_at_scan_years"
+      },
+      "dqv:value": "",
+      "prov:wasAssociatedWith": [
+        {
+          "@id": "ab:countValues",
+          "@type": "prov:SoftwareAgent",
+          "schema:name": "Value Counter",
+          "schema:description": "Agent that counts non-null values in dataset"
+        }
+      ]
+    },
+    {
+      "@id": "dqv:Completeness",
+      "@type": "dqv:Dimension",
+      "rdfs:label": "Completeness",
+      "rdfs:comment": "The degree to which all required data is present",
+      "dcterms:source": "https://www.w3.org/TR/vocab-dqv/#dimensions"
+    }
+  ]
+}

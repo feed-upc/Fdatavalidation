@@ -1,9 +1,10 @@
 {
-  "name": "UPENN-GBM_clinical_info_v21csv",
+  "name": "UPENN_GBM_clinical_info_v21_timestamp",
   "mappings": {
     "ID": "Subject",
     "Age_at_scan_years": "Age",
-    "Survival_from_surgery_days_UPDATED": "Survival"
+    "Survival_from_surgery_days_UPDATED": "Survival",
+    "ts": "timestamp"
   },
-  "policies": ["p1","p1v2", "p2", "p3", "p5"]
+  "policies": ["p2", "p6"]
 }

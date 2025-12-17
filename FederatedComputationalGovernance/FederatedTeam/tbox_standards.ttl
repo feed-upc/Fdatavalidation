@@ -1,0 +1,454 @@
+@prefix : <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh#> .
+@prefix tb: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh#> .
+
+#################################################################
+#    STANDARD VOCABULARY IMPORTS
+#################################################################
+
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+
+#################################################################
+#    ONTOLOGY METADATA
+#################################################################
+
+<http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox> rdf:type owl:Ontology ;
+    owl:versionIRI <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/1.0> ;
+    owl:versionInfo "1.0 - Standards-aligned version using DCAT, CSVW, DQV, PROV-O, Schema.org" ;
+    dcterms:title "HealthMesh Data Governance Ontology"@en ;
+    dcterms:description "Ontology for federated data governance with policy-driven validation, aligned with W3C standards"@en ;
+    dcterms:creator "Aniol Bisquert (UPC)"@en ,
+                    "Achraf Hmimou (UPC)"@en ;
+    dcterms:created "2024-01-01"^^xsd:date ;
+    dcterms:modified "2025-12-16"^^xsd:date ;
+    rdfs:label "HealthMesh Ontology"@en ;
+    owl:imports <http://www.w3.org/ns/dcat#> ,
+                <http://www.w3.org/ns/csvw#> ,
+                <http://www.w3.org/ns/dqv#> ,
+                <http://www.w3.org/ns/odrl/2/> ,
+                <http://www.w3.org/ns/prov#> .
+
+
+#################################################################
+#    OBJECT PROPERTIES - FRAMEWORK SPECIFIC
+#################################################################
+# These are YOUR innovations - keep custom namespace
+
+###  tb:accordingTo - Links PolicyChecker to Policy
+tb:accordingTo rdf:type owl:ObjectProperty ;
+    rdfs:label "according to"@en ;
+    rdfs:comment "Links a PolicyChecker to the Policy it validates"@en ;
+    rdfs:domain tb:PolicyChecker ;
+    rdfs:range odrl:Policy .
+
+###  tb:validates - Links PolicyChecker to DataProduct
+tb:validates rdf:type owl:ObjectProperty ;
+    rdfs:label "validates"@en ;
+    rdfs:comment "Links a PolicyChecker to the DataProduct it validates"@en ;
+    rdfs:domain tb:PolicyChecker ;
+    rdfs:range tb:DataProduct .
+
+###  tb:nextStep - Chains Operations in PolicyChecker
+tb:nextStep rdf:type owl:ObjectProperty ;
+    rdfs:label "next step"@en ;
+    rdfs:comment "Links to the next Operation in a validation chain"@en ;
+    rdfs:domain [ owl:unionOf ( tb:Operation tb:PolicyChecker ) ] ;
+    rdfs:range tb:Operation .
+
+###  tb:hasImplementation - Links Operation to executable code
+tb:hasImplementation rdf:type owl:ObjectProperty ;
+    rdfs:label "has implementation"@en ;
+    rdfs:comment "Links an Operation to its executable Implementation"@en ;
+    rdfs:domain tb:Operation ;
+    rdfs:range tb:Implementation .
+
+###  tb:hasLibrary - Links Implementation to Library
+tb:hasLibrary rdf:type owl:ObjectProperty ;
+    rdfs:label "has library"@en ;
+    rdfs:comment "Links an Implementation to the Library that provides it"@en ;
+    rdfs:domain tb:Implementation ;
+    rdfs:range tb:Library .
+
+###  tb:hasMethod - Links Implementation to Code
+tb:hasMethod rdf:type owl:ObjectProperty ;
+    rdfs:label "has method"@en ;
+    rdfs:comment "Links an Implementation to the Code that implements it"@en ;
+    rdfs:domain tb:Implementation ;
+    rdfs:range tb:Code .
+
+###  tb:hasTemplate - Links PolicyChecker to template
+tb:hasTemplate rdf:type owl:ObjectProperty ;
+    rdfs:label "has template"@en ;
+    rdfs:comment "Links a PolicyChecker to its execution template"@en ;
+    rdfs:domain tb:PolicyChecker .
+
+###  tb:implements - PolicyChecker implementation reference
+tb:implements rdf:type owl:ObjectProperty ;
+    rdfs:label "implements"@en ;
+    rdfs:comment "References implementation details of a PolicyChecker"@en ;
+    rdfs:domain tb:PolicyChecker .
+
+###  tb:hasValidationReport - Links PolicyChecker to ValidationReport
+tb:hasValidationReport rdf:type owl:ObjectProperty ;
+    rdfs:label "has validation report"@en ;
+    rdfs:comment "Links a PolicyChecker to its ValidationReport (generated after execution)"@en ;
+    rdfs:domain tb:PolicyChecker ;
+    rdfs:range tb:ValidationReport .
+
+###  tb:supports - Links Library to DatasetTypeTemplate
+tb:supports rdf:type owl:ObjectProperty ;
+    rdfs:label "supports"@en ;
+    rdfs:comment "Links a Library to the DatasetTypeTemplates it supports"@en ;
+    rdfs:domain tb:Library ;
+    rdfs:range tb:DatasetTypeTemplate .
+
+
+#################################################################
+#    OBJECT PROPERTIES - ALIGNED WITH STANDARDS
+#################################################################
+
+###  tb:hasDataContract - Links DataProduct to DataContract
+tb:hasDC rdf:type owl:ObjectProperty ;
+    rdfs:label "has data contract"@en ;
+    rdfs:comment "Links a DataProduct to its DataContract (governance agreement)"@en ;
+    rdfs:domain tb:DataProduct ;
+    rdfs:range tb:DataContract ;
+    rdfs:subPropertyOf dcterms:conformsTo .  # Align with Dublin Core
+
+###  tb:hasPolicy - Links DataContract to Policy
+tb:hasPolicy rdf:type owl:ObjectProperty ;
+    rdfs:label "has policy"@en ;
+    rdfs:comment "Links a DataContract to the Policies it enforces"@en ;
+    rdfs:domain tb:DataContract ;
+    rdfs:range odrl:Policy .
+
+###  tb:hasDatasetTypeTemplate - Links to format template
+tb:hasDTT rdf:type owl:ObjectProperty ;
+    rdfs:label "has dataset type template"@en ;
+    rdfs:comment "Links a DataProduct to its DatasetTypeTemplate (format specification)"@en ;
+    rdfs:domain tb:DataProduct ;
+    rdfs:range tb:DatasetTypeTemplate ;
+    rdfs:subPropertyOf dcterms:format .  # Align with Dublin Core
+
+###  tb:hasTechnologyAspects - Links to access information
+tb:hasTA rdf:type owl:ObjectProperty ;
+    rdfs:label "has technology aspects"@en ;
+    rdfs:comment "Links a DataProduct to its TechnologyAspects (access and storage details)"@en ;
+    rdfs:domain tb:DataProduct ;
+    rdfs:range tb:TechnologyAspects ;
+    rdfs:subPropertyOf dcat:distribution .  # Align with DCAT
+
+###  tb:hasAttribute - Column/attribute mapping (DEPRECATED - use CSVW)
+tb:hasAttribute rdf:type owl:ObjectProperty ;
+    rdfs:label "has attribute"@en ;
+    rdfs:comment "DEPRECATED: Use csvw:column instead. Links a Dataset to its Attributes"@en ;
+    owl:deprecated "true"^^xsd:boolean ;
+    owl:equivalentProperty csvw:column ;
+    rdfs:domain dcat:Dataset ;
+    rdfs:range tb:Attribute .
+
+###  tb:hasFeature - Semantic feature (map to schema:variableMeasured)
+tb:hasFeature rdf:type owl:ObjectProperty ;
+    rdfs:label "has feature"@en ;
+    rdfs:comment "Links a CommonDataModel to semantic features. Consider using schema:variableMeasured"@en ;
+    rdfs:domain tb:CommonDataModel ;
+    rdfs:range tb:Feature ;
+    owl:equivalentProperty schema:variableMeasured .  # Align with Schema.org
+
+
+#################################################################
+#    DATA PROPERTIES - ALIGNED WITH STANDARDS
+#################################################################
+
+###  dcterms:format - Use directly from Dublin Core
+dcterms:format rdf:type owl:DatatypeProperty ;
+    rdfs:domain tb:DatasetTypeTemplate ;
+    rdfs:range xsd:string .
+
+###  dcterms:identifier - Use directly from Dublin Core  
+dcterms:identifier rdf:type owl:DatatypeProperty ;
+    rdfs:domain [ owl:unionOf ( odrl:Asset tb:DataProduct dcat:Dataset ) ] ;
+    rdfs:range xsd:string .
+
+###  dcterms:creator - Use for owner (ALIGNED)
+# tb:owner should map to dcterms:creator
+tb:owner rdf:type owl:DatatypeProperty ;
+    rdfs:label "owner"@en ;
+    rdfs:comment "DEPRECATED: Use dcterms:creator or dcterms:publisher instead"@en ;
+    owl:deprecated "true"^^xsd:boolean ;
+    owl:equivalentProperty dcterms:creator ;
+    rdfs:domain [ owl:unionOf ( odrl:Asset tb:DataProduct ) ] ;
+    rdfs:range xsd:string .
+
+###  tb:attribute - Physical column name (keep for CSVW alignment)
+tb:attribute rdf:type owl:DatatypeProperty ;
+    rdfs:label "attribute name"@en ;
+    rdfs:comment "Physical column or attribute name. Aligns with csvw:name"@en ;
+    owl:equivalentProperty csvw:name ;
+    rdfs:domain tb:Attribute ;
+    rdfs:range xsd:string .
+
+###  tb:feature - Semantic feature name (DEPRECATED - use schema:name)
+tb:feature rdf:type owl:DatatypeProperty ;
+    rdfs:label "feature name"@en ;
+    rdfs:comment "DEPRECATED: Use schema:name instead. Semantic feature name"@en ;
+    owl:deprecated "true"^^xsd:boolean ;
+    owl:equivalentProperty schema:name ;
+    rdfs:domain tb:Feature ;
+    rdfs:range xsd:string .
+
+###  tb:code - Code template string
+tb:code rdf:type owl:DatatypeProperty ;
+    rdfs:label "code"@en ;
+    rdfs:comment "Source code or template string"@en ;
+    rdfs:domain tb:Code ;
+    rdfs:range xsd:string .
+
+###  tb:name - Library or resource name (align with schema:name)
+tb:name rdf:type owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "Name of a Library or resource"@en ;
+    owl:equivalentProperty schema:name ;
+    rdfs:domain [ owl:unionOf ( tb:Library tb:Implementation ) ] ;
+    rdfs:range xsd:string .
+
+###  tb:operation - Operation identifier (align with schema:name)
+tb:operation rdf:type owl:DatatypeProperty ;
+    rdfs:label "operation"@en ;
+    rdfs:comment "Operation identifier or name"@en ;
+    owl:equivalentProperty schema:name ;
+    rdfs:domain tb:Operation ;
+    rdfs:range xsd:string .
+
+###  tb:template - Template string
+tb:template rdf:type owl:DatatypeProperty ;
+    rdfs:label "template"@en ;
+    rdfs:comment "Template string for code generation"@en ;
+    rdfs:range xsd:string .
+
+###  tb:validationStatus - Status of validation (PASSED/FAILED/COMPLETED)
+tb:validationStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "validation status"@en ;
+    rdfs:comment "Status of validation execution: PASSED, FAILED, or COMPLETED"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:string .
+
+###  tb:executionDuration - Execution time in seconds
+tb:executionDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "execution duration"@en ;
+    rdfs:comment "Execution duration in seconds"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf prov:value .
+
+###  tb:executionMode - Mode of execution (e.g., COMPOSED_UDF)
+tb:executionMode rdf:type owl:DatatypeProperty ;
+    rdfs:label "execution mode"@en ;
+    rdfs:comment "Mode of execution (e.g., COMPOSED_UDF, SEQUENTIAL)"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:string .
+
+###  tb:resultType - Data type of validation result
+tb:resultType rdf:type owl:DatatypeProperty ;
+    rdfs:label "result type"@en ;
+    rdfs:comment "Data type of the validation result"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:string .
+
+###  tb:resultValue - Scalar result value
+tb:resultValue rdf:type owl:DatatypeProperty ;
+    rdfs:label "result value"@en ;
+    rdfs:comment "Scalar result value from validation"@en ;
+    rdfs:domain tb:ValidationReport .
+
+###  tb:resultRowCount - Number of rows in result
+tb:resultRowCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "result row count"@en ;
+    rdfs:comment "Number of rows in validation result (for DataFrame)"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:integer .
+
+###  tb:resultColumnCount - Number of columns in result
+tb:resultColumnCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "result column count"@en ;
+    rdfs:comment "Number of columns in validation result (for DataFrame)"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:integer .
+
+###  tb:resultColumn - Column name in result
+tb:resultColumn rdf:type owl:DatatypeProperty ;
+    rdfs:label "result column"@en ;
+    rdfs:comment "Column name in validation result"@en ;
+    rdfs:domain tb:ValidationReport ;
+    rdfs:range xsd:string .
+
+
+#################################################################
+#    CLASSES - FRAMEWORK SPECIFIC (YOUR INNOVATIONS)
+#################################################################
+
+###  tb:PolicyChecker - YOUR CORE CONCEPT
+tb:PolicyChecker rdf:type owl:Class ;
+    rdfs:label "Policy Checker"@en ;
+    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
+    rdfs:subClassOf prov:Activity .  # Align with PROV-O (it's an activity!)
+
+###  tb:ValidationReport - YOUR REPORTING CONCEPT
+tb:ValidationReport rdf:type owl:Class ;
+    rdfs:label "Validation Report"@en ;
+    rdfs:comment "Report generated from PolicyChecker execution containing status, timing, and result metadata"@en ;
+    rdfs:subClassOf prov:Entity .  # Align with PROV-O (it's a generated entity!)
+
+###  tb:Operation - YOUR EXECUTION MODEL
+tb:Operation rdf:type owl:Class ;
+    rdfs:label "Operation"@en ;
+    rdfs:comment "Individual operation in a validation chain (e.g., LoadData, CheckFreshness, QualityMetric)"@en ;
+    rdfs:subClassOf prov:Activity .  # Operations are activities
+
+###  tb:Implementation - YOUR CODE BINDING
+tb:Implementation rdf:type owl:Class ;
+    rdfs:label "Implementation"@en ;
+    rdfs:comment "Executable implementation of an operation with code template and library reference"@en ;
+    rdfs:subClassOf prov:Plan .  # Implementations are plans
+
+###  tb:Code - CODE TEMPLATE
+tb:Code rdf:type owl:Class ;
+    rdfs:label "Code"@en ;
+    rdfs:comment "Source code or template for operation execution"@en .
+
+###  tb:Library - SOFTWARE LIBRARY
+tb:Library rdf:type owl:Class ;
+    rdfs:label "Library"@en ;
+    rdfs:comment "Software library that provides implementations (e.g., pandas, numpy)"@en ;
+    rdfs:subClassOf prov:SoftwareAgent .  # Libraries are software agents
+
+###  tb:DataContract - YOUR GOVERNANCE CONCEPT
+tb:DataContract rdf:type owl:Class ;
+    rdfs:label "Data Contract"@en ;
+    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
+    rdfs:subClassOf odrl:Agreement .  # Contracts are ODRL Agreements
+
+
+#################################################################
+#    CLASSES - ALIGNED WITH STANDARDS
+#################################################################
+
+###  tb:DataProduct - Align with DCAT Dataset
+tb:DataProduct rdf:type owl:Class ;
+    rdfs:label "Data Product"@en ;
+    rdfs:comment "A data product with governance policies. Subclass of both DCAT Dataset and ODRL Asset"@en ;
+    rdfs:subClassOf dcat:Dataset ,      # Standard DCAT class
+                    odrl:Asset .        # ODRL Asset for policies
+
+###  tb:CommonDataModel - Align with Schema.org Dataset
+tb:CommonDataModel rdf:type owl:Class ;
+    rdfs:label "Common Data Model"@en ;
+    rdfs:comment "Semantic data model defining features and their types. Aligns with Schema.org Dataset"@en ;
+    rdfs:subClassOf schema:Dataset ,    # Schema.org Dataset
+                    void:Dataset .      # VoID Dataset for RDF
+
+###  tb:Attribute - Align with CSVW Column
+tb:Attribute rdf:type owl:Class ;
+    rdfs:label "Attribute"@en ;
+    rdfs:comment "DEPRECATED: Use csvw:Column instead. Physical column or attribute in a dataset"@en ;
+    owl:deprecated "true"^^xsd:boolean ;
+    owl:equivalentClass csvw:Column .   # CSVW Column
+
+###  tb:Feature - Align with Schema.org PropertyValue
+tb:Feature rdf:type owl:Class ;
+    rdfs:label "Feature"@en ;
+    rdfs:comment "Semantic feature in a data model. Consider using schema:PropertyValue"@en ;
+    owl:equivalentClass schema:PropertyValue .  # Schema.org PropertyValue
+
+###  tb:DatasetTypeTemplate - Align with DCAT MediaTypeOrExtent
+tb:DatasetTypeTemplate rdf:type owl:Class ;
+    rdfs:label "Dataset Type Template"@en ;
+    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
+    rdfs:subClassOf dcterms:FileFormat .  # Dublin Core FileFormat
+
+###  tb:TechnologyAspects - Align with DCAT Distribution
+tb:TechnologyAspects rdf:type owl:Class ;
+    rdfs:label "Technology Aspects"@en ;
+    rdfs:comment "Technical access and storage details. Aligns with DCAT Distribution"@en ;
+    rdfs:subClassOf dcat:Distribution .  # DCAT Distribution
+
+
+#################################################################
+#    IMPORTED CLASSES (from standards)
+#################################################################
+
+###  DCAT
+dcat:Dataset rdf:type owl:Class .
+dcat:Distribution rdf:type owl:Class .
+dcat:DataService rdf:type owl:Class .
+
+###  ODRL
+odrl:Asset rdf:type owl:Class .
+odrl:Policy rdf:type owl:Class .
+odrl:Permission rdf:type owl:Class .
+odrl:Duty rdf:type owl:Class .
+odrl:Prohibition rdf:type owl:Class .
+odrl:Agreement rdf:type owl:Class ;
+    rdfs:subClassOf odrl:Policy .
+
+odrl:Privacy rdf:type owl:Class ;
+    rdfs:subClassOf odrl:Policy .
+
+###  DQV
+dqv:QualityPolicy rdf:type owl:Class ;
+    rdfs:subClassOf odrl:Policy .
+
+dqv:QualityMeasurement rdf:type owl:Class .
+dqv:Metric rdf:type owl:Class .
+dqv:Dimension rdf:type owl:Class .
+
+###  PROV-O
+prov:Activity rdf:type owl:Class .
+prov:Entity rdf:type owl:Class .
+prov:Agent rdf:type owl:Class .
+prov:SoftwareAgent rdf:type owl:Class ;
+    rdfs:subClassOf prov:Agent .
+prov:Plan rdf:type owl:Class .
+
+###  CSVW
+csvw:Table rdf:type owl:Class .
+csvw:Column rdf:type owl:Class .
+csvw:TableSchema rdf:type owl:Class .
+
+###  Schema.org
+schema:Dataset rdf:type owl:Class .
+schema:PropertyValue rdf:type owl:Class .
+
+
+#################################################################
+#    CUSTOM POLICY TYPES (domain-specific extensions)
+#################################################################
+
+###  tb:DCPolicy - Data Consent Policy
+tb:DCPolicy rdf:type owl:Class ;
+    rdfs:label "Data Consent Policy"@en ;
+    rdfs:comment "Policy governing data consent and usage restrictions"@en ;
+    rdfs:subClassOf odrl:Policy .
+
+###  tb:FairnessPolicy - ML Fairness Policy
+tb:FairnessPolicy rdf:type owl:Class ;
+    rdfs:label "Fairness Policy"@en ;
+    rdfs:comment "Policy ensuring fairness constraints on ML models"@en ;
+    rdfs:subClassOf odrl:Policy .
+
+
+###  Generated by HealthMesh Standards Alignment - Version 1.0
+###  Compatible with: DCAT3, CSVW, DQV, ODRL2.2, PROV-O, Schema.org

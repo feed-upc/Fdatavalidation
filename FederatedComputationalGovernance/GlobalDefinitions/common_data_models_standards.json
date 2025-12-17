@@ -1,0 +1,102 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "tb": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#",
+    "ab": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#"
+  },
+  "@graph": [
+    {
+      "@id": "ab:Patient_Data",
+      "@type": ["tb:CommonDataModel", "schema:Dataset"],
+      "name": "Patient Clinical Data Model",
+      "description": "Common data model for federated patient clinical information including demographics, temporal data, and survival outcomes",
+      "creator": {
+        "@type": "Organization",
+        "name": "FederatedTeam"
+      },
+      "dcterms:identifier": "123456",
+      "version": "2.1",
+      "dateCreated": "2024-01-01",
+      "dateModified": "2025-12-16",
+      "variableMeasured": [
+        {
+          "@id": "schema:identifier",
+          "@type": "PropertyValue",
+          "name": "Subject ID",
+          "description": "Unique patient or subject identifier",
+          "propertyID": "ID",
+          "valueReference": {
+            "@type": "DefinedTerm",
+            "name": "Patient Identifier",
+            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C164337"
+          }
+        },
+        {
+          "@id": "schema:age",
+          "@type": "PropertyValue",
+          "name": "Age",
+          "description": "Patient age in years at time of data collection",
+          "propertyID": "Age_at_scan_years",
+          "unitText": "years",
+          "unitCode": "ANN",
+          "valueReference": {
+            "@type": "DefinedTerm",
+            "name": "Age",
+            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C25164"
+          }
+        },
+        {
+          "@id": "schema:gender",
+          "@type": "PropertyValue",
+          "name": "Sex",
+          "description": "Biological sex of the patient",
+          "propertyID": "Gender",
+          "valueReference": {
+            "@type": "DefinedTerm",
+            "name": "Sex",
+            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C28421"
+          }
+        },
+        {
+          "@id": "ab:Survival",
+          "@type": "PropertyValue",
+          "name": "Survival",
+          "description": "Patient survival duration from surgery",
+          "propertyID": "Survival_from_surgery_days_UPDATED",
+          "unitText": "days",
+          "unitCode": "DAY",
+          "valueReference": {
+            "@type": "DefinedTerm",
+            "name": "Survival Time",
+            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C25548"
+          }
+        },
+        {
+          "@id": "schema:dateCreated",
+          "@type": "PropertyValue",
+          "name": "Timestamp",
+          "description": "Data collection timestamp",
+          "propertyID": "ts",
+          "valueReference": {
+            "@type": "DefinedTerm",
+            "name": "Date",
+            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C25164"
+          }
+        }
+      ],
+      "measurementTechnique": "Electronic Health Records (EHR) extraction",
+      "temporalCoverage": "2020/2024",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "University of Pennsylvania Medical Center"
+      },
+      "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "keywords": ["clinical data", "oncology", "glioblastoma", "survival analysis", "patient demographics"]
+    }
+  ]
+}

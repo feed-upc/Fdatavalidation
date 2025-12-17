@@ -1,5 +1,5 @@
 {
-  "name": "modelpkl",
+  "name": "model",
   "mappings": {
     "Gender": "Sex",
     "target": "Survival"

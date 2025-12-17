@@ -1,0 +1,110 @@
+{
+  "@context": {
+    "@vocab": "http://www.w3.org/ns/odrl/2/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dqv": "http://www.w3.org/ns/dqv#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "schema": "http://schema.org/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "tb": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#",
+    "ab": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@graph": [
+    {
+      "@id": "ab:p6",
+      "@type": "dqv:QualityPolicy",
+      "dcterms:title": "Data Freshness Quality Policy",
+      "dcterms:description": "Policy ensuring data timeliness by constraining age of timestamp to maximum 30 minutes",
+      "dcterms:created": "2024-01-01",
+      "dcterms:creator": "Data Governance Team",
+      "permission": [
+        {
+          "@id": "ab:FreshnessPermission",
+          "@type": "Permission",
+          "dcterms:title": "Freshness-based Distribution Permission",
+          "dcterms:description": "Permission to distribute data if timestamp freshness constraint is met",
+          "target": {
+            "@id": "ab:Patient_Data",
+            "@type": ["tb:CommonDataModel", "schema:Dataset"]
+          },
+          "action": {
+            "@id": "odrl:distribute"
+          },
+          "constraint": [
+            {
+              "@id": "ab:FreshnessConstraint",
+              "@type": "Constraint",
+              "dcterms:title": "30-Minute Freshness Constraint",
+              "dcterms:description": "Data age must be less than or equal to 30 minutes",
+              "operator": "odrl:lteq",
+              "rightOperand": {
+                "@value": "30",
+                "@type": "xsd:integer"
+              },
+              "leftOperand": [
+                {
+                  "@id": "ab:DataAge",
+                  "@type": "dqv:QualityMeasurement"
+                }
+              ],
+              "unit": {
+                "@id": "unit:MIN",
+                "schema:name": "Minute",
+                "qudt:symbol": "min"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "ab:DataAge",
+      "@type": "dqv:QualityMeasurement",
+      "dcterms:title": "Data Age Measurement",
+      "dcterms:description": "Measurement of time elapsed since data creation (computed from timestamp)",
+      "dqv:isMeasurementOf": [
+        {
+          "@id": "ab:Freshness",
+          "@type": "dqv:Metric",
+          "dcterms:title": "Data Freshness Metric",
+          "dcterms:description": "Metric measuring how recent the data is",
+          "dqv:inDimension": [
+            {
+              "@id": "dqv:Timeliness",
+              "@type": "dqv:Dimension",
+              "rdfs:label": "Timeliness",
+              "rdfs:comment": "The degree to which data is current and up-to-date (W3C DQV standard dimension)"
+            }
+          ],
+          "dqv:expectedDataType": "xsd:float",
+          "schema:unitText": "minutes"
+        }
+      ],
+      "dqv:computedOn": [
+        {
+          "@id": "schema:dateCreated",
+          "@type": "schema:PropertyValue",
+          "schema:name": "Timestamp",
+          "schema:description": "Data collection timestamp (mapped from physical column 'ts')",
+          "schema:propertyID": "ts",
+          "schema:valueReference": {
+            "@type": "schema:DefinedTerm",
+            "schema:name": "Date",
+            "schema:inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C25164"
+          }
+        }
+      ],
+      "prov:wasGeneratedBy": {
+        "@id": "ab:FreshnessCalculation",
+        "@type": "prov:Activity",
+        "prov:used": "schema:dateCreated",
+        "dcterms:description": "Calculates time difference between current time and data timestamp"
+      }
+    }
+  ]
+}
