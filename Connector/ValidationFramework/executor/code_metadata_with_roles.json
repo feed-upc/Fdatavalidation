@@ -9,10 +9,14 @@
       "@id": "ab:Imp1",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "ab:LoadData"}
+        {
+          "@id": "ab:LoadData"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -28,17 +32,23 @@
         }
       ],
       "tb:dependsOn": [
-        {"tb:name": "pandas"}
+        {
+          "tb:name": "pandas"
+        }
       ]
     },
     {
       "@id": "ab:Imp9",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "ab:LoadData"}
+        {
+          "@id": "ab:LoadData"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Image"}
+        {
+          "@id": "ab:Image"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -54,17 +64,23 @@
         }
       ],
       "tb:dependsOn": [
-        {"tb:name": "pydicom"}
+        {
+          "tb:name": "pydicom"
+        }
       ]
     },
     {
       "@id": "ab:ImpCheckFreshness",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "ab:CheckFreshness"}
+        {
+          "@id": "ab:CheckFreshness"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -86,18 +102,26 @@
         }
       ],
       "tb:dependsOn": [
-        {"tb:name": "pandas"},
-        {"tb:name": "datetime"}
+        {
+          "tb:name": "pandas"
+        },
+        {
+          "tb:name": "datetime"
+        }
       ]
     },
     {
       "@id": "ab:Imp4",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "odrl:Constraint"}
+        {
+          "@id": "odrl:Constraint"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -130,11 +154,15 @@
       "@id": "ab:ImpConstraintLteq",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "odrl:Constraint"}
+        {
+          "@id": "odrl:Constraint"
+        }
       ],
       "tb:forOperator": "odrl:lteq",
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -167,11 +195,15 @@
       "@id": "ab:ImpConstraintGteq",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "odrl:Constraint"}
+        {
+          "@id": "odrl:Constraint"
+        }
       ],
       "tb:forOperator": "odrl:gteq",
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -204,10 +236,14 @@
       "@id": "ab:ImpAnonymize",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "odrl:anonymize"}
+        {
+          "@id": "odrl:anonymize"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Image"}
+        {
+          "@id": "ab:Image"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -229,17 +265,23 @@
         }
       ],
       "tb:dependsOn": [
-        {"tb:name": "pydicom"}
+        {
+          "tb:name": "pydicom"
+        }
       ]
     },
     {
       "@id": "ab:ImpQualityMetric",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "ab:qM"}
+        {
+          "@id": "ab:qM"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -261,17 +303,23 @@
         }
       ],
       "tb:dependsOn": [
-        {"tb:name": "pandas"}
+        {
+          "tb:name": "pandas"
+        }
       ]
     },
     {
       "@id": "ab:ImpReport",
       "@type": "tb:Implementation",
       "tb:forOp": [
-        {"@id": "ab:Report"}
+        {
+          "@id": "ab:Report"
+        }
       ],
       "tb:forType": [
-        {"@id": "ab:Tabular"}
+        {
+          "@id": "ab:Tabular"
+        }
       ],
       "tb:hasParameters": [
         {
@@ -284,6 +332,126 @@
       "tb:hasCode": [
         {
           "tb:code": "data"
+        }
+      ],
+      "tb:dependsOn": []
+    },
+    {
+      "@id": "ab:ImpCheckValidity",
+      "@type": "tb:Implementation",
+      "tb:forOp": [
+        {
+          "@id": "ab:CheckValidity"
+        }
+      ],
+      "tb:forType": [
+        {
+          "@id": "ab:Tabular"
+        }
+      ],
+      "tb:hasParameters": [
+        {
+          "tb:name": "data",
+          "tb:role": "previousResult",
+          "tb:type": "DataFrame",
+          "tb:description": "Data to validate"
+        },
+        {
+          "tb:name": "attr",
+          "tb:role": "targetAttribute",
+          "tb:type": "string",
+          "tb:description": "Column to check for validity"
+        },
+        {
+          "tb:name": "allowed",
+          "tb:role": "allowedValues",
+          "tb:type": "list",
+          "tb:description": "List of allowed values"
+        }
+      ],
+      "tb:hasCode": [
+        {
+          "tb:code": "data[attr].isin(allowed).all()"
+        }
+      ],
+      "tb:dependsOn": []
+    },
+    {
+      "@id": "ab:ImpCheckValidity",
+      "@type": "tb:Implementation",
+      "tb:forOp": [
+        {
+          "@id": "ab:CheckValidity"
+        }
+      ],
+      "tb:forType": [
+        {
+          "@id": "ab:Tabular"
+        }
+      ],
+      "tb:hasParameters": [
+        {
+          "tb:name": "data",
+          "tb:role": "previousResult",
+          "tb:type": "DataFrame",
+          "tb:description": "Data to validate"
+        },
+        {
+          "tb:name": "attr",
+          "tb:role": "targetAttribute",
+          "tb:type": "string",
+          "tb:description": "Column to check for validity"
+        },
+        {
+          "tb:name": "vocab",
+          "tb:role": "vocabularyRef",
+          "tb:type": "string",
+          "tb:description": "Vocabulary reference"
+        }
+      ],
+      "tb:hasCode": [
+        {
+          "tb:code": "data[attr].dropna().isin(['M', 'F']).all()"
+        }
+      ],
+      "tb:dependsOn": []
+    },
+    {
+      "@id": "ab:ImpCheckConsistency",
+      "@type": "tb:Implementation",
+      "tb:forOp": [
+        {
+          "@id": "ab:CheckConsistency"
+        }
+      ],
+      "tb:forType": [
+        {
+          "@id": "ab:Tabular"
+        }
+      ],
+      "tb:hasParameters": [
+        {
+          "tb:name": "data",
+          "tb:role": "previousResult",
+          "tb:type": "DataFrame",
+          "tb:description": "Data to validate"
+        },
+        {
+          "tb:name": "attr",
+          "tb:role": "targetAttribute",
+          "tb:type": "string",
+          "tb:description": "Primary attribute to check"
+        },
+        {
+          "tb:name": "thresh",
+          "tb:role": "threshold",
+          "tb:type": "any",
+          "tb:description": "Threshold reference (ignored)"
+        }
+      ],
+      "tb:hasCode": [
+        {
+          "tb:code": "(pd.to_numeric(data[data['Survival_Status'] == 'Deceased']['Survival_from_surgery_days_UPDATED'], errors='coerce').dropna() > 0).all()"
         }
       ],
       "tb:dependsOn": []

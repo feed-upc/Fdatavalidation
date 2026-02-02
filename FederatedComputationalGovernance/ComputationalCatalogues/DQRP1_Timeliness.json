@@ -1,0 +1,92 @@
+{
+    "@context": { "odrl:operator": { "@type": "@id" },
+        "@base": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dqv": "http://www.w3.org/ns/dqv#",
+        "tb": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#",
+        "ab": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#",
+        "prov": "http://www.w3.org/ns/prov#",
+        "qudt": "http://qudt.org/vocab/unit/"
+    },
+    "@graph": [
+        {
+            "@id": "ab:DQRP1",
+            "@type": "dqv:QualityPolicy",
+            "rdfs:label": "DQRP1 - Timeliness Requirement",
+            "rdfs:comment": "Data Quality Requirement Pattern 1: A specific data age is required for the data in an attribute of an entity (ISO/IEC 25012 Timeliness)",
+            "tb:derivedFrom": "DQRP1",
+            "tb:qualityDimension": "Timeliness",
+            "odrl:permission": [
+                {
+                    "@id": "ab:DQRP1_Permission",
+                    "@type": "odrl:Permission",
+                    "odrl:assigner": {
+                        "@id": "ab:DataSpaceGovernanceAuthority"
+                    },
+                    "odrl:assignee": {
+                        "@id": "ab:DataProvider"
+                    },
+                    "odrl:target": {
+                        "@id": "ab:Patient_Data"
+                    },
+                    "odrl:action": {
+                        "@id": "odrl:distribute"
+                    },
+                    "odrl:constraint": [
+                        {
+                            "@id": "ab:DQRP1_Constraint",
+                            "@type": "odrl:Constraint",
+                            "rdfs:comment": "Data age must not exceed 30 minutes",
+                            "odrl:leftOperand": [
+                                {
+                                    "@id": "ab:DataAge",
+                                    "@type": "dqv:QualityMeasurement"
+                                }
+                            ],
+                            "odrl:operator": "odrl:lteq",
+                            "odrl:rightOperand": {
+                                "@value": "30",
+                                "@type": "xsd:integer"
+                            },
+                            "odrl:unit": {
+                                "@id": "qudt:MIN"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "@id": "ab:DataAge",
+            "@type": "dqv:QualityMeasurement",
+            "rdfs:label": "Data Age Measurement",
+            "rdfs:comment": "Measures the time elapsed since data was recorded/updated",
+            "dqv:isMeasurementOf": [
+                {
+                    "@id": "ab:Freshness",
+                    "@type": "dqv:Metric",
+                    "rdfs:label": "Freshness Metric",
+                    "dqv:inDimension": [
+                        {
+                            "@id": "ab:Timeliness",
+                            "@type": "dqv:Dimension",
+                            "rdfs:label": "Timeliness (ISO/IEC 25012)"
+                        }
+                    ]
+                }
+            ],
+            "dqv:computedOn": [
+                {
+                    "@id": "ab:timestamp",
+                    "@type": "tb:Feature",
+                    "rdfs:label": "Timestamp Feature",
+                    "rdfs:comment": "Maps to physical attribute 'ts' in UPENN-GBM dataset"
+                }
+            ]
+        }
+    ]
+}

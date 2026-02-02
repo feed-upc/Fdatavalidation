@@ -1,8 +1,8 @@
-# N3 Logic Rule: Quality Measurement Policy Transformation (SEMANTIC VERSION)
-# Rule Chaining - Automatically chains from LoadData operation
-#
-# Transforms DQV Quality policies into data quality validation operations.
-# USES SEMANTIC PROPERTIES instead of flat hasInput for unambiguous parameter binding.
+# N3 Logic Rule: Consistency Policy Transformation (DQRP4)
+# Transforms DQV Consistency policies with cross-attribute validation into consistency check operations.
+# 
+# Pattern: Policy with duty targeting a semantic feature, constraint with CheckConsistency metric
+# The ConstraintPropagation rule resolves the semantic target to physical attribute.
 
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix tb: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#> .
@@ -12,11 +12,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-# Rule 1: Quality Policy with Constraint → Validation Operation
-# Chains from LoadData when Quality policy with constraint exists
-# Uses SEMANTIC properties for clarity and extensibility
+# Rule: Consistency Policy with CheckConsistency metric → Cross-attribute Validation Operation
+# Chains from LoadData when Consistency policy exists
+# The physical attribute is resolved by ConstraintPropagation.n3
 {
-    # Match PolicyChecker with Quality policy
+    # Match PolicyChecker with Consistency policy
     ?pc a tb:PolicyChecker ;
         tb:accordingTo ?policy ;
         tb:nextStep ?loadOp .
@@ -25,7 +25,7 @@
     ?loadOp a tb:Operation ;
             tb:hasAbstract ab:LoadData .
     
-    # Quality policy structure
+    # Consistency policy structure
     ?policy a dqv:QualityPolicy ;
             odrl:duty ?duty .
     
@@ -35,23 +35,17 @@
     # Get physical attribute resolved by ConstraintPropagation rule
     ?duty tb:physicalAttribute ?physicalAttr .
     
-    # Constraint details
-    ?constraint odrl:leftOperand ?metric ;
-                odrl:rightOperand ?threshold ;
-                odrl:operator ?operator .
-    
-    # Exclude Validity checks (handled by Validity.n3)
-    ?operator log:notEqualTo odrl:isPartOf .
-
-    # Exclude Consistency checks (handled by Consistency.n3)
-    ?metric log:notEqualTo ab:CheckConsistency .
+    # Constraint with eq operator and CheckConsistency metric
+    ?constraint odrl:leftOperand ab:CheckConsistency ;
+                odrl:rightOperand ?expectedValue ;
+                odrl:operator odrl:eq .
 }
 =>
 {
-    # Create quality measurement operation chained from LoadData (TERMINAL)
+    # Create consistency check operation chained from LoadData (TERMINAL)
     # ROLE-ANNOTATED INPUTS: Each input has explicit role
-    _:qualityOp a tb:Operation ;
-                tb:hasAbstract ?metric ;              # Quality metric (e.g., dqv:completeness)
+    _:consistencyOp a tb:Operation ;
+                tb:hasAbstract ab:CheckConsistency ;
                 tb:hasInput [
                     tb:value ?physicalAttr ;
                     tb:role "targetAttribute"
@@ -61,16 +55,12 @@
                     tb:role "previousResult"
                 ] ;
                 tb:hasInput [
-                    tb:value ?threshold ;
+                    tb:value ?expectedValue ;
                     tb:role "threshold"
-                ] ;
-                tb:hasInput [
-                    tb:value ?operator ;
-                    tb:role "operator"
                 ] ;
                 tb:hasOutput ab:boolean ;
                 tb:isTerminal true .
     
     # Chain from LoadData
-    ?loadOp tb:nextStep _:qualityOp .
+    ?loadOp tb:nextStep _:consistencyOp .
 } .

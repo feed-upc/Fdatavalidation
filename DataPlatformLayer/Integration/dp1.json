@@ -4,7 +4,13 @@
     "ID": "Subject",
     "Age_at_scan_years": "Age",
     "Survival_from_surgery_days_UPDATED": "Survival",
-    "ts": "timestamp"
+    "ts": "timestamp",
+    "Gender": "Sex"
   },
-  "policies": ["p2", "p6"]
+  "policies": [
+    "DQRP1",
+    "DQRP2",
+    "DQRP3",
+    "DQRP4"
+  ]
 }

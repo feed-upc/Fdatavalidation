@@ -413,7 +413,9 @@ class SemanticN3Executor:
             str(abox.CheckFreshness): str(abox.ImpCheckFreshness),
             str(abox.qM): str(abox.ImpQualityMetric),
             str(odrl.Constraint): str(abox.ImpConstraintLteq),
-            str(dqv.completeness): str(abox.ImpQualityCompleteness)
+            str(dqv.completeness): str(abox.ImpQualityCompleteness),
+            str(abox.CheckValidity): str(abox.ImpCheckValidity),
+            str(abox.CheckConsistency): str(abox.ImpCheckConsistency),
         }
         
         impl_str = type_to_impl.get(str(op_type))
