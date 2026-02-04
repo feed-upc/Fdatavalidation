@@ -1,0 +1,6 @@
+[submodule "Connector/ValidationFramework"]
+	path = Connector/ValidationFramework
+	url = git@github.com:feed-upc/DataValidationWorkflow.git
+[submodule "FederatedComputationalGovernance/ComputationalCatalogues"]
+	path = FederatedComputationalGovernance/ComputationalCatalogues
+	url = git@github.com:feed-upc/DS-DataQualityRequirements.git

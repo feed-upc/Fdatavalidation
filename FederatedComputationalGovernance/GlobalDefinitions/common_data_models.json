@@ -8,28 +8,36 @@
     "dcat": "http://www.w3.org/ns/dcat#",
     "tb": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#",
     "ab": "http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#",
-    "dcterms":"http://purl.org/dc/terms/"
+    "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "ab:Patient_Data",
-  "@type": "tb:CommonDataModel",
-  "tb:owner": "FederatedTeam",
-  "dcterms:identifier": "123456",
-  "tb:hasFeature": [
+  "@graph": [
     {
-      "@id": "ab:Subject",
-      "@type": "tb:Feature"
-    },
-    {
-      "@id": "ab:Age",
-      "@type": "tb:Feature"
-    },
-    {
-      "@id": "ab:Survival",
-      "@type": "tb:Feature"
-    },
-    {
-      "@id": "ab:Sex",
-      "@type": "tb:Feature"
+      "@id": "ab:Patient_Data",
+      "@type": "tb:CommonDataModel",
+      "tb:owner": "FederatedTeam",
+      "dcterms:identifier": "123456",
+      "tb:hasFeature": [
+        {
+          "@id": "ab:Subject",
+          "@type": "tb:Feature"
+        },
+        {
+          "@id": "ab:Age",
+          "@type": "tb:Feature"
+        },
+        {
+          "@id": "ab:Survival",
+          "@type": "tb:Feature"
+        },
+        {
+          "@id": "ab:Sex",
+          "@type": "tb:Feature"
+        },
+        {
+          "@id": "ab:timestamp",
+          "@type": "tb:Feature"
+        }
+      ]
     }
   ]
 }
