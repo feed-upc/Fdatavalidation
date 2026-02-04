@@ -1,0 +1,3 @@
+[submodule "Connector/ValidationFramework"]
+	path = Connector/ValidationFramework
+	url = /home/acraf/psr/DataValidationWorkflow
