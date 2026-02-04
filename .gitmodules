@@ -1,3 +1,6 @@
 [submodule "Connector/ValidationFramework"]
 	path = Connector/ValidationFramework
 	url = /home/acraf/psr/DataValidationWorkflow
+[submodule "FederatedComputationalGovernance/ComputationalCatalogues"]
+	path = FederatedComputationalGovernance/ComputationalCatalogues
+	url = /home/acraf/psr/DS-DataQualityRequirements
