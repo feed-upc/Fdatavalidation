@@ -1,0 +1,288 @@
+patientID,allergyDescription,typeOfPropensity,allergyManifestation,severity,criticality,onSetDate,endDate,status,certainty,agentOrAllergen
+EHDS-PT-00004,Aspirin sensitivity,Allergy,Urticaria,Mild,High,2016-07-07,,Active,Refuted,Aspirin
+EHDS-PT-00004,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Mild,High,2014-08-26,,Inactive,Suspected,Sulfonamide
+EHDS-PT-00004,Codeine intolerance,Allergy,Gastrointestinal distress,Severe,High,2014-10-06,,Active,Confirmed,Codeine
+EHDS-PT-00008,Cephalosporin allergy,Allergy,Anaphylaxis,Severe,High,2017-08-28,2023-03-01,Resolved,Refuted,Cephalosporin
+EHDS-PT-00008,Contrast dye reaction,Allergy,Bronchospasm,Moderate,Unable to assess,2020-08-23,,Active,Suspected,Iodinated contrast
+EHDS-PT-00008,Codeine intolerance,Allergy,Contact dermatitis,Severe,Unable to assess,2017-07-08,2025-04-27,Resolved,Refuted,Codeine
+EHDS-PT-00011,Cephalosporin allergy,Allergy,Rash,Mild,High,2017-12-06,,Active,Suspected,Cephalosporin
+EHDS-PT-00011,Codeine intolerance,Intolerance,Anaphylaxis,Mild,High,2013-09-21,,Inactive,Refuted,Codeine
+EHDS-PT-00011,Cephalosporin allergy,Allergy,Bronchospasm,Moderate,High,2010-09-17,2025-04-27,Resolved,Suspected,Cephalosporin
+EHDS-PT-00015,Penicillin allergy,Intolerance,Angioedema,Mild,High,2014-07-14,,Active,Refuted,Penicillin
+EHDS-PT-00015,Latex allergy,Intolerance,Contact dermatitis,Severe,Low,2014-04-08,2025-09-17,Resolved,Confirmed,Latex
+EHDS-PT-00019,Penicillin allergy,Allergy,Urticaria,Severe,Low,2020-04-21,2025-12-05,Resolved,Refuted,Penicillin
+EHDS-PT-00019,Pollen-food syndrome,Allergy,Urticaria,Severe,Low,2011-12-15,2025-08-14,Resolved,Refuted,Pollen
+EHDS-PT-00019,Ibuprofen allergy,Allergy,Rash,Severe,Unable to assess,2014-09-16,2024-02-15,Resolved,Suspected,Ibuprofen
+EHDS-PT-00022,Ibuprofen allergy,Allergy,Anaphylaxis,Severe,Unable to assess,2012-07-26,,Active,Suspected,Ibuprofen
+EHDS-PT-00023,Ibuprofen allergy,Allergy,Urticaria,Severe,Unable to assess,2022-11-16,,Active,Suspected,Ibuprofen
+EHDS-PT-00023,Codeine intolerance,Allergy,Urticaria,Life-threatening,Unable to assess,2019-12-14,,Active,Confirmed,Codeine
+EHDS-PT-00023,Sulfonamide hypersensitivity,Allergy,Bronchospasm,Life-threatening,Low,2018-08-09,,Active,Refuted,Sulfonamide
+EHDS-PT-00037,Contrast dye reaction,Intolerance,Bronchospasm,Moderate,Low,2012-03-07,2024-09-27,Resolved,Confirmed,Iodinated contrast
+EHDS-PT-00037,Pollen-food syndrome,Allergy,Gastrointestinal distress,Severe,High,2015-10-15,2025-03-13,Resolved,Suspected,Pollen
+EHDS-PT-00037,Contrast dye reaction,Intolerance,Urticaria,Severe,High,2010-09-05,,Active,Suspected,Iodinated contrast
+EHDS-PT-00039,Pollen-food syndrome,Allergy,Bronchospasm,Mild,High,2022-11-21,,Active,Refuted,Pollen
+EHDS-PT-00039,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Life-threatening,Low,2016-10-10,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00040,Contrast dye reaction,Intolerance,Anaphylaxis,Life-threatening,High,2018-08-11,,Active,Refuted,Iodinated contrast
+EHDS-PT-00043,Sulfonamide hypersensitivity,Intolerance,Rash,Mild,High,2022-11-17,2023-08-23,Resolved,Confirmed,Sulfonamide
+EHDS-PT-00043,Ibuprofen allergy,Allergy,Gastrointestinal distress,Life-threatening,High,2019-02-07,,Active,Suspected,Ibuprofen
+EHDS-PT-00043,Penicillin allergy,Allergy,Angioedema,Mild,Low,2012-01-12,,Active,Refuted,Penicillin
+EHDS-PT-00044,Ibuprofen allergy,Intolerance,Anaphylaxis,Moderate,Unable to assess,2018-09-30,,Inactive,Suspected,Ibuprofen
+EHDS-PT-00044,Ibuprofen allergy,Intolerance,Bronchospasm,Severe,Low,2022-10-16,,Inactive,Refuted,Ibuprofen
+EHDS-PT-00044,Penicillin allergy,Intolerance,Contact dermatitis,Moderate,High,2023-09-19,,Inactive,Confirmed,Penicillin
+EHDS-PT-00047,Codeine intolerance,Intolerance,Contact dermatitis,Mild,Low,2018-01-21,,Active,Suspected,Codeine
+EHDS-PT-00047,Pollen-food syndrome,Intolerance,Gastrointestinal distress,Life-threatening,High,2018-11-04,,Inactive,Suspected,Pollen
+EHDS-PT-00047,Egg protein allergy,Allergy,Bronchospasm,Moderate,Low,2022-03-24,,Active,Refuted,Egg protein
+EHDS-PT-00051,Latex allergy,Allergy,Gastrointestinal distress,Mild,Low,2013-01-05,,Active,Refuted,Latex
+EHDS-PT-00051,Contrast dye reaction,Allergy,Anaphylaxis,Life-threatening,High,2019-10-18,,Active,Refuted,Iodinated contrast
+EHDS-PT-00051,Pollen-food syndrome,Allergy,Bronchospasm,Life-threatening,Unable to assess,2019-07-20,,Inactive,Suspected,Pollen
+EHDS-PT-00053,Pollen-food syndrome,Intolerance,Contact dermatitis,Moderate,Unable to assess,2010-03-02,,Inactive,Refuted,Pollen
+EHDS-PT-00053,Ibuprofen allergy,Intolerance,Urticaria,Mild,Unable to assess,2019-03-20,,Inactive,Suspected,Ibuprofen
+EHDS-PT-00055,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Mild,Unable to assess,2013-03-09,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00055,Sulfonamide hypersensitivity,Intolerance,Angioedema,Mild,High,2015-07-02,2023-06-09,Resolved,Refuted,Sulfonamide
+EHDS-PT-00064,Pollen-food syndrome,Intolerance,Urticaria,Life-threatening,Unable to assess,2016-10-26,,Inactive,Confirmed,Pollen
+EHDS-PT-00067,Pollen-food syndrome,Allergy,Anaphylaxis,Mild,High,2010-08-12,2025-09-19,Resolved,Suspected,Pollen
+EHDS-PT-00067,Latex allergy,Intolerance,Urticaria,Mild,Unable to assess,2023-10-24,2024-07-17,Resolved,Confirmed,Latex
+EHDS-PT-00067,Pollen-food syndrome,Intolerance,Rash,Moderate,High,2013-05-23,,Inactive,Refuted,Pollen
+EHDS-PT-00068,Codeine intolerance,Allergy,Angioedema,Moderate,High,2010-09-29,2023-06-22,Resolved,Suspected,Codeine
+EHDS-PT-00070,Latex allergy,Intolerance,Urticaria,Severe,Low,2014-09-24,,Inactive,Confirmed,Latex
+EHDS-PT-00070,Latex allergy,Intolerance,Bronchospasm,Moderate,High,2020-05-29,2025-09-02,Resolved,Refuted,Latex
+EHDS-PT-00073,Penicillin allergy,Intolerance,Angioedema,Mild,Low,2016-06-23,2025-02-21,Resolved,Refuted,Penicillin
+EHDS-PT-00073,Cephalosporin allergy,Intolerance,Rash,Severe,High,2019-09-08,,Inactive,Confirmed,Cephalosporin
+EHDS-PT-00074,Egg protein allergy,Allergy,Gastrointestinal distress,Moderate,Unable to assess,2020-05-05,,Inactive,Suspected,Egg protein
+EHDS-PT-00074,Latex allergy,Allergy,Gastrointestinal distress,Mild,Low,2017-01-10,,Inactive,Confirmed,Latex
+EHDS-PT-00074,Egg protein allergy,Allergy,Gastrointestinal distress,Life-threatening,High,2012-03-11,,Inactive,Confirmed,Egg protein
+EHDS-PT-00076,Penicillin allergy,Allergy,Angioedema,Moderate,Unable to assess,2023-11-23,,Active,Refuted,Penicillin
+EHDS-PT-00077,Sulfonamide hypersensitivity,Intolerance,Gastrointestinal distress,Moderate,Low,2023-07-25,,Active,Refuted,Sulfonamide
+EHDS-PT-00078,Contrast dye reaction,Intolerance,Rash,Life-threatening,Unable to assess,2011-09-13,,Inactive,Refuted,Iodinated contrast
+EHDS-PT-00078,Cephalosporin allergy,Allergy,Rash,Mild,High,2015-10-10,,Active,Suspected,Cephalosporin
+EHDS-PT-00080,Latex allergy,Intolerance,Anaphylaxis,Life-threatening,Low,2019-11-19,,Active,Refuted,Latex
+EHDS-PT-00080,Contrast dye reaction,Intolerance,Anaphylaxis,Mild,High,2012-06-07,,Active,Refuted,Iodinated contrast
+EHDS-PT-00081,Sulfonamide hypersensitivity,Intolerance,Contact dermatitis,Life-threatening,Low,2011-07-31,,Inactive,Suspected,Sulfonamide
+EHDS-PT-00082,Penicillin allergy,Intolerance,Rash,Moderate,Unable to assess,2010-11-06,,Inactive,Suspected,Penicillin
+EHDS-PT-00082,Egg protein allergy,Intolerance,Bronchospasm,Life-threatening,High,2022-11-21,,Active,Refuted,Egg protein
+EHDS-PT-00082,Sulfonamide hypersensitivity,Allergy,Bronchospasm,Life-threatening,Low,2022-02-11,,Active,Refuted,Sulfonamide
+EHDS-PT-00087,Sulfonamide hypersensitivity,Intolerance,Urticaria,Life-threatening,High,2018-03-12,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00087,Aspirin sensitivity,Allergy,Bronchospasm,Moderate,High,2013-12-17,,Inactive,Refuted,Aspirin
+EHDS-PT-00087,Egg protein allergy,Intolerance,Bronchospasm,Mild,Unable to assess,2012-05-24,,Inactive,Suspected,Egg protein
+EHDS-PT-00089,Penicillin allergy,Intolerance,Bronchospasm,Mild,Unable to assess,2023-04-20,,Active,Refuted,Penicillin
+EHDS-PT-00095,Cephalosporin allergy,Allergy,Contact dermatitis,Life-threatening,Unable to assess,2010-12-17,2023-08-31,Resolved,Refuted,Cephalosporin
+EHDS-PT-00096,Aspirin sensitivity,Allergy,Bronchospasm,Mild,High,2011-08-14,,Active,Refuted,Aspirin
+EHDS-PT-00096,Penicillin allergy,Allergy,Urticaria,Moderate,Unable to assess,2015-06-12,,Inactive,Confirmed,Penicillin
+EHDS-PT-00096,Ibuprofen allergy,Allergy,Contact dermatitis,Mild,Low,2012-03-08,2023-12-16,Resolved,Suspected,Ibuprofen
+EHDS-PT-00099,Egg protein allergy,Intolerance,Rash,Mild,Unable to assess,2017-07-26,,Inactive,Refuted,Egg protein
+EHDS-PT-00103,Pollen-food syndrome,Allergy,Rash,Moderate,High,2013-11-21,2023-05-10,Resolved,Confirmed,Pollen
+EHDS-PT-00108,Pollen-food syndrome,Allergy,Bronchospasm,Mild,Low,2018-06-09,,Active,Confirmed,Pollen
+EHDS-PT-00109,Pollen-food syndrome,Allergy,Anaphylaxis,Moderate,Unable to assess,2016-05-13,2025-09-01,Resolved,Suspected,Pollen
+EHDS-PT-00114,Contrast dye reaction,Intolerance,Rash,Life-threatening,Low,2023-09-23,,Active,Refuted,Iodinated contrast
+EHDS-PT-00115,Codeine intolerance,Intolerance,Contact dermatitis,Moderate,High,2012-02-23,,Inactive,Refuted,Codeine
+EHDS-PT-00117,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Moderate,Low,2013-05-07,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00119,Ibuprofen allergy,Intolerance,Angioedema,Life-threatening,Low,2014-09-13,2024-05-29,Resolved,Confirmed,Ibuprofen
+EHDS-PT-00119,Penicillin allergy,Allergy,Contact dermatitis,Mild,High,2022-01-20,,Active,Refuted,Penicillin
+EHDS-PT-00120,Contrast dye reaction,Intolerance,Bronchospasm,Moderate,Unable to assess,2023-04-18,,Inactive,Refuted,Iodinated contrast
+EHDS-PT-00122,Cephalosporin allergy,Allergy,Gastrointestinal distress,Life-threatening,Low,2015-02-09,,Active,Suspected,Cephalosporin
+EHDS-PT-00124,Contrast dye reaction,Allergy,Angioedema,Life-threatening,Low,2011-03-22,2023-10-24,Resolved,Suspected,Iodinated contrast
+EHDS-PT-00124,Cephalosporin allergy,Intolerance,Rash,Moderate,High,2013-01-22,2024-02-02,Resolved,Confirmed,Cephalosporin
+EHDS-PT-00124,Penicillin allergy,Intolerance,Anaphylaxis,Mild,High,2022-10-03,,Active,Suspected,Penicillin
+EHDS-PT-00127,Pollen-food syndrome,Allergy,Angioedema,Moderate,Low,2013-07-08,,Inactive,Suspected,Pollen
+EHDS-PT-00127,Codeine intolerance,Intolerance,Contact dermatitis,Life-threatening,High,2020-12-21,,Active,Confirmed,Codeine
+EHDS-PT-00130,Egg protein allergy,Allergy,Angioedema,Mild,High,2022-12-30,,Active,Confirmed,Egg protein
+EHDS-PT-00130,Penicillin allergy,Allergy,Bronchospasm,Life-threatening,High,2020-07-22,,Inactive,Refuted,Penicillin
+EHDS-PT-00133,Penicillin allergy,Allergy,Rash,Severe,Low,2019-02-14,,Active,Refuted,Penicillin
+EHDS-PT-00133,Sulfonamide hypersensitivity,Allergy,Gastrointestinal distress,Life-threatening,Unable to assess,2010-05-11,2024-09-16,Resolved,Refuted,Sulfonamide
+EHDS-PT-00133,Pollen-food syndrome,Allergy,Contact dermatitis,Life-threatening,Low,2010-07-19,2025-08-07,Resolved,Suspected,Pollen
+EHDS-PT-00136,Sulfonamide hypersensitivity,Intolerance,Angioedema,Mild,High,2018-08-19,,Inactive,Suspected,Sulfonamide
+EHDS-PT-00136,Ibuprofen allergy,Allergy,Contact dermatitis,Mild,Unable to assess,2023-09-27,,Inactive,Suspected,Ibuprofen
+EHDS-PT-00136,Penicillin allergy,Intolerance,Urticaria,Mild,High,2021-07-18,,Inactive,Suspected,Penicillin
+EHDS-PT-00138,Latex allergy,Allergy,Angioedema,Moderate,Low,2022-07-14,,Inactive,Suspected,Latex
+EHDS-PT-00138,Aspirin sensitivity,Intolerance,Gastrointestinal distress,Moderate,Unable to assess,2022-02-07,,Active,Confirmed,Aspirin
+EHDS-PT-00143,Cephalosporin allergy,Allergy,Bronchospasm,Severe,High,2020-02-24,2025-10-23,Resolved,Refuted,Cephalosporin
+EHDS-PT-00143,Cephalosporin allergy,Intolerance,Urticaria,Mild,High,2011-06-22,,Active,Confirmed,Cephalosporin
+EHDS-PT-00144,Sulfonamide hypersensitivity,Allergy,Bronchospasm,Moderate,Low,2013-09-11,2023-08-18,Resolved,Refuted,Sulfonamide
+EHDS-PT-00146,Codeine intolerance,Intolerance,Bronchospasm,Mild,High,2012-12-17,2024-12-11,Resolved,Confirmed,Codeine
+EHDS-PT-00146,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Severe,Unable to assess,2010-06-30,,Active,Refuted,Sulfonamide
+EHDS-PT-00157,Ibuprofen allergy,Intolerance,Rash,Life-threatening,Low,2011-01-23,,Active,Refuted,Ibuprofen
+EHDS-PT-00157,Latex allergy,Allergy,Contact dermatitis,Moderate,Low,2022-01-03,2024-01-09,Resolved,Confirmed,Latex
+EHDS-PT-00158,Pollen-food syndrome,Intolerance,Anaphylaxis,Moderate,Unable to assess,2012-11-02,2024-06-17,Resolved,Refuted,Pollen
+EHDS-PT-00158,Penicillin allergy,Intolerance,Bronchospasm,Moderate,Unable to assess,2017-02-09,2023-10-30,Resolved,Suspected,Penicillin
+EHDS-PT-00159,Egg protein allergy,Intolerance,Rash,Moderate,Low,2021-03-15,,Active,Refuted,Egg protein
+EHDS-PT-00163,Pollen-food syndrome,Intolerance,Rash,Mild,Unable to assess,2013-04-19,,Inactive,Suspected,Pollen
+EHDS-PT-00163,Penicillin allergy,Allergy,Rash,Mild,High,2013-02-16,,Inactive,Refuted,Penicillin
+EHDS-PT-00166,Pollen-food syndrome,Allergy,Contact dermatitis,Severe,Low,2014-05-18,,Inactive,Confirmed,Pollen
+EHDS-PT-00167,Sulfonamide hypersensitivity,Intolerance,Rash,Mild,Unable to assess,2021-06-24,2024-02-03,Resolved,Suspected,Sulfonamide
+EHDS-PT-00167,Egg protein allergy,Intolerance,Rash,Life-threatening,High,2013-04-26,,Inactive,Confirmed,Egg protein
+EHDS-PT-00168,Ibuprofen allergy,Allergy,Anaphylaxis,Life-threatening,Unable to assess,2019-12-30,,Inactive,Suspected,Ibuprofen
+EHDS-PT-00168,Contrast dye reaction,Intolerance,Gastrointestinal distress,Life-threatening,Low,2016-06-22,,Active,Refuted,Iodinated contrast
+EHDS-PT-00170,Contrast dye reaction,Intolerance,Urticaria,Mild,High,2021-10-13,2023-05-16,Resolved,Refuted,Iodinated contrast
+EHDS-PT-00170,Ibuprofen allergy,Intolerance,Gastrointestinal distress,Moderate,Low,2019-04-19,,Active,Confirmed,Ibuprofen
+EHDS-PT-00172,Penicillin allergy,Intolerance,Bronchospasm,Life-threatening,Low,2016-10-09,,Inactive,Confirmed,Penicillin
+EHDS-PT-00172,Penicillin allergy,Intolerance,Urticaria,Severe,High,2013-06-15,2024-09-06,Resolved,Confirmed,Penicillin
+EHDS-PT-00175,Ibuprofen allergy,Intolerance,Angioedema,Life-threatening,Unable to assess,2021-01-22,,Active,Suspected,Ibuprofen
+EHDS-PT-00180,Pollen-food syndrome,Allergy,Anaphylaxis,Severe,High,2010-05-24,2023-11-30,Resolved,Refuted,Pollen
+EHDS-PT-00180,Latex allergy,Allergy,Rash,Severe,High,2018-01-06,,Active,Refuted,Latex
+EHDS-PT-00180,Cephalosporin allergy,Allergy,Angioedema,Moderate,Unable to assess,2011-02-04,2024-08-20,Resolved,Confirmed,Cephalosporin
+EHDS-PT-00183,Cephalosporin allergy,Allergy,Angioedema,Severe,Low,2016-10-02,2025-01-12,Resolved,Confirmed,Cephalosporin
+EHDS-PT-00183,Latex allergy,Intolerance,Bronchospasm,Severe,Low,2021-08-15,2025-02-02,Resolved,Confirmed,Latex
+EHDS-PT-00184,Aspirin sensitivity,Allergy,Bronchospasm,Life-threatening,Low,2014-03-24,,Inactive,Confirmed,Aspirin
+EHDS-PT-00184,Latex allergy,Intolerance,Gastrointestinal distress,Severe,Low,2010-05-23,2024-12-14,Resolved,Suspected,Latex
+EHDS-PT-00184,Pollen-food syndrome,Intolerance,Urticaria,Mild,Low,2021-09-25,2023-12-19,Resolved,Confirmed,Pollen
+EHDS-PT-00186,Ibuprofen allergy,Allergy,Urticaria,Life-threatening,Unable to assess,2012-10-23,,Active,Confirmed,Ibuprofen
+EHDS-PT-00187,Egg protein allergy,Allergy,Urticaria,Mild,High,2010-12-15,,Active,Confirmed,Egg protein
+EHDS-PT-00187,Ibuprofen allergy,Intolerance,Gastrointestinal distress,Mild,Low,2010-12-21,,Active,Confirmed,Ibuprofen
+EHDS-PT-00189,Latex allergy,Allergy,Anaphylaxis,Severe,Unable to assess,2017-11-19,,Active,Suspected,Latex
+EHDS-PT-00195,Penicillin allergy,Allergy,Rash,Moderate,Unable to assess,2021-11-11,,Active,Confirmed,Penicillin
+EHDS-PT-00195,Sulfonamide hypersensitivity,Intolerance,Rash,Moderate,High,2014-10-20,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00195,Sulfonamide hypersensitivity,Intolerance,Anaphylaxis,Moderate,High,2014-01-21,2025-02-16,Resolved,Confirmed,Sulfonamide
+EHDS-PT-00202,Penicillin allergy,Allergy,Bronchospasm,Severe,High,2011-11-05,2025-10-08,Resolved,Refuted,Penicillin
+EHDS-PT-00202,Ibuprofen allergy,Intolerance,Rash,Life-threatening,Low,2019-12-16,,Active,Confirmed,Ibuprofen
+EHDS-PT-00202,Contrast dye reaction,Allergy,Gastrointestinal distress,Life-threatening,Unable to assess,2018-03-30,,Active,Confirmed,Iodinated contrast
+EHDS-PT-00206,Egg protein allergy,Allergy,Urticaria,Severe,Low,2023-03-31,,Active,Suspected,Egg protein
+EHDS-PT-00206,Aspirin sensitivity,Allergy,Contact dermatitis,Life-threatening,Unable to assess,2023-05-06,2023-09-09,Resolved,Suspected,Aspirin
+EHDS-PT-00207,Pollen-food syndrome,Intolerance,Bronchospasm,Life-threatening,High,2023-04-26,2025-03-30,Resolved,Refuted,Pollen
+EHDS-PT-00207,Ibuprofen allergy,Allergy,Rash,Life-threatening,High,2013-04-22,2023-08-10,Resolved,Confirmed,Ibuprofen
+EHDS-PT-00207,Latex allergy,Allergy,Contact dermatitis,Mild,High,2010-09-01,,Active,Refuted,Latex
+EHDS-PT-00208,Egg protein allergy,Intolerance,Anaphylaxis,Severe,Unable to assess,2023-07-24,,Inactive,Refuted,Egg protein
+EHDS-PT-00209,Codeine intolerance,Intolerance,Gastrointestinal distress,Life-threatening,High,2021-01-15,2024-02-18,Resolved,Refuted,Codeine
+EHDS-PT-00210,Codeine intolerance,Allergy,Bronchospasm,Mild,High,2022-04-05,,Active,Suspected,Codeine
+EHDS-PT-00210,Cephalosporin allergy,Allergy,Urticaria,Moderate,Unable to assess,2018-06-10,2025-07-30,Resolved,Refuted,Cephalosporin
+EHDS-PT-00215,Egg protein allergy,Intolerance,Gastrointestinal distress,Life-threatening,High,2020-12-07,,Active,Refuted,Egg protein
+EHDS-PT-00215,Latex allergy,Intolerance,Rash,Life-threatening,Unable to assess,2021-05-13,,Active,Suspected,Latex
+EHDS-PT-00215,Pollen-food syndrome,Allergy,Urticaria,Mild,Low,2017-11-29,2024-10-18,Resolved,Suspected,Pollen
+EHDS-PT-00218,Cephalosporin allergy,Intolerance,Rash,Severe,High,2018-07-15,,Active,Suspected,Cephalosporin
+EHDS-PT-00218,Penicillin allergy,Allergy,Gastrointestinal distress,Severe,Unable to assess,2015-06-24,,Active,Confirmed,Penicillin
+EHDS-PT-00218,Sulfonamide hypersensitivity,Intolerance,Anaphylaxis,Mild,Unable to assess,2016-11-02,,Active,Suspected,Sulfonamide
+EHDS-PT-00219,Egg protein allergy,Intolerance,Rash,Mild,Unable to assess,2022-09-28,,Inactive,Suspected,Egg protein
+EHDS-PT-00219,Pollen-food syndrome,Intolerance,Rash,Mild,High,2010-07-02,2025-02-12,Resolved,Confirmed,Pollen
+EHDS-PT-00219,Aspirin sensitivity,Intolerance,Anaphylaxis,Severe,High,2017-07-15,2025-10-26,Resolved,Suspected,Aspirin
+EHDS-PT-00220,Sulfonamide hypersensitivity,Intolerance,Rash,Mild,High,2022-01-07,,Active,Refuted,Sulfonamide
+EHDS-PT-00220,Egg protein allergy,Allergy,Gastrointestinal distress,Mild,Unable to assess,2015-01-25,,Inactive,Suspected,Egg protein
+EHDS-PT-00220,Ibuprofen allergy,Intolerance,Bronchospasm,Moderate,High,2011-07-06,,Inactive,Confirmed,Ibuprofen
+EHDS-PT-00226,Ibuprofen allergy,Allergy,Gastrointestinal distress,Moderate,Unable to assess,2021-07-23,2024-01-05,Resolved,Suspected,Ibuprofen
+EHDS-PT-00226,Aspirin sensitivity,Intolerance,Angioedema,Mild,Unable to assess,2020-06-25,2025-12-27,Resolved,Confirmed,Aspirin
+EHDS-PT-00228,Ibuprofen allergy,Allergy,Gastrointestinal distress,Moderate,High,2019-10-07,2024-10-14,Resolved,Suspected,Ibuprofen
+EHDS-PT-00231,Aspirin sensitivity,Allergy,Anaphylaxis,Moderate,Low,2019-02-07,,Active,Confirmed,Aspirin
+EHDS-PT-00231,Ibuprofen allergy,Intolerance,Gastrointestinal distress,Mild,Low,2020-05-30,2025-06-12,Resolved,Confirmed,Ibuprofen
+EHDS-PT-00231,Ibuprofen allergy,Intolerance,Contact dermatitis,Severe,Unable to assess,2013-01-22,,Active,Refuted,Ibuprofen
+EHDS-PT-00232,Contrast dye reaction,Allergy,Rash,Severe,Low,2010-06-13,,Active,Suspected,Iodinated contrast
+EHDS-PT-00239,Codeine intolerance,Intolerance,Bronchospasm,Mild,Low,2012-09-15,,Inactive,Refuted,Codeine
+EHDS-PT-00239,Sulfonamide hypersensitivity,Allergy,Bronchospasm,Moderate,Low,2017-01-11,2025-03-09,Resolved,Confirmed,Sulfonamide
+EHDS-PT-00239,Latex allergy,Intolerance,Rash,Mild,High,2014-10-20,2025-06-19,Resolved,Refuted,Latex
+EHDS-PT-00251,Penicillin allergy,Allergy,Rash,Life-threatening,High,2011-03-24,,Inactive,Refuted,Penicillin
+EHDS-PT-00251,Cephalosporin allergy,Allergy,Contact dermatitis,Life-threatening,High,2012-09-26,,Inactive,Confirmed,Cephalosporin
+EHDS-PT-00251,Egg protein allergy,Allergy,Rash,Moderate,Low,2015-09-25,2023-07-04,Resolved,Suspected,Egg protein
+EHDS-PT-00256,Contrast dye reaction,Intolerance,Contact dermatitis,Severe,Unable to assess,2020-07-26,,Inactive,Suspected,Iodinated contrast
+EHDS-PT-00267,Latex allergy,Allergy,Urticaria,Life-threatening,Low,2019-12-12,,Inactive,Refuted,Latex
+EHDS-PT-00270,Codeine intolerance,Intolerance,Contact dermatitis,Severe,High,2012-12-01,,Inactive,Suspected,Codeine
+EHDS-PT-00272,Pollen-food syndrome,Allergy,Bronchospasm,Severe,Low,2017-05-07,2024-02-11,Resolved,Suspected,Pollen
+EHDS-PT-00276,Codeine intolerance,Allergy,Urticaria,Life-threatening,Low,2023-09-23,,Inactive,Suspected,Codeine
+EHDS-PT-00278,Pollen-food syndrome,Intolerance,Anaphylaxis,Mild,High,2019-08-15,,Inactive,Confirmed,Pollen
+EHDS-PT-00278,Pollen-food syndrome,Intolerance,Contact dermatitis,Life-threatening,Unable to assess,2012-08-19,,Active,Suspected,Pollen
+EHDS-PT-00279,Aspirin sensitivity,Intolerance,Bronchospasm,Moderate,High,2014-04-10,2024-08-12,Resolved,Confirmed,Aspirin
+EHDS-PT-00279,Pollen-food syndrome,Intolerance,Anaphylaxis,Life-threatening,Low,2014-11-01,2024-01-23,Resolved,Confirmed,Pollen
+EHDS-PT-00279,Ibuprofen allergy,Intolerance,Anaphylaxis,Severe,Unable to assess,2015-11-15,,Active,Refuted,Ibuprofen
+EHDS-PT-00281,Latex allergy,Intolerance,Gastrointestinal distress,Moderate,Unable to assess,2017-04-02,,Inactive,Suspected,Latex
+EHDS-PT-00281,Egg protein allergy,Allergy,Angioedema,Mild,Low,2023-05-25,2023-05-30,Resolved,Suspected,Egg protein
+EHDS-PT-00290,Pollen-food syndrome,Intolerance,Anaphylaxis,Mild,Unable to assess,2018-07-18,2025-03-19,Resolved,Confirmed,Pollen
+EHDS-PT-00290,Ibuprofen allergy,Intolerance,Rash,Life-threatening,Low,2013-10-23,,Inactive,Confirmed,Ibuprofen
+EHDS-PT-00290,Cephalosporin allergy,Intolerance,Urticaria,Severe,Low,2021-11-24,2023-10-18,Resolved,Confirmed,Cephalosporin
+EHDS-PT-00293,Egg protein allergy,Intolerance,Bronchospasm,Moderate,High,2016-05-06,2024-06-24,Resolved,Refuted,Egg protein
+EHDS-PT-00293,Contrast dye reaction,Intolerance,Urticaria,Moderate,Low,2013-05-24,,Inactive,Confirmed,Iodinated contrast
+EHDS-PT-00294,Contrast dye reaction,Intolerance,Bronchospasm,Mild,High,2015-11-02,,Active,Confirmed,Iodinated contrast
+EHDS-PT-00299,Latex allergy,Allergy,Contact dermatitis,Severe,Low,2012-10-09,2023-07-11,Resolved,Confirmed,Latex
+EHDS-PT-00299,Codeine intolerance,Allergy,Angioedema,Mild,Unable to assess,2016-02-13,,Inactive,Refuted,Codeine
+EHDS-PT-00299,Latex allergy,Allergy,Contact dermatitis,Life-threatening,Unable to assess,2019-05-05,,Active,Confirmed,Latex
+EHDS-PT-00301,Sulfonamide hypersensitivity,Intolerance,Anaphylaxis,Mild,Low,2018-11-04,2023-08-06,Resolved,Suspected,Sulfonamide
+EHDS-PT-00301,Contrast dye reaction,Intolerance,Angioedema,Mild,High,2020-03-08,,Inactive,Confirmed,Iodinated contrast
+EHDS-PT-00301,Pollen-food syndrome,Allergy,Contact dermatitis,Mild,Unable to assess,2020-02-29,2023-09-22,Resolved,Suspected,Pollen
+EHDS-PT-00303,Codeine intolerance,Intolerance,Rash,Moderate,Low,2023-07-05,2023-07-09,Resolved,Suspected,Codeine
+EHDS-PT-00304,Latex allergy,Allergy,Urticaria,Severe,High,2018-09-18,2024-08-06,Resolved,Suspected,Latex
+EHDS-PT-00310,Codeine intolerance,Intolerance,Bronchospasm,Severe,Unable to assess,2014-06-26,2025-07-01,Resolved,Refuted,Codeine
+EHDS-PT-00310,Egg protein allergy,Allergy,Bronchospasm,Life-threatening,Low,2012-01-10,2025-01-24,Resolved,Confirmed,Egg protein
+EHDS-PT-00319,Egg protein allergy,Allergy,Anaphylaxis,Severe,Low,2011-10-11,2024-09-07,Resolved,Refuted,Egg protein
+EHDS-PT-00319,Egg protein allergy,Allergy,Angioedema,Mild,Low,2016-08-17,,Inactive,Refuted,Egg protein
+EHDS-PT-00320,Egg protein allergy,Intolerance,Rash,Mild,Unable to assess,2012-02-14,2024-06-02,Resolved,Confirmed,Egg protein
+EHDS-PT-00320,Sulfonamide hypersensitivity,Allergy,Contact dermatitis,Life-threatening,Low,2020-05-19,,Active,Confirmed,Sulfonamide
+EHDS-PT-00331,Pollen-food syndrome,Allergy,Bronchospasm,Mild,Low,2015-10-26,,Inactive,Suspected,Pollen
+EHDS-PT-00332,Contrast dye reaction,Intolerance,Contact dermatitis,Life-threatening,High,2020-04-27,,Inactive,Refuted,Iodinated contrast
+EHDS-PT-00339,Penicillin allergy,Allergy,Gastrointestinal distress,Moderate,Low,2014-04-13,,Active,Confirmed,Penicillin
+EHDS-PT-00341,Egg protein allergy,Allergy,Rash,Life-threatening,Low,2022-01-30,,Active,Suspected,Egg protein
+EHDS-PT-00343,Contrast dye reaction,Intolerance,Angioedema,Moderate,Low,2020-11-17,2023-02-10,Resolved,Suspected,Iodinated contrast
+EHDS-PT-00346,Sulfonamide hypersensitivity,Intolerance,Urticaria,Life-threatening,High,2019-09-08,2025-10-12,Resolved,Suspected,Sulfonamide
+EHDS-PT-00352,Codeine intolerance,Allergy,Rash,Life-threatening,High,2010-06-05,2024-10-08,Resolved,Confirmed,Codeine
+EHDS-PT-00357,Aspirin sensitivity,Allergy,Angioedema,Moderate,Unable to assess,2020-07-11,2025-06-16,Resolved,Refuted,Aspirin
+EHDS-PT-00357,Cephalosporin allergy,Intolerance,Anaphylaxis,Severe,Unable to assess,2023-07-04,,Inactive,Refuted,Cephalosporin
+EHDS-PT-00365,Ibuprofen allergy,Intolerance,Anaphylaxis,Moderate,Low,2011-12-08,,Inactive,Confirmed,Ibuprofen
+EHDS-PT-00367,Contrast dye reaction,Allergy,Angioedema,Mild,Low,2016-10-23,,Active,Suspected,Iodinated contrast
+EHDS-PT-00367,Ibuprofen allergy,Allergy,Anaphylaxis,Mild,Low,2018-01-03,,Inactive,Suspected,Ibuprofen
+EHDS-PT-00370,Contrast dye reaction,Allergy,Contact dermatitis,Severe,Low,2015-10-14,2024-12-28,Resolved,Refuted,Iodinated contrast
+EHDS-PT-00373,Contrast dye reaction,Allergy,Contact dermatitis,Mild,Unable to assess,2020-04-02,,Active,Confirmed,Iodinated contrast
+EHDS-PT-00375,Aspirin sensitivity,Intolerance,Gastrointestinal distress,Life-threatening,Unable to assess,2018-02-10,,Active,Suspected,Aspirin
+EHDS-PT-00377,Cephalosporin allergy,Allergy,Contact dermatitis,Moderate,High,2017-07-04,,Active,Suspected,Cephalosporin
+EHDS-PT-00377,Penicillin allergy,Intolerance,Angioedema,Moderate,Low,2015-07-03,2024-11-30,Resolved,Suspected,Penicillin
+EHDS-PT-00377,Cephalosporin allergy,Allergy,Contact dermatitis,Life-threatening,Low,2019-04-23,2024-05-17,Resolved,Confirmed,Cephalosporin
+EHDS-PT-00385,Penicillin allergy,Allergy,Rash,Severe,High,2021-08-09,,Active,Confirmed,Penicillin
+EHDS-PT-00388,Latex allergy,Intolerance,Bronchospasm,Life-threatening,Unable to assess,2022-11-20,,Active,Refuted,Latex
+EHDS-PT-00388,Codeine intolerance,Intolerance,Rash,Mild,High,2016-10-29,,Inactive,Refuted,Codeine
+EHDS-PT-00388,Pollen-food syndrome,Intolerance,Bronchospasm,Moderate,Unable to assess,2013-04-18,,Inactive,Refuted,Pollen
+EHDS-PT-00395,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Moderate,Unable to assess,2010-10-30,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00395,Ibuprofen allergy,Intolerance,Angioedema,Severe,Unable to assess,2014-10-17,,Active,Confirmed,Ibuprofen
+EHDS-PT-00396,Pollen-food syndrome,Intolerance,Gastrointestinal distress,Life-threatening,Unable to assess,2015-10-21,,Active,Confirmed,Pollen
+EHDS-PT-00396,Penicillin allergy,Intolerance,Urticaria,Mild,Unable to assess,2018-05-14,2025-11-05,Resolved,Confirmed,Penicillin
+EHDS-PT-00396,Contrast dye reaction,Allergy,Bronchospasm,Severe,Low,2016-09-06,,Inactive,Refuted,Iodinated contrast
+EHDS-PT-00404,Pollen-food syndrome,Intolerance,Angioedema,Moderate,Low,2013-02-20,,Inactive,Suspected,Pollen
+EHDS-PT-00404,Codeine intolerance,Intolerance,Bronchospasm,Mild,Low,2023-01-23,,Active,Refuted,Codeine
+EHDS-PT-00404,Egg protein allergy,Allergy,Urticaria,Life-threatening,Low,2019-03-30,,Active,Suspected,Egg protein
+EHDS-PT-00405,Cephalosporin allergy,Intolerance,Contact dermatitis,Severe,Unable to assess,2021-10-21,2025-11-28,Resolved,Suspected,Cephalosporin
+EHDS-PT-00412,Latex allergy,Intolerance,Anaphylaxis,Mild,Unable to assess,2020-11-15,,Inactive,Confirmed,Latex
+EHDS-PT-00412,Contrast dye reaction,Allergy,Angioedema,Severe,Low,2020-08-13,,Active,Refuted,Iodinated contrast
+EHDS-PT-00412,Egg protein allergy,Intolerance,Angioedema,Severe,Low,2012-06-22,,Active,Refuted,Egg protein
+EHDS-PT-00413,Ibuprofen allergy,Intolerance,Urticaria,Moderate,Low,2018-05-26,2024-08-25,Resolved,Refuted,Ibuprofen
+EHDS-PT-00413,Egg protein allergy,Allergy,Anaphylaxis,Life-threatening,Low,2011-02-03,2024-08-03,Resolved,Confirmed,Egg protein
+EHDS-PT-00415,Egg protein allergy,Intolerance,Angioedema,Life-threatening,High,2020-10-16,,Inactive,Suspected,Egg protein
+EHDS-PT-00429,Cephalosporin allergy,Intolerance,Gastrointestinal distress,Severe,Unable to assess,2022-02-18,,Active,Confirmed,Cephalosporin
+EHDS-PT-00429,Latex allergy,Intolerance,Angioedema,Mild,Unable to assess,2010-07-23,,Inactive,Refuted,Latex
+EHDS-PT-00430,Codeine intolerance,Allergy,Contact dermatitis,Life-threatening,Unable to assess,2022-12-09,,Active,Confirmed,Codeine
+EHDS-PT-00430,Sulfonamide hypersensitivity,Allergy,Rash,Moderate,Low,2021-12-05,,Active,Refuted,Sulfonamide
+EHDS-PT-00430,Pollen-food syndrome,Intolerance,Bronchospasm,Mild,High,2019-12-19,,Active,Confirmed,Pollen
+EHDS-PT-00432,Codeine intolerance,Allergy,Urticaria,Mild,Unable to assess,2017-02-12,2024-06-10,Resolved,Confirmed,Codeine
+EHDS-PT-00433,Ibuprofen allergy,Intolerance,Bronchospasm,Moderate,Low,2012-01-05,,Active,Refuted,Ibuprofen
+EHDS-PT-00435,Penicillin allergy,Intolerance,Anaphylaxis,Life-threatening,High,2016-09-07,2023-07-22,Resolved,Suspected,Penicillin
+EHDS-PT-00435,Egg protein allergy,Allergy,Anaphylaxis,Moderate,High,2012-09-17,,Active,Refuted,Egg protein
+EHDS-PT-00435,Codeine intolerance,Intolerance,Urticaria,Severe,High,2018-08-21,,Active,Refuted,Codeine
+EHDS-PT-00439,Ibuprofen allergy,Allergy,Anaphylaxis,Moderate,High,2022-06-05,,Inactive,Refuted,Ibuprofen
+EHDS-PT-00441,Codeine intolerance,Intolerance,Angioedema,Moderate,Low,2014-07-25,,Active,Refuted,Codeine
+EHDS-PT-00441,Egg protein allergy,Allergy,Contact dermatitis,Life-threatening,Unable to assess,2022-06-14,2023-03-27,Resolved,Suspected,Egg protein
+EHDS-PT-00441,Latex allergy,Intolerance,Rash,Severe,Unable to assess,2010-01-05,,Active,Suspected,Latex
+EHDS-PT-00444,Ibuprofen allergy,Allergy,Rash,Mild,High,2011-01-08,,Active,Refuted,Ibuprofen
+EHDS-PT-00444,Sulfonamide hypersensitivity,Intolerance,Bronchospasm,Moderate,Unable to assess,2013-02-18,,Inactive,Refuted,Sulfonamide
+EHDS-PT-00444,Cephalosporin allergy,Intolerance,Contact dermatitis,Life-threatening,High,2017-09-07,,Inactive,Confirmed,Cephalosporin
+EHDS-PT-00447,Cephalosporin allergy,Allergy,Gastrointestinal distress,Mild,Unable to assess,2010-05-11,,Inactive,Suspected,Cephalosporin
+EHDS-PT-00447,Penicillin allergy,Allergy,Bronchospasm,Life-threatening,High,2010-03-20,,Inactive,Refuted,Penicillin
+EHDS-PT-00447,Sulfonamide hypersensitivity,Allergy,Contact dermatitis,Life-threatening,Unable to assess,2011-09-28,,Inactive,Confirmed,Sulfonamide
+EHDS-PT-00452,Penicillin allergy,Allergy,Bronchospasm,Mild,Low,2012-10-19,2025-01-28,Resolved,Refuted,Penicillin
+EHDS-PT-00452,Penicillin allergy,Intolerance,Anaphylaxis,Mild,Unable to assess,2016-04-22,,Inactive,Refuted,Penicillin
+EHDS-PT-00452,Ibuprofen allergy,Intolerance,Rash,Mild,High,2014-12-17,,Active,Suspected,Ibuprofen
+EHDS-PT-00455,Egg protein allergy,Intolerance,Anaphylaxis,Moderate,Unable to assess,2012-06-27,2025-10-21,Resolved,Refuted,Egg protein
+EHDS-PT-00459,Sulfonamide hypersensitivity,Intolerance,Anaphylaxis,Mild,Unable to assess,2012-11-09,2024-04-11,Resolved,Refuted,Sulfonamide
+EHDS-PT-00461,Contrast dye reaction,Intolerance,Bronchospasm,Life-threatening,High,2010-01-17,2023-04-17,Resolved,Confirmed,Iodinated contrast
+EHDS-PT-00461,Codeine intolerance,Allergy,Gastrointestinal distress,Moderate,Low,2020-06-19,2025-01-10,Resolved,Suspected,Codeine
+EHDS-PT-00461,Egg protein allergy,Allergy,Bronchospasm,Moderate,High,2021-12-10,2024-10-09,Resolved,Confirmed,Egg protein
+EHDS-PT-00465,Egg protein allergy,Allergy,Anaphylaxis,Severe,High,2011-09-02,,Active,Confirmed,Egg protein
+EHDS-PT-00465,Sulfonamide hypersensitivity,Allergy,Angioedema,Severe,High,2010-08-17,2025-06-03,Resolved,Confirmed,Sulfonamide
+EHDS-PT-00465,Sulfonamide hypersensitivity,Intolerance,Contact dermatitis,Mild,High,2020-08-15,,Active,Refuted,Sulfonamide
+EHDS-PT-00473,Penicillin allergy,Allergy,Urticaria,Life-threatening,Low,2018-06-19,2023-05-14,Resolved,Suspected,Penicillin
+EHDS-PT-00476,Codeine intolerance,Intolerance,Urticaria,Life-threatening,Low,2011-03-04,2025-02-20,Resolved,Refuted,Codeine
+EHDS-PT-00483,Penicillin allergy,Intolerance,Angioedema,Moderate,Low,2020-03-08,,Inactive,Confirmed,Penicillin
+EHDS-PT-00483,Penicillin allergy,Allergy,Angioedema,Moderate,Unable to assess,2023-05-08,,Inactive,Confirmed,Penicillin
+EHDS-PT-00483,Codeine intolerance,Intolerance,Gastrointestinal distress,Life-threatening,Low,2015-10-01,2025-05-12,Resolved,Confirmed,Codeine
+EHDS-PT-00484,Penicillin allergy,Intolerance,Rash,Moderate,Low,2012-11-11,2025-06-11,Resolved,Suspected,Penicillin
+EHDS-PT-00488,Latex allergy,Allergy,Bronchospasm,Severe,Low,2011-04-15,,Active,Confirmed,Latex
+EHDS-PT-00488,Aspirin sensitivity,Intolerance,Gastrointestinal distress,Life-threatening,Unable to assess,2011-07-15,2024-01-23,Resolved,Refuted,Aspirin
+EHDS-PT-00488,Cephalosporin allergy,Intolerance,Angioedema,Severe,High,2022-12-22,,Inactive,Suspected,Cephalosporin
+EHDS-PT-00489,Penicillin allergy,Allergy,Gastrointestinal distress,Moderate,Unable to assess,2021-02-14,,Active,Confirmed,Penicillin
+EHDS-PT-00489,Contrast dye reaction,Allergy,Bronchospasm,Severe,Unable to assess,2023-12-30,,Active,Suspected,Iodinated contrast
+EHDS-PT-00490,Penicillin allergy,Allergy,Rash,Mild,Unable to assess,2018-02-20,,Active,Confirmed,Penicillin
+EHDS-PT-00491,Aspirin sensitivity,Allergy,Anaphylaxis,Moderate,High,2023-02-19,2023-03-31,Resolved,Confirmed,Aspirin
+EHDS-PT-00491,Aspirin sensitivity,Allergy,Rash,Moderate,Low,2015-11-17,,Inactive,Confirmed,Aspirin
+EHDS-PT-00492,Sulfonamide hypersensitivity,Allergy,Bronchospasm,Mild,High,2010-06-21,,Inactive,Confirmed,Sulfonamide
+EHDS-PT-00492,Ibuprofen allergy,Intolerance,Contact dermatitis,Severe,Unable to assess,2020-03-26,,Active,Confirmed,Ibuprofen
+EHDS-PT-00498,Latex allergy,Intolerance,Gastrointestinal distress,Severe,High,2014-04-03,,Active,Refuted,Latex

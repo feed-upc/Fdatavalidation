@@ -11,25 +11,28 @@
   },
   "@graph": [
     {
-      "@id": "ab:Patient_Data",
-      "@type": ["tb:CommonDataModel", "schema:Dataset"],
-      "name": "Patient Clinical Data Model",
-      "description": "Common data model for federated patient clinical information including demographics, temporal data, and survival outcomes",
+      "@id": "ab:EHDS_Patient_Summary",
+      "@type": [
+        "tb:CommonDataModel",
+        "schema:Dataset"
+      ],
+      "name": "EHDS Patient Summary Data Model",
+      "description": "Common data model for the European Health Data Space (EHDS) Patient Summary, covering patient identification, hospital affiliation, and temporal metadata for antimicrobial resistance surveillance",
       "creator": {
         "@type": "Organization",
         "name": "FederatedTeam"
       },
-      "dcterms:identifier": "123456",
-      "version": "2.1",
-      "dateCreated": "2024-01-01",
-      "dateModified": "2025-12-16",
+      "dcterms:identifier": "EHDS-AMR-PS-001",
+      "version": "1.0",
+      "dateCreated": "2025-01-01",
+      "dateModified": "2026-02-13",
       "variableMeasured": [
         {
           "@id": "schema:identifier",
           "@type": "PropertyValue",
           "name": "Subject ID",
-          "description": "Unique patient or subject identifier",
-          "propertyID": "ID",
+          "description": "National healthcare patient identifier (nationalHealthcarePatientID)",
+          "propertyID": "nationalHealthcarePatientID",
           "valueReference": {
             "@type": "DefinedTerm",
             "name": "Patient Identifier",
@@ -37,25 +40,11 @@
           }
         },
         {
-          "@id": "schema:age",
-          "@type": "PropertyValue",
-          "name": "Age",
-          "description": "Patient age in years at time of data collection",
-          "propertyID": "Age_at_scan_years",
-          "unitText": "years",
-          "unitCode": "ANN",
-          "valueReference": {
-            "@type": "DefinedTerm",
-            "name": "Age",
-            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C25164"
-          }
-        },
-        {
           "@id": "schema:gender",
           "@type": "PropertyValue",
           "name": "Sex",
-          "description": "Biological sex of the patient",
-          "propertyID": "Gender",
+          "description": "Biological sex of the patient (M/F)",
+          "propertyID": "gender",
           "valueReference": {
             "@type": "DefinedTerm",
             "name": "Sex",
@@ -63,25 +52,35 @@
           }
         },
         {
-          "@id": "ab:Survival",
+          "@id": "ab:AffiliationCountry",
           "@type": "PropertyValue",
-          "name": "Survival",
-          "description": "Patient survival duration from surgery",
-          "propertyID": "Survival_from_surgery_days_UPDATED",
-          "unitText": "days",
-          "unitCode": "DAY",
+          "name": "Affiliation Country",
+          "description": "Patient country of affiliation (ISO 3166-1 alpha-2)",
+          "propertyID": "countryOfAffiliation",
           "valueReference": {
             "@type": "DefinedTerm",
-            "name": "Survival Time",
-            "inDefinedTermSet": "http://purl.obolibrary.org/obo/NCIT_C25548"
+            "name": "Country Code",
+            "inDefinedTermSet": "https://www.iso.org/iso-3166-country-codes.html"
+          }
+        },
+        {
+          "@id": "ab:HospitalCountry",
+          "@type": "PropertyValue",
+          "name": "Hospital Country",
+          "description": "Country of the treating hospital (ISO 3166-1 alpha-2)",
+          "propertyID": "hospitalCountry",
+          "valueReference": {
+            "@type": "DefinedTerm",
+            "name": "Country Code",
+            "inDefinedTermSet": "https://www.iso.org/iso-3166-country-codes.html"
           }
         },
         {
           "@id": "schema:dateCreated",
           "@type": "PropertyValue",
           "name": "Timestamp",
-          "description": "Data collection timestamp",
-          "propertyID": "ts",
+          "description": "Last update timestamp for timeliness validation",
+          "propertyID": "lastUpdated",
           "valueReference": {
             "@type": "DefinedTerm",
             "name": "Date",
@@ -89,14 +88,20 @@
           }
         }
       ],
-      "measurementTechnique": "Electronic Health Records (EHR) extraction",
-      "temporalCoverage": "2020/2024",
+      "measurementTechnique": "European Health Data Space (EHDS) Patient Summary extraction",
+      "temporalCoverage": "2024/2026",
       "spatialCoverage": {
         "@type": "Place",
-        "name": "University of Pennsylvania Medical Center"
+        "name": "European Union (EU-27)"
       },
       "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-      "keywords": ["clinical data", "oncology", "glioblastoma", "survival analysis", "patient demographics"]
+      "keywords": [
+        "EHDS",
+        "antimicrobial resistance",
+        "patient summary",
+        "AMR surveillance",
+        "EU health data"
+      ]
     }
   ]
 }

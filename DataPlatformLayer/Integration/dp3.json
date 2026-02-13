@@ -1,8 +1,0 @@
-{
-  "name": "model",
-  "mappings": {
-    "Gender": "Sex",
-    "target": "Survival"
-  },
-  "policies": ["p4"]
-}

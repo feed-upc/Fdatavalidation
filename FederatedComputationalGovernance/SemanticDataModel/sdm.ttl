@@ -6,6 +6,7 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema1: <http://schema.org/> .
@@ -15,48 +16,55 @@
 
 dcterms:identifier a owl:DatatypeProperty ;
     rdfs:domain [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
         [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ] ;
     rdfs:range xsd:string .
 
-abox:genid-3e66ecb0a2ca a tbox:PolicyChecker ;
-    tbox:accordingTo abox:p1 ;
-    tbox:nextStep abox:genid-00ba47506c94 ;
-    tbox:validates abox:0002 .
+abox:DQRP3 a dqv:QualityPolicy ;
+    rdfs:label "DQRP3 - Validity Requirement (DQR2EH)" ;
+    tbox:derivedFrom "DQRP3" ;
+    tbox:ehdsRequirement "DQR2EH" ;
+    tbox:qualityDimension "Validity" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 3: Patient affiliation countries must be referenced using country codes from the ISO 3166 International Standard (EHDS DQR2EH - ISO/IEC 25012 Validity)" ;
+    odrl:duty abox:DQRP3_Duty .
 
-abox:genid-9e6e65f565e5 a tbox:PolicyChecker ;
-    tbox:accordingTo abox:p4 ;
-    tbox:nextStep abox:genid-ce7cc21fd927 ;
-    tbox:validates abox:model .
+abox:DQRP4 a dqv:QualityPolicy ;
+    rdfs:label "DQRP4 - Consistency Requirement (DQR3EH)" ;
+    tbox:consistencyRule abox:DQRP4_Rule ;
+    tbox:derivedFrom "DQRP4" ;
+    tbox:ehdsRequirement "DQR3EH" ;
+    tbox:qualityDimension "Consistency" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 4: Male patients shall not have any recorded pregnancy history (EHDS DQR3EH - ISO/IEC 25012 Consistency)" ;
+    odrl:duty abox:DQRP4_Duty .
 
-abox:test a tbox:DataProduct,
-        dcat:Dataset ;
-    dcterms:creator "Unknown"@en ;
-    dcterms:identifier "131bb36a50181d227cc87e8531bfa9af68c43f030c1e5ee3ccdab029c874fdec" ;
-    dcterms:title "test Dataset"@en ;
-    tbox:hasAttribute abox:Age_at_scan_years,
-        abox:GTR_over90percent,
-        abox:Gender,
-        abox:IDH1,
-        abox:KPS,
-        abox:MGMT,
-        abox:target ;
-    tbox:hasDTT abox:Tabular ;
-    tbox:hasTA abox:test_TA ;
-    tbox:owner "Unknown" ;
-    csvw:column abox:Age_at_scan_years,
-        abox:GTR_over90percent,
-        abox:Gender,
-        abox:IDH1,
-        abox:KPS,
-        abox:MGMT,
-        abox:target ;
-    dcat:distribution abox:test_TA .
+abox:DQRP5 a dqv:QualityPolicy ;
+    rdfs:label "DQRP5 - Sample Size Requirement (DQR4EH)" ;
+    tbox:derivedFrom "DQRP5" ;
+    tbox:ehdsRequirement "DQR4EH" ;
+    tbox:qualityDimension "Validity" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 5: To obtain reliable estimates of antimicrobial resistance rates, a minimum total sample size of at least 2,000 isolates is required (EHDS DQR4EH - DAMA-DMBOK Validity)" ;
+    odrl:duty abox:DQRP5_Duty .
+
+abox:DQRP6 a dqv:QualityPolicy ;
+    rdfs:label "DQRP6 - Fairness Requirement (DQR5EH)" ;
+    tbox:derivedFrom "DQRP6" ;
+    tbox:ehdsRequirement "DQR5EH" ;
+    tbox:fairnessConfig abox:DQRP6_FairnessConfig ;
+    tbox:qualityDimension "Fairness" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 6: Accurate estimation of antimicrobial resistance rates requires a study population with balanced representation of male and female patients, ideally a 1:1 ratio, to mitigate potential biases arising from the under-representation of women commonly reported in clinical research (EHDS DQR5EH - Biessmann et al. 2021 Fairness)" ;
+    odrl:duty abox:DQRP6_Duty .
+
+abox:DQRP7 a dqv:QualityPolicy ;
+    rdfs:label "DQRP7 - Hospital Country Validity (DQR6EH)" ;
+    tbox:derivedFrom "DQRP3" ;
+    tbox:ehdsRequirement "DQR6EH" ;
+    tbox:qualityDimension "Validity" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 7: Hospital countries must be referenced using country codes from the ISO 3166 International Standard (EHDS DQR6EH - ISO/IEC 25012 Validity)" ;
+    odrl:duty abox:DQRP7_Duty .
 
 <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox> a owl:Ontology ;
     rdfs:label "HealthMesh Ontology"@en ;
@@ -204,12 +212,6 @@ tbox:name a owl:DatatypeProperty ;
     rdfs:label "name"@en ;
     rdfs:comment "Name of a Library or resource"@en ;
     rdfs:domain [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
-        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
-        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
-        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
-        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
-        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
-        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
         [ owl:unionOf ( tbox:Library tbox:Implementation ) ] ;
     rdfs:range xsd:string ;
     owl:equivalentProperty schema1:name .
@@ -218,12 +220,6 @@ tbox:nextStep a owl:ObjectProperty ;
     rdfs:label "next step"@en ;
     rdfs:comment "Links to the next Operation in a validation chain"@en ;
     rdfs:domain [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
-        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
-        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
-        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
-        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
-        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
-        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
         [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ] ;
     rdfs:range tbox:Operation .
 
@@ -238,12 +234,6 @@ tbox:owner a owl:DatatypeProperty ;
     rdfs:label "owner"@en ;
     rdfs:comment "DEPRECATED: Use dcterms:creator or dcterms:publisher instead"@en ;
     rdfs:domain [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
-        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
         [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ] ;
     rdfs:range xsd:string ;
     owl:deprecated true ;
@@ -318,552 +308,268 @@ dcterms:format a owl:DatatypeProperty ;
 
 schema1:Dataset a owl:Class .
 
-abox:0002 a tbox:DataProduct,
-        dcat:Dataset ;
-    dcterms:creator "Unknown"@en ;
-    dcterms:identifier "4964a1cd2d48231a49c3673d64c4ada0efc330445c8f4c0e4d8ca406a363c708" ;
-    dcterms:title "0002 Dataset"@en ;
-    tbox:hasAttribute abox:AccessionNumber,
-        abox:AcquisitionDate,
-        abox:AcquisitionMatrix,
-        abox:AcquisitionNumber,
-        abox:AcquisitionTime,
-        abox:AngioFlag,
-        abox:BitsAllocated,
-        abox:BitsStored,
-        abox:BodyPartExamined,
-        abox:ClinicalTrialTimePointDescription,
-        abox:ClinicalTrialTimePointID,
-        abox:Columns,
-        abox:ContentDate,
-        abox:ContentTime,
-        abox:ContrastBolusAgent,
-        abox:ContrastBolusIngredient,
-        abox:ContrastBolusIngredientConcentration,
-        abox:ContrastBolusTotalDose,
-        abox:ContrastBolusVolume,
-        abox:DeidentificationMethod,
-        abox:DeidentificationMethodCodeSequence,
-        abox:DeviceSerialNumber,
-        abox:EchoNumbers,
-        abox:EchoTime,
-        abox:EchoTrainLength,
-        abox:FlipAngle,
-        abox:FrameOfReferenceUID,
-        abox:HighBit,
-        abox:ImageOrientationPatient,
-        abox:ImagePositionPatient,
-        abox:ImageType,
-        abox:ImagedNucleus,
-        abox:ImagingFrequency,
-        abox:InPlanePhaseEncodingDirection,
-        abox:InstanceCreationDate,
-        abox:InstanceCreationTime,
-        abox:InstanceNumber,
-        abox:InversionTime,
-        abox:LargestImagePixelValue,
-        abox:LongitudinalTemporalInformationModified,
-        abox:MRAcquisitionType,
-        abox:MagneticFieldStrength,
-        abox:Manufacturer,
-        abox:ManufacturerModelName,
-        abox:Modality,
-        abox:NumberOfAverages,
-        abox:NumberOfPhaseEncodingSteps,
-        abox:PatientAge,
-        abox:PatientBirthDate,
-        abox:PatientID ;
-    tbox:hasDC abox:dc_0002 ;
-    tbox:hasDTT abox:Image ;
-    tbox:hasTA abox:0002_TA ;
-    tbox:owner "Unknown" ;
-    csvw:column abox:AccessionNumber,
-        abox:AcquisitionDate,
-        abox:AcquisitionMatrix,
-        abox:AcquisitionNumber,
-        abox:AcquisitionTime,
-        abox:AngioFlag,
-        abox:BitsAllocated,
-        abox:BitsStored,
-        abox:BodyPartExamined,
-        abox:ClinicalTrialTimePointDescription,
-        abox:ClinicalTrialTimePointID,
-        abox:Columns,
-        abox:ContentDate,
-        abox:ContentTime,
-        abox:ContrastBolusAgent,
-        abox:ContrastBolusIngredient,
-        abox:ContrastBolusIngredientConcentration,
-        abox:ContrastBolusTotalDose,
-        abox:ContrastBolusVolume,
-        abox:DeidentificationMethod,
-        abox:DeidentificationMethodCodeSequence,
-        abox:DeviceSerialNumber,
-        abox:EchoNumbers,
-        abox:EchoTime,
-        abox:EchoTrainLength,
-        abox:FlipAngle,
-        abox:FrameOfReferenceUID,
-        abox:HighBit,
-        abox:ImageOrientationPatient,
-        abox:ImagePositionPatient,
-        abox:ImageType,
-        abox:ImagedNucleus,
-        abox:ImagingFrequency,
-        abox:InPlanePhaseEncodingDirection,
-        abox:InstanceCreationDate,
-        abox:InstanceCreationTime,
-        abox:InstanceNumber,
-        abox:InversionTime,
-        abox:LargestImagePixelValue,
-        abox:LongitudinalTemporalInformationModified,
-        abox:MRAcquisitionType,
-        abox:MagneticFieldStrength,
-        abox:Manufacturer,
-        abox:ManufacturerModelName,
-        abox:Modality,
-        abox:NumberOfAverages,
-        abox:NumberOfPhaseEncodingSteps,
-        abox:PatientAge,
-        abox:PatientBirthDate,
-        abox:PatientID ;
-    dcat:distribution abox:0002_TA .
+abox:1b7f0c05-40c9-4de7-b8f5-40b373a8260c a tbox:SchemaMapping ;
+    tbox:mfrom abox:countryOfAffiliation ;
+    tbox:mto abox:AffiliationCountry .
 
-abox:0002_Acces a tbox:Acces ;
-    rdfs:label abox:Static ;
-    tbox:path "/home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct2/Data/0002.DCM" .
+abox:28246e20-3a43-4431-a7ce-d4bad78a7bd2 a tbox:SchemaMapping ;
+    tbox:mfrom abox:gender ;
+    tbox:mto abox:Sex .
 
-abox:092ddfb3-afaf-4d21-92f2-c74ff463d23f a tbox:SchemaMapping ;
-    tbox:mfrom abox:Age_at_scan_years ;
-    tbox:mto abox:Age .
+abox:3e48d717-bdb2-4c24-a179-30439be165cd a tbox:SchemaMapping ;
+    tbox:mfrom abox:hospitalCountry ;
+    tbox:mto abox:HospitalCountry .
 
-abox:33f7fed9-aba7-4ae8-a975-7fe70f6db32b a tbox:SchemaMapping ;
-    tbox:mfrom abox:ID ;
+abox:4f72c429-9e7c-4f3a-bdd2-72cac232d8a1 a tbox:SchemaMapping ;
+    tbox:mfrom abox:lastUpdated ;
+    tbox:mto abox:timestamp .
+
+abox:54ec2913-90dd-4d57-a1e7-33e72f79f209 a tbox:SchemaMapping ;
+    tbox:mfrom abox:nationalHealthcarePatientID ;
     tbox:mto abox:Subject .
 
-abox:94ba928a-84e4-4d03-aad8-ef5ba282ab61 a tbox:SchemaMapping ;
-    tbox:mfrom abox:target ;
-    tbox:mto abox:Survival .
+abox:AMR_Specimen a tbox:Entity ;
+    rdfs:label "AMR Specimen Entity" ;
+    rdfs:comment "Antimicrobial resistance specimen data for EHDS cross-border surveillance" .
+
+abox:CheckConsistency a dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Cross-Attribute Consistency Check Metric" ;
+    dqv:inDimension abox:Consistency .
+
+abox:Consistency a dqv:Dimension .
 
 abox:DQRP1_Constraint a odrl:Constraint ;
     rdfs:comment "Data age must not exceed 30 minutes" ;
     odrl:leftOperand abox:DataAge ;
     odrl:operator odrl:lteq ;
     odrl:rightOperand 30 ;
-    odrl:unit <http://qudt.org/vocab/unit/MIN> .
+    odrl:unit qudt:MIN .
 
 abox:DQRP1_Permission a odrl:Permission ;
-    odrl:action odrl:distribute ;
+    rdfs:comment "Data may only be distributed if its age does not exceed 30 minutes" ;
+    odrl:action "odrl:distribute" ;
     odrl:assignee abox:DataProvider ;
     odrl:assigner abox:DataSpaceGovernanceAuthority ;
     odrl:constraint abox:DQRP1_Constraint ;
-    odrl:target abox:Patient_Data .
-
-abox:DQRP2_Constraint a odrl:Constraint ;
-    rdfs:comment "Completeness must be at least 99%" ;
-    odrl:leftOperand abox:qM ;
-    odrl:operator odrl:gteq ;
-    odrl:rightOperand 99.0 .
-
-abox:DQRP2_Duty a odrl:Duty ;
-    rdfs:comment "Age_at_scan_years attribute must contain at least 99% non-empty values" ;
-    odrl:constraint abox:DQRP2_Constraint ;
-    odrl:target abox:Age .
+    odrl:target abox:EHDS_Patient_Summary .
 
 abox:DQRP3_Constraint a odrl:Constraint ;
-    rdfs:comment "Values must be part of controlled vocabulary" ;
+    rdfs:comment "Values must be part of ISO 3166 country code vocabulary" ;
     odrl:leftOperand abox:CheckValidity ;
     odrl:operator odrl:isPartOf ;
-    odrl:rightOperand abox:GenderVocabulary .
+    odrl:rightOperand abox:ISO3166CountryCodeVocabulary .
 
 abox:DQRP3_Duty a odrl:Duty ;
-    rdfs:comment "Gender attribute values must be in the controlled vocabulary {M, F}" ;
+    rdfs:comment "AffiliationCountry attribute values must be valid ISO 3166-1 alpha-2 country codes" ;
     odrl:constraint abox:DQRP3_Constraint ;
-    odrl:target abox:Sex .
+    odrl:target abox:AffiliationCountry .
 
 abox:DQRP4_Constraint a odrl:Constraint ;
-    rdfs:comment "Cross-attribute consistency: Deceased patients must have survival days > 0" ;
+    rdfs:comment "Cross-attribute consistency: Male patients must have no pregnancy records" ;
     odrl:leftOperand abox:CheckConsistency ;
     odrl:operator odrl:eq ;
     odrl:rightOperand true .
 
 abox:DQRP4_Duty a odrl:Duty ;
-    rdfs:comment "Survival_from_surgery_days must be greater than 0 when patient is Deceased" ;
+    rdfs:comment "Male patients must have pregnancy history count equal to 0 (cross-attribute consistency)" ;
     odrl:constraint abox:DQRP4_Constraint ;
-    odrl:target abox:Survival .
+    odrl:target abox:PregnancyHistory .
 
-abox:DataAge a dqv:QualityMeasurement ;
+abox:DQRP4_Rule a tbox:CrossAttributeRule ;
+    tbox:conditionAttribute abox:Sex ;
+    tbox:conditionValue "M" ;
+    tbox:targetAttribute abox:PregnancyHistory ;
+    tbox:targetOperator "odrl:eq" ;
+    tbox:targetValue 0 ;
+    rdfs:comment "IF Sex = 'M' THEN PregnancyHistory = 0" .
+
+abox:DQRP5_Constraint a odrl:Constraint ;
+    rdfs:comment "Minimum total isolate count must be at least 2000" ;
+    odrl:leftOperand abox:TotalIsolateCount ;
+    odrl:operator odrl:gteq ;
+    odrl:rightOperand 2000 .
+
+abox:DQRP5_Duty a odrl:Duty ;
+    rdfs:comment "AMR specimen dataset must have at least 2000 isolates for statistically valid resistance rate estimates" ;
+    odrl:constraint abox:DQRP5_Constraint ;
+    odrl:target abox:AMR_Specimen .
+
+abox:DQRP6_Constraint_Female a odrl:Constraint ;
+    rdfs:comment "Female representation must be approximately 50%" ;
+    odrl:leftOperand abox:GroupRepresentation_Female ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand 50.0 ;
+    odrl:unit abox:Percentage .
+
+abox:DQRP6_Constraint_Male a odrl:Constraint ;
+    rdfs:comment "Male representation must be approximately 50%" ;
+    odrl:leftOperand abox:GroupRepresentation_Male ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand 50.0 ;
+    odrl:unit abox:Percentage .
+
+abox:DQRP6_Duty a odrl:Duty ;
+    rdfs:comment "Gender distribution in AMR study population must be balanced (50% male, 50% female) to prevent bias in resistance rate estimates" ;
+    odrl:constraint abox:DQRP6_Constraint_Female,
+        abox:DQRP6_Constraint_Male ;
+    odrl:target abox:Patient_Summary .
+
+abox:DQRP6_FairnessConfig a tbox:FairnessConfiguration ;
+    tbox:groupDistribution abox:FemaleGroup,
+        abox:MaleGroup ;
+    tbox:protectedAttribute abox:Sex .
+
+abox:DQRP7_Constraint a odrl:Constraint ;
+    rdfs:comment "Values must be part of ISO 3166 country code vocabulary" ;
+    odrl:leftOperand abox:CheckValidity ;
+    odrl:operator odrl:isPartOf ;
+    odrl:rightOperand abox:ISO3166CountryCodeVocabulary .
+
+abox:DQRP7_Duty a odrl:Duty ;
+    rdfs:comment "HospitalCountry attribute values must be valid ISO 3166-1 alpha-2 country codes" ;
+    odrl:constraint abox:DQRP7_Constraint ;
+    odrl:target abox:HospitalCountry .
+
+abox:DataAge a dqv:Metric,
+        dqv:QualityMeasurement ;
     rdfs:label "Data Age Measurement" ;
-    rdfs:comment "Measures the time elapsed since data was recorded/updated" ;
+    rdfs:comment "Measures the time elapsed since data was recorded/updated via the lastUpdated attribute" ;
     dqv:computedOn abox:timestamp ;
     dqv:isMeasurementOf abox:Freshness .
+
+abox:EHDS_Patient_Summary a tbox:CommonDataModel,
+        <schema:Dataset> ;
+    dcterms:identifier "EHDS-AMR-PS-001" ;
+    schema1:creator [ a schema1:Organization ;
+            schema1:name "FederatedTeam" ],
+        [ a schema1:Organization ;
+            schema1:name "FederatedTeam" ] ;
+    schema1:dateCreated "2025-01-01" ;
+    schema1:dateModified "2026-02-13" ;
+    schema1:description "Common data model for the European Health Data Space (EHDS) Patient Summary, covering patient identification, hospital affiliation, and temporal metadata for antimicrobial resistance surveillance" ;
+    schema1:keywords "AMR surveillance",
+        "EHDS",
+        "EU health data",
+        "antimicrobial resistance",
+        "patient summary" ;
+    schema1:license "https://creativecommons.org/licenses/by-nc-sa/4.0/" ;
+    schema1:measurementTechnique "European Health Data Space (EHDS) Patient Summary extraction" ;
+    schema1:name "EHDS Patient Summary Data Model" ;
+    schema1:spatialCoverage [ a schema1:Place ;
+            schema1:name "European Union (EU-27)" ],
+        [ a schema1:Place ;
+            schema1:name "European Union (EU-27)" ] ;
+    schema1:temporalCoverage "2024/2026" ;
+    schema1:variableMeasured abox:AffiliationCountry,
+        abox:HospitalCountry,
+        <schema:dateCreated>,
+        <schema:gender>,
+        <schema:identifier> ;
+    schema1:version "1.0" .
+
+abox:FemaleGroup tbox:groupValue "F" ;
+    tbox:targetPercentage 50.0 .
 
 abox:Freshness a dqv:Metric ;
     rdfs:label "Freshness Metric" ;
     dqv:inDimension abox:Timeliness .
 
-abox:Patient_Data a tbox:CommonDataModel,
-        <schema:Dataset> ;
-    dcterms:identifier "123456" ;
-    schema1:creator [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ],
-        [ a schema1:Organization ;
-            schema1:name "FederatedTeam" ] ;
-    schema1:dateCreated "2024-01-01" ;
-    schema1:dateModified "2025-12-16" ;
-    schema1:description "Common data model for federated patient clinical information including demographics, temporal data, and survival outcomes" ;
-    schema1:keywords "clinical data",
-        "glioblastoma",
-        "oncology",
-        "patient demographics",
-        "survival analysis" ;
-    schema1:license "https://creativecommons.org/licenses/by-nc-sa/4.0/" ;
-    schema1:measurementTechnique "Electronic Health Records (EHR) extraction" ;
-    schema1:name "Patient Clinical Data Model" ;
-    schema1:spatialCoverage [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ],
-        [ a schema1:Place ;
-            schema1:name "University of Pennsylvania Medical Center" ] ;
-    schema1:temporalCoverage "2020/2024" ;
-    schema1:variableMeasured abox:Survival,
-        <schema:age>,
-        <schema:dateCreated>,
-        <schema:gender>,
-        <schema:identifier> ;
-    schema1:version "2.1" .
+abox:GroupRepresentation_Female a dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Female Group Representation" ;
+    dqv:inDimension abox:Fairness .
+
+abox:GroupRepresentation_Male a dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Male Group Representation" ;
+    dqv:inDimension abox:Fairness .
+
+abox:MaleGroup tbox:groupValue "M" ;
+    tbox:targetPercentage 50.0 .
+
+abox:Patient_Summary_Acces a tbox:Acces ;
+    rdfs:label abox:Static ;
+    tbox:path "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:StatisticalValidity a dqv:Dimension .
 
 abox:Timeliness a dqv:Dimension ;
     rdfs:label "Timeliness (ISO/IEC 25012)" .
 
-abox:UPENN_GBM_clinical_info_v21_timestamp_Acces a tbox:Acces ;
-    rdfs:label abox:Static ;
-    tbox:path "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct/Data/Explotation/UPENN-GBM_clinical_info_v2.1_timestamp.csv" .
+abox:TotalIsolateCount a dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Total Isolate Count Metric" ;
+    rdfs:comment "Sum of nIsolates across all specimens in the AMR dataset" ;
+    dqv:inDimension abox:StatisticalValidity .
 
-abox:ValidationReport-49de8c48 a tbox:ValidationReport ;
-    tbox:executionDuration "0.0289306640625"^^xsd:float ;
+abox:ValidationReport-18dcbaba a tbox:ValidationReport ;
+    tbox:executionDuration "0.03862881660461426"^^xsd:float ;
     tbox:executionMode "COMPOSED_UDF" ;
-    tbox:resultType "float64" ;
-    tbox:resultValue "100.0"^^xsd:float ;
-    tbox:validationStatus "PASSED" ;
-    prov:endedAtTime "2026-02-02T08:43:35.008447"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-02T08:43:34.979516"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-4f93f3731968 .
-
-abox:ValidationReport-5cd9ffa5 a tbox:ValidationReport ;
-    tbox:executionDuration "0.3689615726470947"^^xsd:float ;
-    tbox:executionMode "COMPOSED_UDF" ;
-    tbox:resultColumn "Age_at_scan_years",
-        "GTR_over90percent",
-        "Gender",
-        "ID",
-        "IDH1",
-        "KPS",
-        "MGMT",
-        "PsP_TP_score",
-        "Survival_Censor",
-        "Survival_Status",
-        "Survival_from_surgery_days_UPDATED",
-        "Time_since_baseline_preop",
-        "ts" ;
-    tbox:resultColumnCount 13 ;
-    tbox:resultRowCount 0 ;
-    tbox:resultType "DataFrame" ;
+    tbox:resultRowCount 500 ;
+    tbox:resultType "Series" ;
+    tbox:resultValue "{0: False, 1: False, 2: False, 3: False, 4: False}" ;
     tbox:validationStatus "FAILED" ;
-    prov:endedAtTime "2026-02-02T08:43:37.642593"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-02T08:43:37.273634"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-fde89fa5e89e .
+    prov:endedAtTime "2026-02-13T17:15:36.825836"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-13T17:15:36.787209"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-735483c5e665 .
 
-abox:ValidationReport-c8b820ab a tbox:ValidationReport ;
-    tbox:executionDuration "0.028194427490234375"^^xsd:float ;
-    tbox:executionMode "COMPOSED_UDF" ;
-    tbox:resultType "bool" ;
-    tbox:validationStatus "COMPLETED" ;
-    prov:endedAtTime "2026-02-02T08:43:36.174764"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-02T08:43:36.146569"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-6fd8fe91584b .
+abox:Validity a dqv:Dimension .
 
-abox:ValidationReport-ffcb4c38 a tbox:ValidationReport ;
-    tbox:executionDuration "0.03512835502624512"^^xsd:float ;
-    tbox:executionMode "COMPOSED_UDF" ;
-    tbox:resultType "bool" ;
-    tbox:validationStatus "COMPLETED" ;
-    prov:endedAtTime "2026-02-02T08:43:33.930066"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-02T08:43:33.894940"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-317839556a0b .
-
-abox:ab5caa45-404c-4422-b433-c06d4f49eeee a tbox:SchemaMapping ;
-    tbox:mfrom abox:Gender ;
-    tbox:mto abox:Sex .
-
-abox:c5256554-c836-4325-9721-6cf96ed92b61 a tbox:SchemaMapping ;
-    tbox:mfrom abox:Survival_from_surgery_days_UPDATED ;
-    tbox:mto abox:Survival .
-
-abox:c5b2b573-3498-4ac0-b417-3a3b35fca90a a tbox:SchemaMapping ;
-    tbox:mfrom abox:ts ;
-    tbox:mto abox:timestamp .
-
-abox:c736922d-38b8-4542-8d55-52c2a5e85ea1 a tbox:SchemaMapping ;
-    tbox:mfrom abox:PatientID ;
-    tbox:mto abox:Subject .
-
-abox:dc_0002 a tbox:DataContract,
+abox:dc_Patient_Summary a tbox:DataContract,
         odrl:Agreement ;
-    tbox:hasMapping abox:c736922d-38b8-4542-8d55-52c2a5e85ea1 ;
-    tbox:hasPolicy abox:p1 ;
-    odrl:permission abox:p1 .
+    tbox:hasMapping abox:1b7f0c05-40c9-4de7-b8f5-40b373a8260c,
+        abox:28246e20-3a43-4431-a7ce-d4bad78a7bd2,
+        abox:3e48d717-bdb2-4c24-a179-30439be165cd,
+        abox:4f72c429-9e7c-4f3a-bdd2-72cac232d8a1,
+        abox:54ec2913-90dd-4d57-a1e7-33e72f79f209 ;
+    tbox:hasPolicy abox:DQRP1 ;
+    odrl:permission abox:DQRP1 .
 
-abox:dc_UPENN_GBM_clinical_info_v21_timestamp a tbox:DataContract,
-        odrl:Agreement ;
-    tbox:hasMapping abox:092ddfb3-afaf-4d21-92f2-c74ff463d23f,
-        abox:33f7fed9-aba7-4ae8-a975-7fe70f6db32b,
-        abox:ab5caa45-404c-4422-b433-c06d4f49eeee,
-        abox:c5256554-c836-4325-9721-6cf96ed92b61,
-        abox:c5b2b573-3498-4ac0-b417-3a3b35fca90a ;
-    tbox:hasPolicy abox:DQRP1,
-        abox:DQRP2,
-        abox:DQRP3,
-        abox:DQRP4 ;
-    odrl:permission abox:DQRP1,
-        abox:DQRP2,
-        abox:DQRP3,
-        abox:DQRP4 .
-
-abox:dc_model a tbox:DataContract,
-        odrl:Agreement ;
-    tbox:hasMapping abox:94ba928a-84e4-4d03-aad8-ef5ba282ab61,
-        abox:f28c7e93-7769-4f98-bc67-2fa46901595e ;
-    tbox:hasPolicy abox:p4 ;
-    odrl:permission abox:p4 .
-
-abox:f28c7e93-7769-4f98-bc67-2fa46901595e a tbox:SchemaMapping ;
-    tbox:mfrom abox:Gender ;
-    tbox:mto abox:Sex .
-
-abox:genid-00ba47506c94 a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasInput abox:genid-e2c528e5a5a3 ;
-    tbox:hasOutput abox:data .
-
-abox:genid-0786214d72d6 a tbox:Operation ;
-    tbox:hasAbstract abox:CheckConsistency ;
-    tbox:hasInput abox:genid-1c1d7f2f43c1,
-        abox:genid-896e168a7bac,
-        abox:genid-a2045b3d6e99 ;
-    tbox:hasOutput abox:boolean ;
-    tbox:isTerminal true .
-
-abox:genid-07b5ca1863ec tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct/Data/Explotation/UPENN-GBM_clinical_info_v2.1_timestamp.csv" .
-
-abox:genid-0a08e9862fb4 tbox:role "operator" ;
-    tbox:value odrl:gteq .
-
-abox:genid-1052f9330f88 tbox:role "targetAttribute" ;
-    tbox:value abox:Age_at_scan_years .
-
-abox:genid-16c26deaffcf a tbox:Operation ;
-    tbox:hasAbstract abox:qM ;
-    tbox:hasInput abox:genid-0a08e9862fb4,
-        abox:genid-1052f9330f88,
-        abox:genid-66b2929d593b,
-        abox:genid-82615fbd27cc ;
-    tbox:hasOutput abox:boolean ;
-    tbox:isTerminal true .
-
-abox:genid-182d8f5d78d5 tbox:role "vocabularyRef" ;
-    tbox:value abox:GenderVocabulary .
-
-abox:genid-1b954ae5df85 tbox:role "previousResult" ;
+abox:genid-519ae455cd6c tbox:role "previousResult" ;
     tbox:value abox:data .
 
-abox:genid-1c1d7f2f43c1 tbox:role "threshold" ;
-    tbox:value true .
+abox:genid-63c9e7197d59 tbox:role "operator" ;
+    tbox:value abox:genid-1ca789b48ff5 .
 
-abox:genid-1e79578137f8 tbox:role "threshold" ;
+abox:genid-735483c5e665 a tbox:PolicyChecker ;
+    tbox:accordingTo abox:DQRP1 ;
+    tbox:hasValidationReport abox:ValidationReport-18dcbaba ;
+    tbox:nextStep abox:genid-c958dc6c5dfe ;
+    tbox:validates abox:Patient_Summary .
+
+abox:genid-90182c305d40 tbox:role "threshold" ;
     tbox:value 30 .
 
-abox:genid-219764ecb70b tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct/Data/Explotation/UPENN-GBM_clinical_info_v2.1_timestamp.csv" .
-
-abox:genid-288f288d1db3 tbox:role "timestampAttribute" ;
-    tbox:value abox:ts .
-
-abox:genid-317839556a0b a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP4 ;
-    tbox:hasValidationReport abox:ValidationReport-ffcb4c38 ;
-    tbox:nextStep abox:genid-7c38dc323129 ;
-    tbox:validates abox:UPENN_GBM_clinical_info_v21_timestamp .
-
-abox:genid-36f85614d172 a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasInput abox:genid-07b5ca1863ec ;
-    tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-16c26deaffcf .
-
-abox:genid-488ce69ff0c6 a tbox:Operation ;
+abox:genid-bf742c9bab81 a tbox:Operation ;
     tbox:hasAbstract abox:CheckFreshness ;
-    tbox:hasInput abox:genid-288f288d1db3,
-        abox:genid-593bdcfe69bd ;
+    tbox:hasInput abox:genid-e44af616a281,
+        abox:genid-ee11bc511261 ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-9d0f5d2eb5c6 .
+    tbox:nextStep abox:genid-de53dd6de2fd .
 
-abox:genid-4f93f3731968 a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP2 ;
-    tbox:hasValidationReport abox:ValidationReport-49de8c48 ;
-    tbox:nextStep abox:genid-36f85614d172 ;
-    tbox:validates abox:UPENN_GBM_clinical_info_v21_timestamp .
-
-abox:genid-58da50e32412 tbox:role "targetAttribute" ;
-    tbox:value abox:Gender .
-
-abox:genid-593bdcfe69bd tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-66b2929d593b tbox:role "threshold" ;
-    tbox:value 99.0 .
-
-abox:genid-6fd8fe91584b a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP3 ;
-    tbox:hasValidationReport abox:ValidationReport-c8b820ab ;
-    tbox:nextStep abox:genid-7110b3e9eb1b ;
-    tbox:validates abox:UPENN_GBM_clinical_info_v21_timestamp .
-
-abox:genid-7110b3e9eb1b a tbox:Operation ;
+abox:genid-c958dc6c5dfe a tbox:Operation ;
     tbox:hasAbstract abox:LoadData ;
-    tbox:hasInput abox:genid-8c72b33d05a3 ;
+    tbox:hasInput abox:genid-fdcf02be434a ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-d64fca3d4c9e .
+    tbox:nextStep abox:genid-bf742c9bab81 .
 
-abox:genid-7c38dc323129 a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasInput abox:genid-219764ecb70b ;
-    tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-0786214d72d6,
-        abox:genid-41d6df244f45 .
-
-abox:genid-82615fbd27cc tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-896e168a7bac tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-8c72b33d05a3 tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct/Data/Explotation/UPENN-GBM_clinical_info_v2.1_timestamp.csv" .
-
-abox:genid-9d0f5d2eb5c6 a tbox:Operation ;
+abox:genid-de53dd6de2fd a tbox:Operation ;
     tbox:hasAbstract odrl:Constraint ;
-    tbox:hasInput abox:genid-1e79578137f8,
-        abox:genid-ca582449cd01,
-        abox:genid-f6be4b5200c0 ;
+    tbox:hasInput abox:genid-519ae455cd6c,
+        abox:genid-63c9e7197d59,
+        abox:genid-90182c305d40 ;
     tbox:hasOutput abox:data ;
     tbox:isTerminal true .
 
-abox:genid-a2045b3d6e99 tbox:role "targetAttribute" ;
-    tbox:value abox:Survival_from_surgery_days_UPDATED .
-
-abox:genid-b7878d219e7f tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct/Data/Explotation/UPENN-GBM_clinical_info_v2.1_timestamp.csv" .
-
-abox:genid-c6e7d4119978 tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct3/Data/Explotation/model.pkl" .
-
-abox:genid-ca582449cd01 tbox:role "previousResult" ;
+abox:genid-e44af616a281 tbox:role "previousResult" ;
     tbox:value abox:data .
 
-abox:genid-ce7cc21fd927 a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasInput abox:genid-c6e7d4119978 ;
-    tbox:hasOutput abox:data .
+abox:genid-ee11bc511261 tbox:role "timestampAttribute" ;
+    tbox:value abox:lastUpdated .
 
-abox:genid-d22b042dcf5d a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasInput abox:genid-b7878d219e7f ;
-    tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-488ce69ff0c6 .
-
-abox:genid-d64fca3d4c9e a tbox:Operation ;
-    tbox:hasAbstract abox:CheckValidity ;
-    tbox:hasInput abox:genid-182d8f5d78d5,
-        abox:genid-1b954ae5df85,
-        abox:genid-58da50e32412 ;
-    tbox:hasOutput abox:boolean ;
-    tbox:isTerminal true .
-
-abox:genid-e2c528e5a5a3 tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct2/Data/0002.DCM" .
-
-abox:genid-f6be4b5200c0 tbox:role "operator" ;
-    tbox:value odrl:lteq .
-
-abox:genid-fde89fa5e89e a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP1 ;
-    tbox:hasValidationReport abox:ValidationReport-5cd9ffa5 ;
-    tbox:nextStep abox:genid-d22b042dcf5d ;
-    tbox:validates abox:UPENN_GBM_clinical_info_v21_timestamp .
-
-abox:model a tbox:DataProduct,
-        dcat:Dataset ;
-    dcterms:creator "Unknown"@en ;
-    dcterms:identifier "8f9fa55b8439ac644d2430129e862ca476c9845977f89147464392bf9ec252f3" ;
-    dcterms:title "model Dataset"@en ;
-    tbox:hasAttribute abox:Age_at_scan_years,
-        abox:GTR_over90percent,
-        abox:Gender,
-        abox:IDH1,
-        abox:KPS,
-        abox:MGMT,
-        abox:target ;
-    tbox:hasDC abox:dc_model ;
-    tbox:hasDTT abox:Model ;
-    tbox:hasTA abox:model_TA ;
-    tbox:owner "Unknown" ;
-    csvw:column abox:Age_at_scan_years,
-        abox:GTR_over90percent,
-        abox:Gender,
-        abox:IDH1,
-        abox:KPS,
-        abox:MGMT,
-        abox:target ;
-    dcat:distribution abox:model_TA .
-
-abox:model_Acces a tbox:Acces ;
-    rdfs:label abox:Static ;
-    tbox:path "/home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct3/Data/Explotation/model.pkl" .
-
-abox:test_Acces a tbox:Acces ;
-    rdfs:label abox:Static ;
-    tbox:path "/home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct3/Data/Explotation/test.csv" .
-
-dqv:Dimension a owl:Class .
-
-dqv:Metric a owl:Class .
-
-dqv:QualityMeasurement a owl:Class .
+abox:genid-fdcf02be434a tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
 
 odrl:Permission a owl:Class .
 
@@ -876,60 +582,11 @@ prov:Plan a owl:Class .
 prov:SoftwareAgent a owl:Class ;
     rdfs:subClassOf prov:Agent .
 
-<schema:age> a schema1:PropertyValue ;
-    schema1:description "Patient age in years at time of data collection" ;
-    schema1:name "Age" ;
-    schema1:propertyID "Age_at_scan_years" ;
-    schema1:unitCode "ANN" ;
-    schema1:unitText "years" ;
-    schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Age" ] .
-
 <schema:dateCreated> a schema1:PropertyValue ;
-    schema1:description "Data collection timestamp" ;
+    schema1:description "Last update timestamp for timeliness validation" ;
     schema1:name "Timestamp" ;
-    schema1:propertyID "ts" ;
+    schema1:propertyID "lastUpdated" ;
     schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Date" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Date" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Date" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Date" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Date" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
-            schema1:name "Date" ],
-        [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
             schema1:name "Date" ],
         [ a schema1:DefinedTerm ;
@@ -937,28 +594,10 @@ prov:SoftwareAgent a owl:Class ;
             schema1:name "Date" ] .
 
 <schema:gender> a schema1:PropertyValue ;
-    schema1:description "Biological sex of the patient" ;
+    schema1:description "Biological sex of the patient (M/F)" ;
     schema1:name "Sex" ;
-    schema1:propertyID "Gender" ;
+    schema1:propertyID "gender" ;
     schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
-            schema1:name "Sex" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
-            schema1:name "Sex" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
-            schema1:name "Sex" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
-            schema1:name "Sex" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
-            schema1:name "Sex" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
-            schema1:name "Sex" ],
-        [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
             schema1:name "Sex" ],
         [ a schema1:DefinedTerm ;
@@ -966,339 +605,120 @@ prov:SoftwareAgent a owl:Class ;
             schema1:name "Sex" ] .
 
 <schema:identifier> a schema1:PropertyValue ;
-    schema1:description "Unique patient or subject identifier" ;
+    schema1:description "National healthcare patient identifier (nationalHealthcarePatientID)" ;
     schema1:name "Subject ID" ;
-    schema1:propertyID "ID" ;
+    schema1:propertyID "nationalHealthcarePatientID" ;
     schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ],
-        [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
             schema1:name "Patient Identifier" ],
         [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
             schema1:name "Patient Identifier" ] .
 
-abox:0002_TA a tbox:TechnologyAspects,
-        dcat:Distribution ;
-    dcterms:format "DICOM" ;
-    tbox:hasAcces abox:0002_Acces ;
-    dcat:accessURL "file:///home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct2/Data/0002.DCM"^^xsd:anyURI ;
-    dcat:mediaType "application/dicom" .
+abox:CheckValidity a dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Value Validity Check Metric" ;
+    dqv:inDimension abox:Validity .
 
-abox:AccessionNumber a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "AccessionNumber" ;
-    csvw:name "AccessionNumber" .
+abox:Fairness a dqv:Dimension .
 
-abox:AcquisitionDate a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "AcquisitionDate" ;
-    csvw:name "AcquisitionDate" .
+abox:ISO3166CountryCodeVocabulary a tbox:ControlledVocabulary ;
+    rdfs:label "ISO 3166-1 Alpha-2 Country Code Vocabulary" ;
+    tbox:allowedValues "AT",
+        "BE",
+        "BG",
+        "CY",
+        "CZ",
+        "DE",
+        "DK",
+        "EE",
+        "ES",
+        "FI",
+        "FR",
+        "GR",
+        "HR",
+        "HU",
+        "IE",
+        "IT",
+        "LT",
+        "LU",
+        "LV",
+        "MT",
+        "NL",
+        "PL",
+        "PT",
+        "RO",
+        "SE",
+        "SI",
+        "SK" ;
+    rdfs:comment "EU Member States country codes per ISO 3166-1 alpha-2 standard" .
 
-abox:AcquisitionMatrix a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "AcquisitionMatrix" ;
-    csvw:name "AcquisitionMatrix" .
+abox:Patient_Summary a tbox:DataProduct,
+        tbox:Entity,
+        dcat:Dataset ;
+    rdfs:label "Patient Summary Entity" ;
+    dcterms:creator "Unknown"@en ;
+    dcterms:identifier "f162469db63287033f9481d3d8d6deae3fdf89828b0121fdea705ad64d375aca" ;
+    dcterms:title "Patient_Summary Dataset"@en ;
+    tbox:hasAttribute abox:countryOfAffiliation,
+        abox:dateOfBirth,
+        abox:familyName,
+        abox:gender,
+        abox:givenName,
+        abox:hospitalCode,
+        abox:hospitalCountry,
+        abox:lastUpdated,
+        abox:nationalHealthcarePatientID ;
+    tbox:hasDC abox:dc_Patient_Summary ;
+    tbox:hasDTT abox:Tabular ;
+    tbox:hasTA abox:Patient_Summary_TA ;
+    tbox:owner "Unknown" ;
+    rdfs:comment "EHDS Patient Summary containing demographic and clinical information" ;
+    csvw:column abox:countryOfAffiliation,
+        abox:dateOfBirth,
+        abox:familyName,
+        abox:gender,
+        abox:givenName,
+        abox:hospitalCode,
+        abox:hospitalCountry,
+        abox:lastUpdated,
+        abox:nationalHealthcarePatientID ;
+    dcat:distribution abox:Patient_Summary_TA .
 
-abox:AcquisitionNumber a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "AcquisitionNumber" ;
-    csvw:name "AcquisitionNumber" .
-
-abox:AcquisitionTime a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "AcquisitionTime" ;
-    csvw:name "AcquisitionTime" .
-
-abox:AngioFlag a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "AngioFlag" ;
-    csvw:name "AngioFlag" .
-
-abox:BitsAllocated a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "BitsAllocated" ;
-    csvw:name "BitsAllocated" .
-
-abox:BitsStored a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "BitsStored" ;
-    csvw:name "BitsStored" .
-
-abox:BodyPartExamined a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "BodyPartExamined" ;
-    csvw:name "BodyPartExamined" .
-
-abox:ClinicalTrialTimePointDescription a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ClinicalTrialTimePointDescription" ;
-    csvw:name "ClinicalTrialTimePointDescription" .
-
-abox:ClinicalTrialTimePointID a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ClinicalTrialTimePointID" ;
-    csvw:name "ClinicalTrialTimePointID" .
-
-abox:Columns a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Columns" ;
-    csvw:name "Columns" .
-
-abox:ContentDate a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContentDate" ;
-    csvw:name "ContentDate" .
-
-abox:ContentTime a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContentTime" ;
-    csvw:name "ContentTime" .
-
-abox:ContrastBolusAgent a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContrastBolusAgent" ;
-    csvw:name "ContrastBolusAgent" .
-
-abox:ContrastBolusIngredient a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContrastBolusIngredient" ;
-    csvw:name "ContrastBolusIngredient" .
-
-abox:ContrastBolusIngredientConcentration a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContrastBolusIngredientConcentration" ;
-    csvw:name "ContrastBolusIngredientConcentration" .
-
-abox:ContrastBolusTotalDose a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContrastBolusTotalDose" ;
-    csvw:name "ContrastBolusTotalDose" .
-
-abox:ContrastBolusVolume a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ContrastBolusVolume" ;
-    csvw:name "ContrastBolusVolume" .
-
-abox:DeidentificationMethod a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "DeidentificationMethod" ;
-    csvw:name "DeidentificationMethod" .
-
-abox:DeidentificationMethodCodeSequence a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "DeidentificationMethodCodeSequence" ;
-    csvw:name "DeidentificationMethodCodeSequence" .
-
-abox:DeviceSerialNumber a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "DeviceSerialNumber" ;
-    csvw:name "DeviceSerialNumber" .
-
-abox:EchoNumbers a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "EchoNumbers" ;
-    csvw:name "EchoNumbers" .
-
-abox:EchoTime a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "EchoTime" ;
-    csvw:name "EchoTime" .
-
-abox:EchoTrainLength a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "EchoTrainLength" ;
-    csvw:name "EchoTrainLength" .
-
-abox:FlipAngle a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "FlipAngle" ;
-    csvw:name "FlipAngle" .
-
-abox:FrameOfReferenceUID a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "FrameOfReferenceUID" ;
-    csvw:name "FrameOfReferenceUID" .
-
-abox:GenderVocabulary a tbox:ControlledVocabulary ;
-    rdfs:label "Gender Controlled Vocabulary" ;
-    tbox:allowedValues "F",
-        "M" .
-
-abox:HighBit a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "HighBit" ;
-    csvw:name "HighBit" .
-
-abox:ImageOrientationPatient a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ImageOrientationPatient" ;
-    csvw:name "ImageOrientationPatient" .
-
-abox:ImagePositionPatient a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ImagePositionPatient" ;
-    csvw:name "ImagePositionPatient" .
-
-abox:ImageType a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ImageType" ;
-    csvw:name "ImageType" .
-
-abox:ImagedNucleus a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ImagedNucleus" ;
-    csvw:name "ImagedNucleus" .
-
-abox:ImagingFrequency a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ImagingFrequency" ;
-    csvw:name "ImagingFrequency" .
-
-abox:InPlanePhaseEncodingDirection a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "InPlanePhaseEncodingDirection" ;
-    csvw:name "InPlanePhaseEncodingDirection" .
-
-abox:InstanceCreationDate a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "InstanceCreationDate" ;
-    csvw:name "InstanceCreationDate" .
-
-abox:InstanceCreationTime a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "InstanceCreationTime" ;
-    csvw:name "InstanceCreationTime" .
-
-abox:InstanceNumber a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "InstanceNumber" ;
-    csvw:name "InstanceNumber" .
-
-abox:InversionTime a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "InversionTime" ;
-    csvw:name "InversionTime" .
-
-abox:LargestImagePixelValue a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "LargestImagePixelValue" ;
-    csvw:name "LargestImagePixelValue" .
-
-abox:LongitudinalTemporalInformationModified a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "LongitudinalTemporalInformationModified" ;
-    csvw:name "LongitudinalTemporalInformationModified" .
-
-abox:MRAcquisitionType a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "MRAcquisitionType" ;
-    csvw:name "MRAcquisitionType" .
-
-abox:MagneticFieldStrength a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "MagneticFieldStrength" ;
-    csvw:name "MagneticFieldStrength" .
-
-abox:Manufacturer a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Manufacturer" ;
-    csvw:name "Manufacturer" .
-
-abox:ManufacturerModelName a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ManufacturerModelName" ;
-    csvw:name "ManufacturerModelName" .
-
-abox:Modality a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Modality" ;
-    csvw:name "Modality" .
-
-abox:NumberOfAverages a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "NumberOfAverages" ;
-    csvw:name "NumberOfAverages" .
-
-abox:NumberOfPhaseEncodingSteps a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "NumberOfPhaseEncodingSteps" ;
-    csvw:name "NumberOfPhaseEncodingSteps" .
-
-abox:PatientAge a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "PatientAge" ;
-    csvw:name "PatientAge" .
-
-abox:PatientBirthDate a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "PatientBirthDate" ;
-    csvw:name "PatientBirthDate" .
-
-abox:PsP_TP_score a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "PsP_TP_score" ;
-    csvw:datatype "number" ;
-    csvw:name "PsP_TP_score" .
-
-abox:Survival_Censor a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Survival_Censor" ;
-    csvw:datatype "string" ;
-    csvw:name "Survival_Censor" .
-
-abox:Survival_Status a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Survival_Status" ;
-    csvw:datatype "string" ;
-    csvw:name "Survival_Status" .
-
-abox:Time_since_baseline_preop a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Time_since_baseline_preop" ;
-    csvw:datatype "string" ;
-    csvw:name "Time_since_baseline_preop" .
-
-abox:UPENN_GBM_clinical_info_v21_timestamp_TA a tbox:TechnologyAspects,
+abox:Patient_Summary_TA a tbox:TechnologyAspects,
         dcat:Distribution ;
     dcterms:format "CSV" ;
-    tbox:hasAcces abox:UPENN_GBM_clinical_info_v21_timestamp_Acces ;
-    dcat:accessURL "file:///home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct/Data/Explotation/UPENN-GBM_clinical_info_v2.1_timestamp.csv"^^xsd:anyURI ;
+    tbox:hasAcces abox:Patient_Summary_Acces ;
+    dcat:accessURL "file:///home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv"^^xsd:anyURI ;
     dcat:mediaType "text/csv" .
 
-abox:model_TA a tbox:TechnologyAspects,
-        dcat:Distribution ;
-    dcterms:format "PKL" ;
-    tbox:hasAcces abox:model_Acces ;
-    dcat:accessURL "file:///home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct3/Data/Explotation/model.pkl"^^xsd:anyURI ;
-    dcat:mediaType "application/octet-stream" .
+abox:PregnancyHistory a tbox:Feature ;
+    rdfs:label "Pregnancy History Feature" ;
+    rdfs:comment "Number of recorded pregnancies - maps to 'pregnancyHistory' in EHDS Patient Summary" .
 
-abox:test_TA a tbox:TechnologyAspects,
-        dcat:Distribution ;
-    dcterms:format "CSV" ;
-    tbox:hasAcces abox:test_Acces ;
-    dcat:accessURL "file:///home/acraf/psr/Fdatavalidation/DataProductLayer/DataProduct3/Data/Explotation/test.csv"^^xsd:anyURI ;
-    dcat:mediaType "text/csv" .
+abox:dateOfBirth a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "dateOfBirth" ;
+    csvw:datatype "string" ;
+    csvw:name "dateOfBirth" .
 
-abox:timestamp a tbox:Feature ;
-    rdfs:label "Timestamp Feature" ;
-    rdfs:comment "Maps to physical attribute 'ts' in UPENN-GBM dataset" .
+abox:familyName a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "familyName" ;
+    csvw:datatype "string" ;
+    csvw:name "familyName" .
+
+abox:givenName a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "givenName" ;
+    csvw:datatype "string" ;
+    csvw:name "givenName" .
+
+abox:hospitalCode a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "hospitalCode" ;
+    csvw:datatype "string" ;
+    csvw:name "hospitalCode" .
 
 tbox:Code a owl:Class ;
     rdfs:label "Code"@en ;
@@ -1310,166 +730,6 @@ tbox:CommonDataModel a owl:Class ;
     rdfs:subClassOf void:Dataset,
         schema1:Dataset .
 
-prov:Activity a owl:Class .
-
-abox:DQRP1 a dqv:QualityPolicy ;
-    rdfs:label "DQRP1 - Timeliness Requirement" ;
-    tbox:derivedFrom "DQRP1" ;
-    tbox:qualityDimension "Timeliness" ;
-    rdfs:comment "Data Quality Requirement Pattern 1: A specific data age is required for the data in an attribute of an entity (ISO/IEC 25012 Timeliness)" ;
-    odrl:permission abox:DQRP1_Permission .
-
-abox:DQRP2 a dqv:QualityPolicy ;
-    rdfs:label "DQRP2 - Completeness Requirement" ;
-    tbox:derivedFrom "DQRP2" ;
-    tbox:qualityDimension "Completeness" ;
-    rdfs:comment "Data Quality Requirement Pattern 2: Values of an attribute must be mandatory (ISO/IEC 25012 Completeness)" ;
-    odrl:duty abox:DQRP2_Duty .
-
-abox:DQRP3 a dqv:QualityPolicy ;
-    rdfs:label "DQRP3 - Validity Requirement" ;
-    tbox:derivedFrom "DQRP3" ;
-    tbox:qualityDimension "Validity" ;
-    rdfs:comment "Data Quality Requirement Pattern 3: Values of an attribute must be in a controlled vocabulary (ISO/IEC 25012 Validity)" ;
-    odrl:duty abox:DQRP3_Duty .
-
-abox:DQRP4 a dqv:QualityPolicy ;
-    rdfs:label "DQRP4 - Consistency Requirement" ;
-    tbox:derivedFrom "DQRP4" ;
-    tbox:qualityDimension "Consistency" ;
-    rdfs:comment "Data Quality Requirement Pattern 4: Values of an attribute must fulfill rule R (cross-attribute consistency)" ;
-    odrl:duty abox:DQRP4_Duty .
-
-abox:ID a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ID" ;
-    tbox:semanticFeature "Subject" ;
-    csvw:datatype "string" ;
-    csvw:name "ID" ;
-    csvw:propertyUrl schema1:identifier .
-
-abox:PatientID a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "PatientID" ;
-    tbox:semanticFeature "Subject" ;
-    csvw:name "PatientID" ;
-    csvw:propertyUrl schema1:identifier .
-
-tbox:DatasetTypeTemplate a owl:Class ;
-    rdfs:label "Dataset Type Template"@en ;
-    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
-    rdfs:subClassOf dcterms:FileFormat .
-
-tbox:Feature a owl:Class ;
-    rdfs:label "Feature"@en ;
-    rdfs:comment "Semantic feature in a data model. Consider using schema:PropertyValue"@en ;
-    owl:equivalentClass schema1:PropertyValue .
-
-odrl:Duty a owl:Class .
-
-abox:Survival a schema1:PropertyValue ;
-    schema1:description "Patient survival duration from surgery" ;
-    schema1:name "Survival" ;
-    schema1:propertyID "Survival_from_surgery_days_UPDATED" ;
-    schema1:unitCode "DAY" ;
-    schema1:unitText "days" ;
-    schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25548" ;
-            schema1:name "Survival Time" ] .
-
-abox:Survival_from_surgery_days_UPDATED a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Survival_from_surgery_days_UPDATED" ;
-    tbox:semanticFeature "Survival" ;
-    csvw:datatype "string" ;
-    csvw:name "Survival_from_surgery_days_UPDATED" ;
-    csvw:propertyUrl schema1:duration .
-
-abox:UPENN_GBM_clinical_info_v21_timestamp a tbox:DataProduct,
-        dcat:Dataset ;
-    dcterms:creator "Unknown"@en ;
-    dcterms:identifier "f1e91092bf94d3762ac5e5462edc9aa36b3a325df44933faf951a0f11df4cbd0" ;
-    dcterms:title "UPENN-GBM_clinical_info_v2.1_timestamp Dataset"@en ;
-    tbox:hasAttribute abox:Age_at_scan_years,
-        abox:GTR_over90percent,
-        abox:Gender,
-        abox:ID,
-        abox:IDH1,
-        abox:KPS,
-        abox:MGMT,
-        abox:PsP_TP_score,
-        abox:Survival_Censor,
-        abox:Survival_Status,
-        abox:Survival_from_surgery_days_UPDATED,
-        abox:Time_since_baseline_preop,
-        abox:ts ;
-    tbox:hasDC abox:dc_UPENN_GBM_clinical_info_v21_timestamp ;
-    tbox:hasDTT abox:Tabular ;
-    tbox:hasTA abox:UPENN_GBM_clinical_info_v21_timestamp_TA ;
-    tbox:owner "Unknown" ;
-    csvw:column abox:Age_at_scan_years,
-        abox:GTR_over90percent,
-        abox:Gender,
-        abox:ID,
-        abox:IDH1,
-        abox:KPS,
-        abox:MGMT,
-        abox:PsP_TP_score,
-        abox:Survival_Censor,
-        abox:Survival_Status,
-        abox:Survival_from_surgery_days_UPDATED,
-        abox:Time_since_baseline_preop,
-        abox:ts ;
-    dcat:distribution abox:UPENN_GBM_clinical_info_v21_timestamp_TA .
-
-abox:ts a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "ts" ;
-    tbox:semanticFeature "timestamp" ;
-    csvw:datatype "string" ;
-    csvw:name "ts" ;
-    csvw:propertyUrl schema1:dateCreated .
-
-dqv:QualityPolicy a owl:Class ;
-    rdfs:subClassOf odrl:Policy .
-
-odrl:Agreement a owl:Class ;
-    rdfs:subClassOf odrl:Policy .
-
-abox:target a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "target" ;
-    tbox:semanticFeature "Survival" ;
-    csvw:datatype "integer" ;
-    csvw:name "target" ;
-    csvw:propertyUrl schema1:duration .
-
-tbox:DataContract a owl:Class ;
-    rdfs:label "Data Contract"@en ;
-    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
-    rdfs:subClassOf odrl:Agreement .
-
 tbox:TechnologyAspects a owl:Class ;
     rdfs:label "Technology Aspects"@en ;
     rdfs:comment "Technical access and storage details. Aligns with DCAT Distribution"@en ;
@@ -1477,49 +737,100 @@ tbox:TechnologyAspects a owl:Class ;
 
 dcat:Distribution a owl:Class .
 
-schema1:PropertyValue a owl:Class .
+odrl:Agreement a owl:Class ;
+    rdfs:subClassOf odrl:Policy .
 
-abox:GTR_over90percent a tbox:Attribute,
+prov:Activity a owl:Class .
+
+abox:AffiliationCountry a schema1:PropertyValue,
+        tbox:Feature ;
+    rdfs:label "Affiliation Country Feature" ;
+    schema1:description "Patient country of affiliation (ISO 3166-1 alpha-2)" ;
+    schema1:name "Affiliation Country" ;
+    schema1:propertyID "countryOfAffiliation" ;
+    schema1:valueReference [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ] ;
+    rdfs:comment "Patient's country of affiliation - maps to 'affiliationCountry' in EHDS Patient Summary" .
+
+abox:DQRP1 a dqv:QualityPolicy ;
+    rdfs:label "DQRP1 - Timeliness Requirement" ;
+    tbox:derivedFrom "DQRP1" ;
+    tbox:qualityDimension "Timeliness" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 1: A specific data age is required for the data in an attribute of an entity. The lastUpdated timestamp must not exceed 30 minutes from the current time (ISO/IEC 25012 Timeliness)" ;
+    odrl:permission abox:DQRP1_Permission .
+
+abox:HospitalCountry a schema1:PropertyValue,
+        tbox:Feature ;
+    rdfs:label "Hospital Country Feature" ;
+    schema1:description "Country of the treating hospital (ISO 3166-1 alpha-2)" ;
+    schema1:name "Hospital Country" ;
+    schema1:propertyID "hospitalCountry" ;
+    schema1:valueReference [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ] ;
+    rdfs:comment "Hospital's country location - maps to 'hospitalCountry' in EHDS Patient Summary" .
+
+abox:Sex a tbox:Feature ;
+    rdfs:label "Sex Feature" ;
+    rdfs:comment "Patient biological sex (M/F) - maps to 'sex' in EHDS Patient Summary" .
+
+abox:countryOfAffiliation a tbox:Attribute,
         csvw:Column ;
-    tbox:attribute "GTR_over90percent" ;
+    tbox:attribute "countryOfAffiliation" ;
+    tbox:semanticFeature "AffiliationCountry" ;
     csvw:datatype "string" ;
-    csvw:name "GTR_over90percent" .
+    csvw:name "countryOfAffiliation" ;
+    csvw:propertyUrl schema1:propertyValue .
 
-abox:IDH1 a tbox:Attribute,
+abox:gender a tbox:Attribute,
         csvw:Column ;
-    tbox:attribute "IDH1" ;
-    csvw:datatype "string" ;
-    csvw:name "IDH1" .
-
-abox:KPS a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "KPS" ;
-    csvw:datatype "string" ;
-    csvw:name "KPS" .
-
-abox:MGMT a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "MGMT" ;
-    csvw:datatype "string" ;
-    csvw:name "MGMT" .
-
-odrl:Policy a owl:Class .
-
-abox:Age_at_scan_years a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Age_at_scan_years" ;
-    tbox:semanticFeature "Age" ;
-    csvw:datatype "number" ;
-    csvw:name "Age_at_scan_years" ;
-    csvw:propertyUrl schema1:age .
-
-abox:Gender a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "Gender" ;
+    tbox:attribute "gender" ;
     tbox:semanticFeature "Sex" ;
     csvw:datatype "string" ;
-    csvw:name "Gender" ;
-    csvw:propertyUrl schema1:gender .
+    csvw:name "gender" ;
+    csvw:propertyUrl schema1:propertyValue .
+
+abox:hospitalCountry a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "hospitalCountry" ;
+    tbox:semanticFeature "HospitalCountry" ;
+    csvw:datatype "string" ;
+    csvw:name "hospitalCountry" ;
+    csvw:propertyUrl schema1:propertyValue .
+
+abox:nationalHealthcarePatientID a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "nationalHealthcarePatientID" ;
+    tbox:semanticFeature "Subject" ;
+    csvw:datatype "string" ;
+    csvw:name "nationalHealthcarePatientID" ;
+    csvw:propertyUrl schema1:identifier .
+
+tbox:DataContract a owl:Class ;
+    rdfs:label "Data Contract"@en ;
+    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
+    rdfs:subClassOf odrl:Agreement .
+
+tbox:DatasetTypeTemplate a owl:Class ;
+    rdfs:label "Dataset Type Template"@en ;
+    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
+    rdfs:subClassOf dcterms:FileFormat .
+
+abox:lastUpdated a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "lastUpdated" ;
+    tbox:semanticFeature "timestamp" ;
+    csvw:datatype "string" ;
+    csvw:name "lastUpdated" ;
+    csvw:propertyUrl schema1:dateCreated .
 
 tbox:Library a owl:Class ;
     rdfs:label "Library"@en ;
@@ -1531,23 +842,38 @@ tbox:Implementation a owl:Class ;
     rdfs:comment "Executable implementation of an operation with code template and library reference"@en ;
     rdfs:subClassOf prov:Plan .
 
-tbox:ValidationReport a owl:Class ;
-    rdfs:label "Validation Report"@en ;
-    rdfs:comment "Report generated from PolicyChecker execution containing status, timing, and result metadata"@en ;
-    rdfs:subClassOf prov:Entity .
-
 dcat:Dataset a owl:Class .
+
+dqv:Dimension a owl:Class .
 
 odrl:Asset a owl:Class .
 
-tbox:PolicyChecker a owl:Class ;
-    rdfs:label "Policy Checker"@en ;
-    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
-    rdfs:subClassOf prov:Activity .
+odrl:Duty a owl:Class .
+
+schema1:PropertyValue a owl:Class .
+
+tbox:Feature a owl:Class ;
+    rdfs:label "Feature"@en ;
+    rdfs:comment "Semantic feature in a data model. Consider using schema:PropertyValue"@en ;
+    owl:equivalentClass schema1:PropertyValue .
+
+dqv:QualityMeasurement a owl:Class .
+
+dqv:QualityPolicy a owl:Class ;
+    rdfs:subClassOf odrl:Policy .
+
+dqv:Metric a owl:Class .
+
+odrl:Policy a owl:Class .
 
 tbox:Operation a owl:Class ;
     rdfs:label "Operation"@en ;
     rdfs:comment "Individual operation in a validation chain (e.g., LoadData, CheckFreshness, QualityMetric)"@en ;
+    rdfs:subClassOf prov:Activity .
+
+tbox:PolicyChecker a owl:Class ;
+    rdfs:label "Policy Checker"@en ;
+    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
     rdfs:subClassOf prov:Activity .
 
 tbox:DataProduct a owl:Class ;
@@ -1555,6 +881,11 @@ tbox:DataProduct a owl:Class ;
     rdfs:comment "A data product with governance policies. Subclass of both DCAT Dataset and ODRL Asset"@en ;
     rdfs:subClassOf dcat:Dataset,
         odrl:Asset .
+
+tbox:ValidationReport a owl:Class ;
+    rdfs:label "Validation Report"@en ;
+    rdfs:comment "Report generated from PolicyChecker execution containing status, timing, and result metadata"@en ;
+    rdfs:subClassOf prov:Entity .
 
 csvw:Column a owl:Class .
 

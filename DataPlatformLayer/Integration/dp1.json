@@ -1,16 +1,13 @@
 {
-  "name": "UPENN_GBM_clinical_info_v21_timestamp",
+  "name": "Patient_Summary",
   "mappings": {
-    "ID": "Subject",
-    "Age_at_scan_years": "Age",
-    "Survival_from_surgery_days_UPDATED": "Survival",
-    "ts": "timestamp",
-    "Gender": "Sex"
+    "nationalHealthcarePatientID": "Subject",
+    "gender": "Sex",
+    "countryOfAffiliation": "AffiliationCountry",
+    "hospitalCountry": "HospitalCountry",
+    "lastUpdated": "timestamp"
   },
   "policies": [
-    "DQRP1",
-    "DQRP2",
-    "DQRP3",
-    "DQRP4"
+    "DQRP1"
   ]
 }
