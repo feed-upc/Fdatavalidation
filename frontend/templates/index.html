@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHDS Data Validation Workflow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h1>EHDS Validator</h1>
+            </div>
+
+            <nav class="steps-nav">
+                <div class="step-item" id="step1">
+                    <div class="step-header">
+                        <span class="step-number">01</span>
+                        <span class="step-title">Initialization</span>
+                    </div>
+                    <button class="btn-primary" onclick="runStep('step1_init')">
+                        <i class="fa-solid fa-play"></i> Initialize SDM
+                    </button>
+                </div>
+
+                <div class="step-item" id="step2">
+                    <div class="step-header">
+                        <span class="step-number">02</span>
+                        <span class="step-title">Registration</span>
+                    </div>
+                    <button class="btn-primary" onclick="runStep('step2_register')">
+                        <i class="fa-solid fa-file-csv"></i> Register Patient Summary
+                    </button>
+                </div>
+
+                <div class="step-item" id="step3">
+                    <div class="step-header">
+                        <span class="step-number">03</span>
+                        <span class="step-title">Contract</span>
+                    </div>
+                    <button class="btn-primary" onclick="runStep('step3_contract')">
+                        <i class="fa-solid fa-file-contract"></i> Create Contract
+                    </button>
+                </div>
+
+                <div class="step-item" id="step4">
+                    <div class="step-header">
+                        <span class="step-number">04</span>
+                        <span class="step-title">Validation</span>
+                    </div>
+                    <button class="btn-accent" onclick="runStep('step4_validate')">
+                        <i class="fa-solid fa-check-double"></i> Run Validation
+                    </button>
+                </div>
+            </nav>
+
+            <div class="status-panel">
+                <h3>Console Output</h3>
+                <div id="console-output" class="console-box">
+                    <div class="log-entry info">> Ready to start.</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="graph-info">
+                    <h2>Semantic Data Model (Graph View)</h2>
+                    <span id="node-count" class="badge">0 Nodes</span>
+                    <span id="edge-count" class="badge">0 Edges</span>
+                </div>
+                <div class="controls">
+                    <select id="view-mode" onchange="fetchGraph()" class="view-select">
+                        <option value="full">Full Detail</option>
+                        <option value="simple" selected>Simplified View</option>
+                    </select>
+                    <button class="btn-secondary" onclick="fetchGraph()">
+                        <i class="fa-solid fa-rotate"></i> Refresh Graph
+                    </button>
+                </div>
+            </header>
+
+            <div id="cy" class="graph-container"></div>
+
+            <div id="loading-overlay" class="loading-overlay hidden">
+                <div class="spinner"></div>
+                <div class="loading-text">Processing...</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>

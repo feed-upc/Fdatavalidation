@@ -17,6 +17,8 @@
 
 dcterms:identifier a owl:DatatypeProperty ;
     rdfs:domain [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
+        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
+        [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ],
         [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ] ;
     rdfs:range xsd:string .
 
@@ -170,6 +172,8 @@ tbox:name a owl:DatatypeProperty ;
     rdfs:label "name"@en ;
     rdfs:comment "Name of a Library or resource"@en ;
     rdfs:domain [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
+        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
+        [ owl:unionOf ( tbox:Library tbox:Implementation ) ],
         [ owl:unionOf ( tbox:Library tbox:Implementation ) ] ;
     rdfs:range xsd:string ;
     owl:equivalentProperty schema1:name .
@@ -178,6 +182,8 @@ tbox:nextStep a owl:ObjectProperty ;
     rdfs:label "next step"@en ;
     rdfs:comment "Links to the next Operation in a validation chain"@en ;
     rdfs:domain [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
+        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
+        [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ],
         [ owl:unionOf ( tbox:Operation tbox:PolicyChecker ) ] ;
     rdfs:range tbox:Operation .
 
@@ -192,6 +198,8 @@ tbox:owner a owl:DatatypeProperty ;
     rdfs:label "owner"@en ;
     rdfs:comment "DEPRECATED: Use dcterms:creator or dcterms:publisher instead"@en ;
     rdfs:domain [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
+        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
+        [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ],
         [ owl:unionOf ( odrl:Asset tbox:DataProduct ) ] ;
     rdfs:range xsd:string ;
     owl:deprecated true ;
@@ -268,17 +276,25 @@ dcterms:format a owl:DatatypeProperty ;
 
 schema1:Dataset a owl:Class .
 
-abox:0d72f8fc-9f35-4cd8-8d92-df552f6e1cfb a tbox:SchemaMapping ;
-    tbox:mfrom abox:gender ;
-    tbox:mto abox:Sex .
+abox:1789016f-c37f-41fc-8b5d-591a0436420f a tbox:SchemaMapping ;
+    tbox:mfrom abox:hospitalCountry ;
+    tbox:mto abox:HospitalCountry .
 
-abox:0fbae97c-39a4-41b0-a45c-5fdbe3b68107 a tbox:SchemaMapping ;
+abox:651e657c-cc54-4364-ab43-7de7d5f9fc08 a tbox:SchemaMapping ;
     tbox:mfrom abox:nationalHealthcarePatientID ;
     tbox:mto abox:Subject .
 
-abox:6feee74f-3c15-492c-abc5-799ca71d5aab a tbox:SchemaMapping ;
-    tbox:mfrom abox:hospitalCountry ;
-    tbox:mto abox:HospitalCountry .
+abox:7094c28b-a09c-4d64-aa4d-14db711da3c5 a tbox:SchemaMapping ;
+    tbox:mfrom abox:lastUpdated ;
+    tbox:mto abox:timestamp .
+
+abox:8ec2eb1d-b745-48fc-9d01-d5173b917088 a tbox:SchemaMapping ;
+    tbox:mfrom abox:gender ;
+    tbox:mto abox:Sex .
+
+abox:926f480d-2be1-4228-abcd-cca13706bace a tbox:SchemaMapping ;
+    tbox:mfrom abox:countryOfAffiliation ;
+    tbox:mto abox:AffiliationCountry .
 
 abox:CompletenessDimension a dqv:Dimension ;
     rdfs:label "Completeness (ISO/IEC 25012)" .
@@ -287,7 +303,6 @@ abox:CompletenessMeasurement a dqv:Metric,
         dqv:QualityMeasurement ;
     rdfs:label "Completeness Measurement" ;
     rdfs:comment "Measures the completeness of an attribute (percentage of non-null values)" ;
-    dqv:computedOn abox:Subject ;
     dqv:isMeasurementOf abox:qM .
 
 abox:DQRP1_Constraint a odrl:Constraint ;
@@ -303,7 +318,7 @@ abox:DQRP1_Permission a odrl:Permission ;
     odrl:assignee abox:DataProvider ;
     odrl:assigner abox:DataSpaceGovernanceAuthority ;
     odrl:constraint abox:DQRP1_Constraint ;
-    odrl:target abox:EHDS_Patient_Summary .
+    odrl:target abox:timestamp .
 
 abox:DQRP2_Constraint a odrl:Constraint ;
     rdfs:comment "Completeness must be >= 100" ;
@@ -318,13 +333,12 @@ abox:DQRP2_Permission a odrl:Permission ;
     odrl:assignee abox:DataProvider ;
     odrl:assigner abox:DataSpaceGovernanceAuthority ;
     odrl:constraint abox:DQRP2_Constraint ;
-    odrl:target abox:EHDS_Patient_Summary .
+    odrl:target abox:Subject .
 
 abox:DataAge a dqv:Metric,
         dqv:QualityMeasurement ;
     rdfs:label "Data Age Measurement" ;
     rdfs:comment "Measures the time elapsed since data was recorded/updated via the lastUpdated attribute" ;
-    dqv:computedOn abox:timestamp ;
     dqv:isMeasurementOf abox:Freshness .
 
 abox:Freshness a dqv:Metric ;
@@ -340,14 +354,14 @@ abox:ImpCheckFreshness a tbox:Implementation ;
     tbox:forType abox:Tabular ;
     tbox:hasCode [ tbox:code "(datetime.now() - pd.to_datetime(data[ts_attr], utc=True).dt.tz_convert(None)).dt.total_seconds() / 60" ],
         [ tbox:code "(datetime.now() - pd.to_datetime(data[ts_attr], utc=True).dt.tz_convert(None)).dt.total_seconds() / 60" ] ;
-    tbox:hasParameters [ tbox:description "Name of timestamp column" ;
-            tbox:name "ts_attr" ;
-            tbox:role "attributeReference" ;
-            tbox:type "string" ],
-        [ tbox:description "Data from previous operation" ;
+    tbox:hasParameters [ tbox:description "Data from previous operation" ;
             tbox:name "data" ;
             tbox:role "previousResult" ;
             tbox:type "DataFrame" ],
+        [ tbox:description "Name of timestamp column" ;
+            tbox:name "ts_attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
         [ tbox:description "Data from previous operation" ;
             tbox:name "data" ;
             tbox:role "previousResult" ;
@@ -361,8 +375,47 @@ abox:ImpConstraintGteq a tbox:Implementation ;
     tbox:forOp odrl:Constraint ;
     tbox:forOperator "odrl:gteq" ;
     tbox:forType abox:Tabular ;
-    tbox:hasCode [ tbox:code "data >= threshold" ] ;
+    tbox:hasCode [ tbox:code "data >= threshold" ],
+        [ tbox:code "data >= threshold" ],
+        [ tbox:code "data >= threshold" ],
+        [ tbox:code "data >= threshold" ] ;
     tbox:hasParameters [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Minimum allowed value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Minimum allowed value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Minimum allowed value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "ODRL operator URI" ;
             tbox:name "operator" ;
             tbox:role "operator" ;
             tbox:type "string" ],
@@ -385,33 +438,63 @@ abox:ImpConstraintLteq a tbox:Implementation ;
             tbox:name "operator" ;
             tbox:role "operator" ;
             tbox:type "string" ],
-        [ tbox:description "Maximum allowed value" ;
-            tbox:name "threshold" ;
-            tbox:role "threshold" ;
-            tbox:type "number" ],
         [ tbox:description "Data from previous operation" ;
             tbox:name "data" ;
             tbox:role "previousResult" ;
             tbox:type "DataFrame" ],
-        [ tbox:description "ODRL operator URI" ;
-            tbox:name "operator" ;
-            tbox:role "operator" ;
-            tbox:type "string" ],
         [ tbox:description "Maximum allowed value" ;
             tbox:name "threshold" ;
             tbox:role "threshold" ;
             tbox:type "number" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
         [ tbox:description "Data from previous operation" ;
             tbox:name "data" ;
             tbox:role "previousResult" ;
-            tbox:type "DataFrame" ] .
+            tbox:type "DataFrame" ],
+        [ tbox:description "Maximum allowed value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ] .
 
 abox:ImpQualityMetric a tbox:Implementation ;
-    tbox:dependsOn [ tbox:name "pandas" ] ;
+    tbox:dependsOn [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ] ;
     tbox:forOp abox:qM ;
     tbox:forType abox:Tabular ;
-    tbox:hasCode [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ] ;
-    tbox:hasParameters [ tbox:description "Column to check for completeness (e.g., patientID)" ;
+    tbox:hasCode [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ],
+        [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ],
+        [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ],
+        [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ] ;
+    tbox:hasParameters [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
             tbox:name "attr" ;
             tbox:role "attributeReference" ;
             tbox:type "string" ],
@@ -428,8 +511,29 @@ abox:Patient_Summary_Acces a tbox:Acces ;
 abox:Timeliness a dqv:Dimension ;
     rdfs:label "Timeliness (ISO/IEC 25012)" .
 
-abox:ValidationReport-769de524 a tbox:ValidationReport ;
-    tbox:executionDuration "0.021613121032714844"^^xsd:float ;
+abox:ValidationReport-3116d316 a tbox:ValidationReport ;
+    tbox:executionDuration "0.0033600330352783203"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
+    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
+    result_0 = pandas.read_csv(p)
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM
+    result_1 = (1 - result_0[attr].isna().sum() / len(result_0)) * 100
+
+    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
+    result_2 = result_1 >= threshold
+
+    return result_2
+""" ;
+    tbox:resultType "bool" ;
+    tbox:validationStatus "COMPLETED" ;
+    prov:endedAtTime "2026-02-14T20:46:04.609145"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-14T20:46:04.605786"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-1f08b6a5dff9 .
+
+abox:ValidationReport-b1dbc142 a tbox:ValidationReport ;
+    tbox:executionDuration "0.0069408416748046875"^^xsd:float ;
     tbox:executionMode "COMPOSED_UDF" ;
     tbox:hasComposedCode """def composed_pipeline(initial_data=None):
     # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
@@ -447,146 +551,142 @@ abox:ValidationReport-769de524 a tbox:ValidationReport ;
     tbox:resultType "Series" ;
     tbox:resultValue "{0: False, 1: False, 2: False, 3: False, 4: False}" ;
     tbox:validationStatus "FAILED" ;
-    prov:endedAtTime "2026-02-14T16:45:59.489532"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-14T16:45:59.467923"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-7c74f8f5f5de .
+    prov:endedAtTime "2026-02-14T20:46:05.753511"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-14T20:46:05.746572"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-6553cdfb1a44 .
 
-abox:ValidationReport-80c6d822 a tbox:ValidationReport ;
-    tbox:executionDuration "0.005915403366088867"^^xsd:float ;
-    tbox:executionMode "COMPOSED_UDF" ;
-    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
-    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
-    result_0 = pandas.read_csv(p)
+abox:a495c629-8181-4fc2-85a1-f32a43040e61 a tbox:SchemaMapping ;
+    tbox:mfrom abox:gender ;
+    tbox:mto abox:Sex .
 
-    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM
-    result_1 = (1 - result_0[attr].isna().sum() / len(result_0)) * 100
-
-    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
-    result_2 = result_1 >= threshold
-
-    return result_2
-""" ;
-    tbox:resultType "bool" ;
-    tbox:validationStatus "COMPLETED" ;
-    prov:endedAtTime "2026-02-14T16:46:02.054389"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-14T16:46:02.048475"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-c140853ce918 .
-
-abox:a8cfa102-430c-4777-9773-227cded77c90 a tbox:SchemaMapping ;
-    tbox:mfrom abox:countryOfAffiliation ;
-    tbox:mto abox:AffiliationCountry .
+abox:d40a0981-a736-4eb8-ad6f-f363a15c657f a tbox:SchemaMapping ;
+    tbox:mfrom abox:nationalHealthcarePatientID ;
+    tbox:mto abox:Subject .
 
 abox:dc_Patient_Summary a tbox:DataContract,
         odrl:Agreement ;
-    tbox:hasMapping abox:0d72f8fc-9f35-4cd8-8d92-df552f6e1cfb,
-        abox:0fbae97c-39a4-41b0-a45c-5fdbe3b68107,
-        abox:6feee74f-3c15-492c-abc5-799ca71d5aab,
-        abox:a8cfa102-430c-4777-9773-227cded77c90,
-        abox:e3698cae-9255-41f2-a69e-a8bd47121253 ;
+    tbox:hasMapping abox:1789016f-c37f-41fc-8b5d-591a0436420f,
+        abox:651e657c-cc54-4364-ab43-7de7d5f9fc08,
+        abox:7094c28b-a09c-4d64-aa4d-14db711da3c5,
+        abox:8ec2eb1d-b745-48fc-9d01-d5173b917088,
+        abox:926f480d-2be1-4228-abcd-cca13706bace,
+        abox:a495c629-8181-4fc2-85a1-f32a43040e61,
+        abox:d40a0981-a736-4eb8-ad6f-f363a15c657f,
+        abox:e326c4da-d697-4137-bf71-b596f7239039,
+        abox:e598f54d-929a-4c31-b077-b3f0bb17e46a,
+        abox:e66457eb-ba51-423d-80f0-a5f5c1cd5f0a ;
     tbox:hasPolicy abox:DQRP1,
         abox:DQRP2 ;
     odrl:permission abox:DQRP1,
         abox:DQRP2 .
 
-abox:e3698cae-9255-41f2-a69e-a8bd47121253 a tbox:SchemaMapping ;
+abox:e326c4da-d697-4137-bf71-b596f7239039 a tbox:SchemaMapping ;
+    tbox:mfrom abox:countryOfAffiliation ;
+    tbox:mto abox:AffiliationCountry .
+
+abox:e598f54d-929a-4c31-b077-b3f0bb17e46a a tbox:SchemaMapping ;
     tbox:mfrom abox:lastUpdated ;
     tbox:mto abox:timestamp .
 
-abox:genid-0fe8d083b946 a tbox:Operation ;
-    tbox:hasAbstract abox:CheckFreshness ;
-    tbox:hasImplementation abox:ImpCheckFreshness ;
-    tbox:hasInput abox:genid-7f88998fa6c6,
-        abox:genid-d762673ffcc1 ;
-    tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-7d96c393198a .
+abox:e66457eb-ba51-423d-80f0-a5f5c1cd5f0a a tbox:SchemaMapping ;
+    tbox:mfrom abox:hospitalCountry ;
+    tbox:mto abox:HospitalCountry .
 
-abox:genid-15b6896c8e2c a tbox:Operation ;
-    tbox:hasAbstract abox:qM ;
-    tbox:hasImplementation abox:ImpQualityMetric ;
-    tbox:hasInput abox:genid-7eea518fdf09,
-        abox:genid-c8a007821a06 ;
-    tbox:hasOutput abox:score ;
-    tbox:nextStep abox:genid-bedef1f14342 .
-
-abox:genid-1cf47ef8088c tbox:role "operator" ;
-    tbox:value abox:genid-1fd2caedf867 .
-
-abox:genid-3c80419dc94a tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-6961e110b2ad a tbox:Operation ;
+abox:genid-00c3ea308adb a tbox:Operation ;
     tbox:hasAbstract abox:LoadData ;
     tbox:hasImplementation abox:Imp1 ;
-    tbox:hasInput abox:genid-cd6c4a720708 ;
+    tbox:hasInput abox:genid-e16ef98ac0c1 ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-15b6896c8e2c .
+    tbox:nextStep abox:genid-222269af18a4 .
 
-abox:genid-7c74f8f5f5de a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP1 ;
-    tbox:hasValidationReport abox:ValidationReport-769de524 ;
-    tbox:nextStep abox:genid-d0b667c9d0ce ;
+abox:genid-09d0fecad123 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-1f08b6a5dff9 a tbox:PolicyChecker ;
+    tbox:accordingTo abox:DQRP2 ;
+    tbox:hasValidationReport abox:ValidationReport-3116d316 ;
+    tbox:nextStep abox:genid-c9201ca3caff ;
     tbox:validates abox:Patient_Summary .
 
-abox:genid-7d96c393198a a tbox:Operation ;
+abox:genid-222269af18a4 a tbox:Operation ;
+    tbox:hasAbstract abox:CheckFreshness ;
+    tbox:hasImplementation abox:ImpCheckFreshness ;
+    tbox:hasInput abox:genid-9b6a8e15a137,
+        abox:genid-ad5d9d381b9c ;
+    tbox:hasOutput abox:data ;
+    tbox:nextStep abox:genid-88cf6bf26de0 .
+
+abox:genid-410b25a1af20 tbox:role "threshold" ;
+    tbox:value 100 .
+
+abox:genid-6553cdfb1a44 a tbox:PolicyChecker ;
+    tbox:accordingTo abox:DQRP1 ;
+    tbox:hasValidationReport abox:ValidationReport-b1dbc142 ;
+    tbox:nextStep abox:genid-00c3ea308adb ;
+    tbox:validates abox:Patient_Summary .
+
+abox:genid-752db7decc55 a tbox:Operation ;
+    tbox:hasAbstract abox:qM ;
+    tbox:hasImplementation abox:ImpQualityMetric ;
+    tbox:hasInput abox:genid-a095009c5661,
+        abox:genid-b1d7d51196eb ;
+    tbox:hasOutput abox:score ;
+    tbox:nextStep abox:genid-8f1b9be07b50 .
+
+abox:genid-7c5e0cdc2eec tbox:role "operator" ;
+    tbox:value abox:genid-7aeed8305c02 .
+
+abox:genid-88cf6bf26de0 a tbox:Operation ;
     tbox:hasAbstract odrl:Constraint ;
     tbox:hasImplementation abox:ImpConstraintLteq ;
-    tbox:hasInput abox:genid-1cf47ef8088c,
-        abox:genid-a6d78d528f2c,
-        abox:genid-b4b4807585ba ;
+    tbox:hasInput abox:genid-7c5e0cdc2eec,
+        abox:genid-c71b509aac7e,
+        abox:genid-d2e207f1ad19 ;
     tbox:hasOutput abox:data ;
     tbox:isTerminal true .
 
-abox:genid-7eea518fdf09 tbox:role "targetAttribute" ;
-    tbox:value abox:nationalHealthcarePatientID .
-
-abox:genid-7f88998fa6c6 tbox:role "timestampAttribute" ;
-    tbox:value abox:lastUpdated .
-
-abox:genid-8743d209d495 tbox:role "threshold" ;
-    tbox:value 100 .
-
-abox:genid-a6d78d528f2c tbox:role "threshold" ;
-    tbox:value 30 .
-
-abox:genid-b4b4807585ba tbox:role "previousResult" ;
+abox:genid-89d3d1ed9873 tbox:role "previousResult" ;
     tbox:value abox:data .
 
-abox:genid-bedef1f14342 a tbox:Operation ;
+abox:genid-8f1b9be07b50 a tbox:Operation ;
     tbox:hasAbstract odrl:Constraint ;
     tbox:hasImplementation abox:ImpConstraintGteq ;
-    tbox:hasInput abox:genid-3c80419dc94a,
-        abox:genid-8743d209d495,
-        abox:genid-d88e5995aa7e ;
+    tbox:hasInput abox:genid-410b25a1af20,
+        abox:genid-89d3d1ed9873,
+        abox:genid-ab1c0ece399b ;
     tbox:hasOutput abox:boolean ;
     tbox:isTerminal true .
 
-abox:genid-c140853ce918 a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP2 ;
-    tbox:hasValidationReport abox:ValidationReport-80c6d822 ;
-    tbox:nextStep abox:genid-6961e110b2ad ;
-    tbox:validates abox:Patient_Summary .
+abox:genid-9b6a8e15a137 tbox:role "timestampAttribute" ;
+    tbox:value abox:lastUpdated .
 
-abox:genid-c6c0d4da5c01 tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+abox:genid-a095009c5661 tbox:role "targetAttribute" ;
+    tbox:value abox:nationalHealthcarePatientID .
 
-abox:genid-c8a007821a06 tbox:role "previousResult" ;
+abox:genid-ab1c0ece399b tbox:role "operator" ;
+    tbox:value odrl:gteq .
+
+abox:genid-ad5d9d381b9c tbox:role "previousResult" ;
     tbox:value abox:data .
 
-abox:genid-cd6c4a720708 tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+abox:genid-b1d7d51196eb tbox:role "previousResult" ;
+    tbox:value abox:data .
 
-abox:genid-d0b667c9d0ce a tbox:Operation ;
+abox:genid-c71b509aac7e tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-c9201ca3caff a tbox:Operation ;
     tbox:hasAbstract abox:LoadData ;
     tbox:hasImplementation abox:Imp1 ;
-    tbox:hasInput abox:genid-c6c0d4da5c01 ;
+    tbox:hasInput abox:genid-09d0fecad123 ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-0fe8d083b946 .
+    tbox:nextStep abox:genid-752db7decc55 .
 
-abox:genid-d762673ffcc1 tbox:role "previousResult" ;
-    tbox:value abox:data .
+abox:genid-d2e207f1ad19 tbox:role "threshold" ;
+    tbox:value 30 .
 
-abox:genid-d88e5995aa7e tbox:role "operator" ;
-    tbox:value odrl:gteq .
+abox:genid-e16ef98ac0c1 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
 
 prov:Agent a owl:Class .
 
@@ -606,6 +706,12 @@ prov:SoftwareAgent a owl:Class ;
             schema1:name "Date" ],
         [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
+            schema1:name "Date" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
+            schema1:name "Date" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C25164" ;
             schema1:name "Date" ] .
 
 <schema:gender> a schema1:PropertyValue ;
@@ -613,6 +719,12 @@ prov:SoftwareAgent a owl:Class ;
     schema1:name "Sex" ;
     schema1:propertyID "gender" ;
     schema1:valueReference [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
+            schema1:name "Sex" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
+            schema1:name "Sex" ],
+        [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C28421" ;
             schema1:name "Sex" ],
         [ a schema1:DefinedTerm ;
@@ -628,23 +740,22 @@ prov:SoftwareAgent a owl:Class ;
             schema1:name "Patient Identifier" ],
         [ a schema1:DefinedTerm ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
-            schema1:name "Patient Identifier" ] .
-
-abox:AffiliationCountry a schema1:PropertyValue ;
-    schema1:description "Patient country of affiliation (ISO 3166-1 alpha-2)" ;
-    schema1:name "Affiliation Country" ;
-    schema1:propertyID "countryOfAffiliation" ;
-    schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
-            schema1:name "Country Code" ],
+            schema1:name "Patient Identifier" ],
         [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
-            schema1:name "Country Code" ] .
+            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
+            schema1:name "Patient Identifier" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
+            schema1:name "Patient Identifier" ] .
 
 abox:EHDS_Patient_Summary a tbox:CommonDataModel,
         <schema:Dataset> ;
     dcterms:identifier "EHDS-AMR-PS-001" ;
     schema1:creator [ a schema1:Organization ;
+            schema1:name "FederatedTeam" ],
+        [ a schema1:Organization ;
+            schema1:name "FederatedTeam" ],
+        [ a schema1:Organization ;
             schema1:name "FederatedTeam" ],
         [ a schema1:Organization ;
             schema1:name "FederatedTeam" ] ;
@@ -662,6 +773,10 @@ abox:EHDS_Patient_Summary a tbox:CommonDataModel,
     schema1:spatialCoverage [ a schema1:Place ;
             schema1:name "European Union (EU-27)" ],
         [ a schema1:Place ;
+            schema1:name "European Union (EU-27)" ],
+        [ a schema1:Place ;
+            schema1:name "European Union (EU-27)" ],
+        [ a schema1:Place ;
             schema1:name "European Union (EU-27)" ] ;
     schema1:temporalCoverage "2024/2026" ;
     schema1:variableMeasured abox:AffiliationCountry,
@@ -671,25 +786,26 @@ abox:EHDS_Patient_Summary a tbox:CommonDataModel,
         <schema:identifier> ;
     schema1:version "1.0" .
 
-abox:HospitalCountry a schema1:PropertyValue ;
-    schema1:description "Country of the treating hospital (ISO 3166-1 alpha-2)" ;
-    schema1:name "Hospital Country" ;
-    schema1:propertyID "hospitalCountry" ;
-    schema1:valueReference [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
-            schema1:name "Country Code" ],
-        [ a schema1:DefinedTerm ;
-            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
-            schema1:name "Country Code" ] .
-
 abox:Imp1 a tbox:Implementation ;
     tbox:dependsOn [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ],
         [ tbox:name "pandas" ] ;
     tbox:forOp abox:LoadData ;
     tbox:forType abox:Tabular ;
     tbox:hasCode [ tbox:code "pandas.read_csv(p)" ],
+        [ tbox:code "pandas.read_csv(p)" ],
+        [ tbox:code "pandas.read_csv(p)" ],
         [ tbox:code "pandas.read_csv(p)" ] ;
     tbox:hasParameters [ tbox:description "Path to CSV file" ;
+            tbox:name "p" ;
+            tbox:role "filePath" ;
+            tbox:type "string" ],
+        [ tbox:description "Path to CSV file" ;
+            tbox:name "p" ;
+            tbox:role "filePath" ;
+            tbox:type "string" ],
+        [ tbox:description "Path to CSV file" ;
             tbox:name "p" ;
             tbox:role "filePath" ;
             tbox:type "string" ],
@@ -794,6 +910,23 @@ odrl:Permission a owl:Class .
 
 prov:Activity a owl:Class .
 
+abox:AffiliationCountry a schema1:PropertyValue ;
+    schema1:description "Patient country of affiliation (ISO 3166-1 alpha-2)" ;
+    schema1:name "Affiliation Country" ;
+    schema1:propertyID "countryOfAffiliation" ;
+    schema1:valueReference [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ] .
+
 abox:DQRP1 a dqv:QualityPolicy ;
     rdfs:label "DQRP1 - Timeliness Requirement" ;
     tbox:derivedFrom "DQRP1" ;
@@ -809,6 +942,39 @@ abox:DQRP2 a dqv:QualityPolicy ;
     tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
     rdfs:comment "Data Quality Requirement Pattern 2: Completeness check. The Subject (Patient ID) must be 100% complete (no nulls)." ;
     odrl:permission abox:DQRP2_Permission .
+
+abox:HospitalCountry a schema1:PropertyValue ;
+    schema1:description "Country of the treating hospital (ISO 3166-1 alpha-2)" ;
+    schema1:name "Hospital Country" ;
+    schema1:propertyID "hospitalCountry" ;
+    schema1:valueReference [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ],
+        [ a schema1:DefinedTerm ;
+            schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
+            schema1:name "Country Code" ] .
+
+abox:Subject a odrl:Asset ;
+    odrl:partOf abox:EHDS_Patient_Summary .
+
+abox:timestamp a odrl:Asset ;
+    odrl:partOf abox:EHDS_Patient_Summary .
+
+tbox:DataContract a owl:Class ;
+    rdfs:label "Data Contract"@en ;
+    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
+    rdfs:subClassOf odrl:Agreement .
+
+tbox:DatasetTypeTemplate a owl:Class ;
+    rdfs:label "Dataset Type Template"@en ;
+    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
+    rdfs:subClassOf dcterms:FileFormat .
 
 abox:countryOfAffiliation a tbox:Attribute,
         csvw:Column ;
@@ -834,15 +1000,7 @@ abox:hospitalCountry a tbox:Attribute,
     csvw:name "hospitalCountry" ;
     csvw:propertyUrl schema1:propertyValue .
 
-tbox:DataContract a owl:Class ;
-    rdfs:label "Data Contract"@en ;
-    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
-    rdfs:subClassOf odrl:Agreement .
-
-tbox:DatasetTypeTemplate a owl:Class ;
-    rdfs:label "Dataset Type Template"@en ;
-    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
-    rdfs:subClassOf dcterms:FileFormat .
+dqv:Metric a owl:Class .
 
 abox:lastUpdated a tbox:Attribute,
         csvw:Column ;
@@ -860,36 +1018,16 @@ abox:nationalHealthcarePatientID a tbox:Attribute,
     csvw:name "nationalHealthcarePatientID" ;
     csvw:propertyUrl schema1:identifier .
 
+schema1:PropertyValue a owl:Class .
+
 tbox:Library a owl:Class ;
     rdfs:label "Library"@en ;
     rdfs:comment "Software library that provides implementations (e.g., pandas, numpy)"@en ;
     rdfs:subClassOf prov:SoftwareAgent .
 
-dqv:Metric a owl:Class .
-
 dcat:Dataset a owl:Class .
 
-odrl:Asset a owl:Class .
-
-schema1:PropertyValue a owl:Class .
-
 odrl:Policy a owl:Class .
-
-tbox:DataProduct a owl:Class ;
-    rdfs:label "Data Product"@en ;
-    rdfs:comment "A data product with governance policies. Subclass of both DCAT Dataset and ODRL Asset"@en ;
-    rdfs:subClassOf dcat:Dataset,
-        odrl:Asset .
-
-tbox:PolicyChecker a owl:Class ;
-    rdfs:label "Policy Checker"@en ;
-    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
-    rdfs:subClassOf prov:Activity .
-
-tbox:Implementation a owl:Class ;
-    rdfs:label "Implementation"@en ;
-    rdfs:comment "Executable implementation of an operation with code template and library reference"@en ;
-    rdfs:subClassOf prov:Plan .
 
 csvw:Column a owl:Class .
 
@@ -899,13 +1037,31 @@ tbox:Attribute a owl:Class ;
     owl:deprecated true ;
     owl:equivalentClass csvw:Column .
 
-tbox:Operation a owl:Class ;
-    rdfs:label "Operation"@en ;
-    rdfs:comment "Individual operation in a validation chain (e.g., LoadData, CheckFreshness, QualityMetric)"@en ;
+tbox:PolicyChecker a owl:Class ;
+    rdfs:label "Policy Checker"@en ;
+    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
     rdfs:subClassOf prov:Activity .
 
 tbox:ValidationReport a owl:Class ;
     rdfs:label "Validation Report"@en ;
     rdfs:comment "Report generated from PolicyChecker execution containing status, timing, and result metadata"@en ;
     rdfs:subClassOf prov:Entity .
+
+odrl:Asset a owl:Class .
+
+tbox:Implementation a owl:Class ;
+    rdfs:label "Implementation"@en ;
+    rdfs:comment "Executable implementation of an operation with code template and library reference"@en ;
+    rdfs:subClassOf prov:Plan .
+
+tbox:DataProduct a owl:Class ;
+    rdfs:label "Data Product"@en ;
+    rdfs:comment "A data product with governance policies. Subclass of both DCAT Dataset and ODRL Asset"@en ;
+    rdfs:subClassOf dcat:Dataset,
+        odrl:Asset .
+
+tbox:Operation a owl:Class ;
+    rdfs:label "Operation"@en ;
+    rdfs:comment "Individual operation in a validation chain (e.g., LoadData, CheckFreshness, QualityMetric)"@en ;
+    rdfs:subClassOf prov:Activity .
 
