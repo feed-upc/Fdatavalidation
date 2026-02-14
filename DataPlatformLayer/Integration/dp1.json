@@ -8,6 +8,7 @@
     "lastUpdated": "timestamp"
   },
   "policies": [
-    "DQRP1"
+    "DQRP1",
+    "DQRP2"
   ]
 }

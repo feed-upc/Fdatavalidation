@@ -70,11 +70,11 @@ PATHS = {
     'federator':   os.path.join(BASE, 'DataPlatformLayer/Integration/federator.ipynb'),
     'dp1_json':    os.path.join(BASE, 'DataPlatformLayer/Integration/dp1.json'),
     'data_csv':    os.path.join(BASE, 'DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv'),
-    'planner_py':  os.path.join(BASE, 'Connector/ValidationFramework/planner/planner_n3_semantic.py'),
+    'planner_py':  os.path.join(BASE, 'Connector/ValidationFramework/planner/planner.py'),
     'planner_dir': os.path.join(BASE, 'Connector/ValidationFramework/planner/'),
-    'executor_py': os.path.join(BASE, 'Connector/ValidationFramework/executor/executor_semantic.py'),
+    'executor_py': os.path.join(BASE, 'Connector/ValidationFramework/executor/executor.py'),
     'executor_dir':os.path.join(BASE, 'Connector/ValidationFramework/executor/'),
-    'code_meta':   os.path.join(BASE, 'Connector/ValidationFramework/executor/code_metadata_with_roles.json'),
+    'code_meta':   os.path.join(BASE, 'Connector/ValidationFramework/executor/code_metadata.json'),
 }
 
 
