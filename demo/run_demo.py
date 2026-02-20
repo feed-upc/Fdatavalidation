@@ -56,6 +56,7 @@ def run_script(cmd, cwd, label):
         print(f"    stderr: {result.stderr[:500]}")
         sys.exit(1)
     print(f"  ✓ {label} — done")
+    print(result.stdout)
     return result
 
 

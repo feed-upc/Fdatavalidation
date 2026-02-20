@@ -242,11 +242,11 @@ def generate_patient_summary(rng, num_patients, hospitals):
     Generate Patient_Summary.csv
 
     Columns (from UML — Patient Identification + Hospital link):
-        nationalHealthcarePatientID, familyName, givenName, dateOfBirth,
+        local_patient_id, familyName, givenName, dateOfBirth,
         gender, countryOfAffiliation, hospitalCode, hospitalCountry, lastUpdated
 
     Violations injected:
-        DQR1EH — NULL nationalHealthcarePatientID at fixed indices
+        DQR1EH — NULL local_patient_id at fixed indices
         DQR2EH — Invalid countryOfAffiliation at fixed indices
         DQR5EH — Gender imbalance in first half (60% M / 40% F)
         DQR6EH — Invalid hospitalCountry at fixed indices
@@ -323,7 +323,7 @@ def generate_patient_summary(rng, num_patients, hospitals):
         last_updated = generate_timestamp(rng, 2024, 2025)
 
         rows.append({
-            "nationalHealthcarePatientID": patient_id,
+            "local_patient_id": patient_id,
             "familyName": family_name,
             "givenName": given_name,
             "dateOfBirth": dob,
@@ -351,7 +351,7 @@ def generate_pregnancy_history(rng, patients):
     male_pregnancy_count = 0
 
     for i, patient in enumerate(patients):
-        pid = patient["nationalHealthcarePatientID"]
+        pid = patient["local_patient_id"]
         if not pid:
             # Use index-based fallback for null-ID patients
             pid = f"EHDS-PT-{i + 1:05d}"
@@ -407,7 +407,7 @@ def generate_allergies(rng, patients):
     """
     rows = []
     for i, patient in enumerate(patients):
-        pid = patient["nationalHealthcarePatientID"]
+        pid = patient["local_patient_id"]
         if not pid:
             pid = f"EHDS-PT-{i + 1:05d}"
 
@@ -455,7 +455,7 @@ def generate_isolates_and_study(rng, patients, num_specimens):
 
     for i in range(num_specimens):
         patient = rng.choice(patients)
-        pid = patient["nationalHealthcarePatientID"]
+        pid = patient["local_patient_id"]
         if not pid:
             pid = f"EHDS-PT-{rng.randint(1, len(patients)):05d}"
 
@@ -576,7 +576,7 @@ def main():
     checksums["Patient_Summary.csv"] = write_csv(
         os.path.join(output_dir, "Patient_Summary.csv"),
         [
-            "nationalHealthcarePatientID", "familyName", "givenName",
+            "local_patient_id", "familyName", "givenName",
             "dateOfBirth", "gender", "countryOfAffiliation",
             "hospitalCode", "hospitalCountry", "lastUpdated",
         ],

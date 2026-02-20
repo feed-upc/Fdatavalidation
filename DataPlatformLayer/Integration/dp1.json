@@ -1,7 +1,7 @@
 {
   "name": "Patient_Summary",
   "mappings": {
-    "nationalHealthcarePatientID": "Subject",
+    "local_patient_id": "nationalHealthcarePatientID",
     "gender": "Sex",
     "countryOfAffiliation": "AffiliationCountry",
     "hospitalCountry": "HospitalCountry",
@@ -9,6 +9,8 @@
   },
   "policies": [
     "DQRP1",
-    "DQRP2"
+    "DQRP2",
+    "DQRP3",
+    "DQRP6"
   ]
 }

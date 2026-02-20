@@ -1,4 +1,4 @@
-nationalHealthcarePatientID,familyName,givenName,dateOfBirth,gender,countryOfAffiliation,hospitalCode,hospitalCountry,lastUpdated
+local_patient_id,familyName,givenName,dateOfBirth,gender,countryOfAffiliation,hospitalCode,hospitalCountry,lastUpdated
 EHDS-PT-00001,Jonaitis,Georgi,1986-03-12,M,SE,HOSP-0014,DK,2025-11-17T08:44:00Z
 EHDS-PT-00002,Müller,Marika,1961-09-24,F,AT,HOSP-0011,GR,2025-04-18T12:17:00Z
 EHDS-PT-00003,Bianchi,Marika,1968-11-11,F,LU,HOSP-0050,LV,2024-02-27T07:52:00Z

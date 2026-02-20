@@ -18,7 +18,7 @@
       "dcterms:identifier": "123456",
       "tb:hasFeature": [
         {
-          "@id": "ab:Subject",
+          "@id": "ab:nationalHealthcarePatientID",
           "@type": "tb:Feature"
         },
         {
@@ -35,6 +35,10 @@
         },
         {
           "@id": "ab:timestamp",
+          "@type": "tb:Feature"
+        },
+        {
+          "@id": "ab:AffiliationCountry",
           "@type": "tb:Feature"
         }
       ]
