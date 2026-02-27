@@ -52,12 +52,11 @@ def run_script(cmd, cwd, label):
     result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"  ✗ {label} FAILED")
-        print(f"    stdout: {result.stdout[:500]}")
-        print(f"    stderr: {result.stderr[:500]}")
+        print(f"    stdout: {result.stdout}")
+        print(f"    stderr: {result.stderr}")
         sys.exit(1)
     print(f"  ✓ {label} — done")
-    print(result.stdout)
-    return result
+    return result.stdout
 
 
 # ──────────────────── paths ────────────────────
@@ -171,14 +170,18 @@ def verify_sdm():
 
 # ──────────────────── PHASE 2: Validation ────────────────────
 
-def phase2_validation():
+def phase2_validation(export_docker_dir=None, backend="pandas"):
     """Run planner + executor and inspect validation results."""
     from rdflib import Graph, Namespace, RDF
 
-    header("PHASE 2: Data Validation Workflow")
+    header(f"PHASE 2: Data Validation Workflow (Backend: {backend.upper()})")
 
     tbox = Namespace('http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#')
     abox = Namespace('http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#')
+    
+    metadata_file = PATHS['code_meta']
+    if backend == 'gx':
+        metadata_file = os.path.join(os.path.dirname(PATHS['code_meta']), 'gx_metadata.json')
 
     # 2.1 — Discover data products
     header("Step 2.1  Discover Data Products", level=2)
@@ -213,8 +216,16 @@ def phase2_validation():
     for pc_uri in policy_checkers:
         policy = sdm.value(pc_uri, tbox.accordingTo)
         policy_name = str(policy).split('#')[-1] if policy else 'Unknown'
+        
+        cmd = [sys.executable, PATHS['executor_py'], str(pc_uri), metadata_file]
+        if export_docker_dir:
+            cmd.append(f"--export-docker={os.path.abspath(export_docker_dir)}")
+        
+        if backend:
+            cmd.append(f"--backend={backend}")
+            
         run_script(
-            [sys.executable, PATHS['executor_py'], str(pc_uri), PATHS['code_meta']],
+            cmd,
             PATHS['executor_dir'],
             f"Executor → policy {policy_name}"
         )
@@ -271,12 +282,101 @@ def verify_validation():
     print(f"\n  Summary: {passed} passed, {failed} failed, {len(rows)} total")
 
 
+def test_docker_exports(export_dir):
+    """Build and run the exported Dockerized validation services natively."""
+    import shutil
+    header("PHASE 3: Dockerized Service Testing")
+    
+    docker_cmd = shutil.which("docker") or shutil.which("docker.exe")
+    if not docker_cmd:
+        print("  ⚠ Docker command not found. Please install Docker or enable WSL integration.")
+        return
+
+    if not os.path.exists(export_dir):
+        print(f"  ⚠ Export directory not found: {export_dir}")
+        return
+        
+    services = [d for d in os.listdir(export_dir) if d.startswith("policyChecker_")]
+    if not services:
+        print(f"  ⚠ No 'policyChecker_' services found in {export_dir}")
+        return
+        
+    print(f"  Found {len(services)} exported Docker services. Testing...")
+    
+    # Needs absolute path for docker volume mount
+    data_file_abs = os.path.abspath(PATHS['data_csv'])
+    data_dir_abs = os.path.dirname(data_file_abs)
+    data_filename = os.path.basename(data_file_abs)
+    
+    passed = 0
+    failed = 0
+    
+    for service_name in services:
+        service_path = os.path.join(export_dir, service_name)
+        # Docker image names must be lowercased
+        image_name = service_name.lower()
+        
+        print(f"\n  {'─'*60}")
+        print(f"  Testing Service: {service_name}")
+        print(f"  {'─'*60}")
+        
+        # 1. Build Docker image
+        print(f"  ⏳ Building Docker image '{image_name}' ...")
+        build_cmd = [docker_cmd, "build", "-t", image_name, "."]
+        build_res = subprocess.run(build_cmd, cwd=service_path, capture_output=True, text=True)
+        
+        if build_res.returncode != 0:
+            print(f"  ✗ Build FAILED")
+            print(f"    {build_res.stderr.strip().split(chr(10))[-1]}")
+            failed += 1
+            continue
+            
+        print(f"  ✓ Build successful")
+        
+        # 2. Run Docker container mapped to the data file
+        print(f"  ⏳ Running container locally against {data_filename} ...")
+        run_cmd = [
+            docker_cmd, "run", "--rm",
+            "-v", f"{data_dir_abs}:/data",
+            image_name,
+            f"/data/{data_filename}"
+        ]
+        run_res = subprocess.run(run_cmd, capture_output=True, text=True)
+        
+        if run_res.returncode != 0:
+            print(f"  ✗ Execution FAILED")
+            print(f"    {run_res.stderr.strip().split(chr(10))[-1]}")
+            failed += 1
+        else:
+            print(f"  ✓ Execution successful")
+            # Extract just the result section to show
+            output_lines = run_res.stdout.split('\n')
+            result_idx = -1
+            for i, line in enumerate(output_lines):
+                if "=== VALIDATION RESULT ===" in line:
+                    result_idx = i + 1
+                    break
+            
+            if result_idx != -1 and result_idx < len(output_lines):
+                res_val = output_lines[result_idx].strip()
+                print(f"  Result: {res_val}")
+            passed += 1
+
+    print(f"\n  Summary: {passed} passed, {failed} failed, {len(services)} total Docker tests")
+
+
 # ──────────────────── main ────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="EHDS AMR Data Validation Demo")
     parser.add_argument('--skip-registration', action='store_true',
                         help='Skip Phase 1 (SDM is already populated)')
+    parser.add_argument('--export-docker', type=str, metavar='DIR',
+                        help='Export standalone Docker validation services to DIR')
+    parser.add_argument('--test-docker-exports', action='store_true',
+                        help='Build and run exported Docker services natively to test them')
+    parser.add_argument('--backend', type=str, choices=['pandas', 'gx'], default='pandas',
+                        help='Execution backend to use (pandas or gx)')
     args = parser.parse_args()
 
     header("EHDS AMR Data Validation Demo")
@@ -299,8 +399,12 @@ def main():
         print("\n  ⏭  Skipping Phase 1 (--skip-registration)")
 
     # Phase 2
-    phase2_validation()
+    phase2_validation(export_docker_dir=args.export_docker, backend=args.backend)
     verify_validation()
+    
+    # Phase 3 (Optional Docker Testing)
+    if args.export_docker and args.test_docker_exports:
+        test_docker_exports(args.export_docker)
 
     header("Demo Complete 🎉")
 
