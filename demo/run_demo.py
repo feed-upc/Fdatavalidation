@@ -55,6 +55,10 @@ def run_script(cmd, cwd, label):
         print(f"    stdout: {result.stdout}")
         print(f"    stderr: {result.stderr}")
         sys.exit(1)
+    # Show key executor debug lines
+    for line in result.stdout.split('\n'):
+        if any(k in line for k in ['Step ', 'GX Type:', 'COMPOSING', 'Merged']):
+            print(f"    {line.strip()}")
     print(f"  ✓ {label} — done")
     return result.stdout
 
@@ -76,6 +80,210 @@ PATHS = {
     'executor_dir':os.path.join(BASE, 'Connector/ValidationFramework/executor/'),
     'code_meta':   os.path.join(BASE, 'Connector/ValidationFramework/executor/code_metadata.json'),
 }
+
+
+# ──────────────────── policy injection ────────────────────
+
+def _remove_op_chain(sdm, op_uri, tbox):
+    """Recursively remove an operation and its chain from the SDM."""
+    if op_uri is None:
+        return
+    next_op = sdm.value(op_uri, tbox.nextStep)
+    for t in list(sdm.triples((op_uri, None, None))):
+        sdm.remove(t)
+    for t in list(sdm.triples((None, None, op_uri))):
+        sdm.remove(t)
+    _remove_op_chain(sdm, next_op, tbox)
+
+
+def inject_policies_into_sdm():
+    """
+    When --skip-registration is used, the SDM may not contain the requested policy.
+    Read dp1.json to find which policies are needed, load their ODRL JSON-LD into
+    the SDM, and replace existing policy bindings on the data contract.
+    Also ensures attribute triples and schema mappings exist for dp1.json mappings.
+    """
+    import uuid
+    from rdflib import Graph, Namespace, Literal, RDF, URIRef
+
+    tbox = Namespace('http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#')
+    abox = Namespace('http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#')
+    csvw = Namespace('http://www.w3.org/ns/csvw#')
+    SCHEMA = Namespace('http://schema.org/')
+
+    header("Injecting Requested Policies into SDM", level=2)
+
+    with open(PATHS['dp1_json']) as f:
+        contract = json.load(f)
+
+    requested_policies = contract.get('policies', [])
+    if not requested_policies:
+        print("  No policies in dp1.json — nothing to inject.")
+        return
+
+    sdm = Graph().parse(PATHS['sdm'], format='turtle')
+    initial = len(sdm)
+    print(f"  SDM has {initial:,} triples")
+    print(f"  Requested policies: {requested_policies}")
+
+    # Find or create the data product
+    dp_name = contract.get('name', 'Patient_Summary')
+    dp_uri = abox[dp_name]
+
+    # If the data product doesn't exist in the SDM, create it dynamically
+    if (dp_uri, RDF.type, tbox.DataProduct) not in sdm:
+        DCAT = Namespace('http://www.w3.org/ns/dcat#')
+        DCT  = Namespace('http://purl.org/dc/terms/')
+        RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
+
+        # Derive the data file path by convention — search all DataProduct_* dirs
+        data_path = None
+        dp_base = os.path.join(BASE, 'DataProductLayer')
+        for entry in os.listdir(dp_base):
+            candidate = os.path.join(dp_base, entry, 'Data', f'{dp_name}.csv')
+            if os.path.exists(candidate):
+                data_path = candidate
+                break
+        if not data_path:
+            print(f"  ⚠ Cannot create data product '{dp_name}': CSV not found in DataProductLayer/*/Data/")
+            return
+
+        ta_uri     = abox[f'{dp_name}_TA']
+        access_uri = abox[f'{dp_name}_Acces']
+        dc_uri     = abox[f'dc_{dp_name}']
+
+        # DataProduct node
+        sdm.add((dp_uri, RDF.type, tbox.DataProduct))
+        sdm.add((dp_uri, RDF.type, DCAT.Dataset))
+        sdm.add((dp_uri, DCT.title, Literal(f'{dp_name} Dataset')))
+        sdm.add((dp_uri, tbox.hasDTT, abox.Tabular))
+
+        # TechnologyAspects / Distribution
+        sdm.add((dp_uri, tbox.hasTA, ta_uri))
+        sdm.add((dp_uri, DCAT.distribution, ta_uri))
+        sdm.add((ta_uri, RDF.type, tbox.TechnologyAspects))
+        sdm.add((ta_uri, RDF.type, DCAT.Distribution))
+        sdm.add((ta_uri, DCT['format'], Literal('CSV')))
+        sdm.add((ta_uri, DCAT.mediaType, Literal('text/csv')))
+        sdm.add((ta_uri, DCAT.accessURL, URIRef(f'file://{data_path}')))
+
+        # Access node (Static file access)
+        sdm.add((ta_uri, tbox.hasAcces, access_uri))
+        sdm.add((access_uri, RDF.type, tbox.Acces))
+        sdm.add((access_uri, RDFS.label, abox.Static))
+        sdm.add((access_uri, tbox.path, Literal(data_path)))
+
+        # DataContract
+        sdm.add((dp_uri, tbox.hasDC, dc_uri))
+        sdm.add((dc_uri, RDF.type, tbox.DataContract))
+        sdm.add((dc_uri, RDF.type, URIRef('http://www.w3.org/ns/odrl/2/Agreement')))
+
+        print(f"  + Created data product '{dp_name}' with TA → Access({data_path}) → DC")
+
+    dc = sdm.value(dp_uri, tbox.hasDC)
+    if not dc:
+        print(f"  ⚠ No data contract found for {dp_name}")
+        return
+
+    # Remove ALL existing policy bindings from the data contract
+    old_policies = list(sdm.objects(dc, tbox.hasPolicy))
+    for old_p in old_policies:
+        sdm.remove((dc, tbox.hasPolicy, old_p))
+        label = str(old_p).split('#')[-1] if '#' in str(old_p) else str(old_p)
+        print(f"  - Removed stale binding: {label}")
+
+    # Remove stale PolicyChecker triples (from previous planner runs)
+    checkers = list(sdm.subjects(tbox.validates, dp_uri))
+    removed_count = 0
+    for checker in checkers:
+        # Remove operation chain first
+        first_op = sdm.value(checker, tbox.nextStep)
+        _remove_op_chain(sdm, first_op, tbox)
+        # Remove all triples where checker is subject or object
+        for t in list(sdm.triples((checker, None, None))):
+            sdm.remove(t)
+        for t in list(sdm.triples((None, None, checker))):
+            sdm.remove(t)
+        removed_count += 1
+    if removed_count:
+        print(f"  - Removed {removed_count} stale PolicyChecker(s) and their operations")
+
+    # ── Ensure attribute triples and schema mappings exist for dp1.json mappings ──
+    mappings = contract.get('mappings', {})
+    for physical, semantic in mappings.items():
+        phys_uri = abox[physical]
+        sem_uri = abox[semantic]
+
+        # Check if physical column has Attribute type
+        if (phys_uri, RDF.type, tbox.Attribute) not in sdm:
+            sdm.add((phys_uri, RDF.type, tbox.Attribute))
+            sdm.add((phys_uri, RDF.type, csvw.Column))
+            sdm.add((phys_uri, tbox.attribute, Literal(physical)))
+            sdm.add((phys_uri, tbox.semanticFeature, Literal(semantic)))
+            sdm.add((phys_uri, csvw.datatype, Literal("string")))
+            sdm.add((phys_uri, csvw['name'], Literal(physical)))
+            sdm.add((phys_uri, csvw.propertyUrl, SCHEMA.propertyValue))
+            # Link to dataset
+            sdm.add((dp_uri, tbox.hasAttribute, phys_uri))
+            sdm.add((dp_uri, csvw.column, phys_uri))
+            print(f"  + Created attribute triples for {physical}")
+
+        # Check if a SchemaMapping mfrom→mto already exists
+        has_mapping = False
+        for mapping_node in sdm.subjects(RDF.type, tbox.SchemaMapping):
+            mfrom = sdm.value(mapping_node, tbox.mfrom)
+            mto = sdm.value(mapping_node, tbox.mto)
+            if mfrom == phys_uri and mto == sem_uri:
+                has_mapping = True
+                break
+
+        if not has_mapping:
+            mapping_uri = abox[str(uuid.uuid4())]
+            sdm.add((mapping_uri, RDF.type, tbox.SchemaMapping))
+            sdm.add((mapping_uri, tbox.mfrom, phys_uri))
+            sdm.add((mapping_uri, tbox.mto, sem_uri))
+            sdm.add((dc, tbox.hasMapping, mapping_uri))
+            print(f"  + Created mapping {physical} → {semantic}")
+
+    # ── Load ODRL policies ──
+    odrl_dir = Path(BASE) / 'FederatedComputationalGovernance' / 'ComputationalCatalogues' / 'ODRL_policies'
+
+    for policy_name in requested_policies:
+        policy_uri = abox[policy_name]
+
+        # Check if ODRL triples already in SDM
+        if (policy_uri, RDF.type, None) in sdm:
+            print(f"  ✓ {policy_name} ODRL already in SDM")
+        else:
+            # Try to find the ODRL JSON-LD file
+            # Convention: DQRP_{dqr_id}_odrl.json  where policy_name = "{dqr_id}Rule"
+            dqr_id = policy_name.replace('Rule', '')
+            candidates = [
+                odrl_dir / f"DQRP_{dqr_id}_odrl.json",
+                Path(BASE) / 'FederatedComputationalGovernance' / 'ComputationalCatalogues' / 'prototype' / 'odrl_rules' / f"{dqr_id}_odrl.json",
+            ]
+
+            loaded = False
+            for candidate in candidates:
+                if candidate.exists():
+                    with open(candidate) as f:
+                        odrl_data = json.load(f)
+                    sdm.parse(data=json.dumps(odrl_data), format='json-ld')
+                    print(f"  + Loaded {policy_name} from {candidate.name}")
+                    loaded = True
+                    break
+
+            if not loaded:
+                print(f"  ⚠ Could not find ODRL file for {policy_name}")
+                continue
+
+        # Bind to the data contract
+        sdm.add((dc, tbox.hasPolicy, policy_uri))
+        print(f"  + Bound {policy_name} to data contract")
+
+    final = len(sdm)
+    sdm.serialize(PATHS['sdm'], format='turtle')
+    print(f"  ✓ SDM updated: {initial:,} → {final:,} triples (saved)")
 
 
 # ──────────────────── PHASE 1: Federation ────────────────────
@@ -208,27 +416,35 @@ def phase2_validation(export_docker_dir=None, backend="pandas"):
     sdm = Graph().parse(PATHS['sdm'], format='turtle')
     print(f"  SDM now has {len(sdm):,} triples (with PolicyCheckers)")
 
-    # Find PolicyCheckers for Patient_Summary
-    dp_uri = abox['Patient_Summary']
-    policy_checkers = list(sdm.subjects(tbox.validates, dp_uri))
-    print(f"  Found {len(policy_checkers)} PolicyChecker(s) for Patient_Summary\n")
+    # Find PolicyCheckers for all data products
+    total_checkers = 0
+    for dp_name in data_products:
+        dp_uri = abox[dp_name]
+        policy_checkers = list(sdm.subjects(tbox.validates, dp_uri))
+        if not policy_checkers:
+            continue
+        print(f"  Found {len(policy_checkers)} PolicyChecker(s) for {dp_name}")
+        total_checkers += len(policy_checkers)
 
-    for pc_uri in policy_checkers:
-        policy = sdm.value(pc_uri, tbox.accordingTo)
-        policy_name = str(policy).split('#')[-1] if policy else 'Unknown'
-        
-        cmd = [sys.executable, PATHS['executor_py'], str(pc_uri), metadata_file]
-        if export_docker_dir:
-            cmd.append(f"--export-docker={os.path.abspath(export_docker_dir)}")
-        
-        if backend:
-            cmd.append(f"--backend={backend}")
+        for pc_uri in policy_checkers:
+            policy = sdm.value(pc_uri, tbox.accordingTo)
+            policy_name = str(policy).split('#')[-1] if policy else 'Unknown'
             
-        run_script(
-            cmd,
-            PATHS['executor_dir'],
-            f"Executor → policy {policy_name}"
-        )
+            cmd = [sys.executable, PATHS['executor_py'], str(pc_uri), metadata_file]
+            if export_docker_dir:
+                cmd.append(f"--export-docker={os.path.abspath(export_docker_dir)}")
+            
+            if backend:
+                cmd.append(f"--backend={backend}")
+                
+            run_script(
+                cmd,
+                PATHS['executor_dir'],
+                f"Executor → policy {policy_name}"
+            )
+
+    if total_checkers == 0:
+        print("  ⚠ No PolicyCheckers found for any data product")
 
 
 # ──────────────────── PHASE 2 verification ────────────────────
@@ -377,11 +593,19 @@ def main():
                         help='Build and run exported Docker services natively to test them')
     parser.add_argument('--backend', type=str, choices=['pandas', 'gx'], default='pandas',
                         help='Execution backend to use (pandas or gx)')
+    parser.add_argument('--dp-contract', type=str, metavar='PATH',
+                        help='Path to data product contract JSON (default: dp1.json)')
     args = parser.parse_args()
+
+    # Override dp1_json path if a custom contract was specified
+    if args.dp_contract:
+        PATHS['dp1_json'] = args.dp_contract
 
     header("EHDS AMR Data Validation Demo")
     print(f"  Base directory: {BASE}")
-    print(f"  Data product:   Patient_Summary.csv")
+    with open(PATHS['dp1_json']) as _f:
+        _contract = json.load(_f)
+    print(f"  Data product:   {_contract.get('name', 'Patient_Summary')}.csv")
     print(f"  SDM:            {PATHS['sdm']}")
 
     # Preflight check
@@ -397,6 +621,8 @@ def main():
         verify_sdm()
     else:
         print("\n  ⏭  Skipping Phase 1 (--skip-registration)")
+        # Inject requested policies into the SDM so Phase 2 can find them
+        inject_policies_into_sdm()
 
     # Phase 2
     phase2_validation(export_docker_dir=args.export_docker, backend=args.backend)

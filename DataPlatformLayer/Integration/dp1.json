@@ -1,16 +1,1 @@
-{
-  "name": "Patient_Summary",
-  "mappings": {
-    "local_patient_id": "nationalHealthcarePatientID",
-    "gender": "Sex",
-    "countryOfAffiliation": "AffiliationCountry",
-    "hospitalCountry": "HospitalCountry",
-    "lastUpdated": "timestamp"
-  },
-  "policies": [
-    "DQRP1",
-    "DQRP2",
-    "DQRP3",
-    "DQRP6"
-  ]
-}
+{"name": "Patient_Summary", "mappings": {"local_patient_id": "nationalHealthcarePatientID", "gender": "gender", "countryOfAffiliation": "countryOfAffiliation", "hospitalCountry": "hospitalCountry", "lastUpdated": "lastUpdated", "pregnancyHistory": "pregnancyHistory"}, "policies": ["DQR1EHRule"]}

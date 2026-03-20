@@ -16,31 +16,35 @@
       "@type": "tb:CommonDataModel",
       "tb:owner": "FederatedTeam",
       "dcterms:identifier": "123456",
+      "rdfs:comment": "EHDS Patient Summary Common Data Model — based on the EHDS AMR UML",
       "tb:hasFeature": [
-        {
-          "@id": "ab:nationalHealthcarePatientID",
-          "@type": "tb:Feature"
-        },
-        {
-          "@id": "ab:Age",
-          "@type": "tb:Feature"
-        },
-        {
-          "@id": "ab:Survival",
-          "@type": "tb:Feature"
-        },
-        {
-          "@id": "ab:Sex",
-          "@type": "tb:Feature"
-        },
-        {
-          "@id": "ab:timestamp",
-          "@type": "tb:Feature"
-        },
-        {
-          "@id": "ab:AffiliationCountry",
-          "@type": "tb:Feature"
-        }
+        { "@id": "ab:nationalHealthcarePatientID", "@type": "tb:Feature" },
+        { "@id": "ab:familyName", "@type": "tb:Feature" },
+        { "@id": "ab:givenName", "@type": "tb:Feature" },
+        { "@id": "ab:dateOfBirth", "@type": "tb:Feature" },
+        { "@id": "ab:gender", "@type": "tb:Feature" },
+        { "@id": "ab:countryOfAffiliation", "@type": "tb:Feature" },
+        { "@id": "ab:hospitalCode", "@type": "tb:Feature" },
+        { "@id": "ab:hospitalCountry", "@type": "tb:Feature" },
+        { "@id": "ab:lastUpdated", "@type": "tb:Feature" },
+        { "@id": "ab:pregnancyHistory", "@type": "tb:Feature" },
+        { "@id": "ab:dateOfObservation", "@type": "tb:Feature" },
+        { "@id": "ab:pregnancyStatus", "@type": "tb:Feature" },
+        { "@id": "ab:expectedDateOfDelivery", "@type": "tb:Feature" },
+        { "@id": "ab:allergyDescription", "@type": "tb:Feature" },
+        { "@id": "ab:typeOfPropensity", "@type": "tb:Feature" },
+        { "@id": "ab:allergyManifestation", "@type": "tb:Feature" },
+        { "@id": "ab:severity", "@type": "tb:Feature" },
+        { "@id": "ab:criticality", "@type": "tb:Feature" },
+        { "@id": "ab:onSetDate", "@type": "tb:Feature" },
+        { "@id": "ab:endDate", "@type": "tb:Feature" },
+        { "@id": "ab:allergyStatus", "@type": "tb:Feature" },
+        { "@id": "ab:certainty", "@type": "tb:Feature" },
+        { "@id": "ab:agentOrAllergen", "@type": "tb:Feature" },
+        { "@id": "ab:laboratoryCode", "@type": "tb:Feature" },
+        { "@id": "ab:specimenDate", "@type": "tb:Feature" },
+        { "@id": "ab:specimen", "@type": "tb:Feature" },
+        { "@id": "ab:pathogen", "@type": "tb:Feature" }
       ]
     }
   ]

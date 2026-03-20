@@ -4,6 +4,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix ns1: <rdfs:> .
+@prefix ns2: <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/@rdfs:> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -20,17 +21,1591 @@ dcterms:identifier a owl:DatatypeProperty ;
         [ owl:unionOf ( odrl:Asset tbox:DataProduct dcat:Dataset ) ] ;
     rdfs:range xsd:string .
 
-abox:Completeness a dqv:Metric ;
+abox:71dbf34d-d240-4f9f-8aba-135654328106 a tbox:SchemaMapping .
+
+abox:7689dfe6-be0e-4e3e-b046-1b4ebe9afb1d a tbox:SchemaMapping ;
+    tbox:mfrom abox:volume ;
+    tbox:mto abox:tradingVolume .
+
+abox:7a4fa0a6-4458-4dff-8da2-af9d08888c7b a tbox:SchemaMapping .
+
+abox:8b44de29-0b26-47c4-b74e-1990235b484b a tbox:SchemaMapping ;
+    tbox:mfrom abox:exchange ;
+    tbox:mto abox:exchange .
+
+abox:90908126-59a1-4480-8067-0e712c462598 a tbox:SchemaMapping .
+
+abox:9264a4f8-14e8-41de-8d85-d95f21d81ac0 a tbox:SchemaMapping .
+
+abox:Completeness a <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/Metric>,
+        dqv:Metric ;
     rdfs:label "Completeness Metric (Abstract)" ;
     dqv:inDimension abox:CompletenessDimension .
+
+abox:Consistency a dqv:Metric ;
+    rdfs:label "Consistency Metric (Abstract)" ;
+    dqv:inDimension abox:ConsistencyDimension .
+
+abox:DQR1EHRule a dqv:QualityPolicy ;
+    ns2:label "ab:DQR1EHRule - QualityPolicy" ;
+    tbox:derivedFrom "DQR1EH" ;
+    tbox:qualityDimension "Completeness" ;
+    odrl:permission abox:DQR1EH_Permission .
+
+abox:DQR2EHRule a dqv:QualityPolicy ;
+    ns2:label "ab:DQR2EHRule - QualityPolicy" ;
+    tbox:derivedFrom "DQR2EH" ;
+    tbox:qualityDimension "Validity" ;
+    odrl:permission abox:DQR2EH_Permission .
+
+abox:DQR3EHRule a dqv:QualityPolicy ;
+    rdfs:label "ab:DQR3EHRule - QualityPolicy" ;
+    tbox:derivedFrom "DQR3EH" ;
+    tbox:qualityDimension "Consistency" ;
+    odrl:permission abox:DQR3EH_Permission .
 
 abox:Fairness a dqv:Metric ;
     rdfs:label "Fairness Metric (Abstract)" ;
     dqv:inDimension abox:FairnessDimension .
 
-abox:Validity a dqv:Metric ;
+abox:ImpConstraintEq a tbox:Implementation ;
+    tbox:forOp odrl:Constraint ;
+    tbox:forOperator "odrl:eq" ;
+    tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "constraint_eq" ;
+    tbox:hasCode [ tbox:code "data == threshold" ],
+        [ tbox:code "data == threshold" ],
+        [ tbox:code "data == threshold" ],
+        [ tbox:code "data == threshold" ],
+        [ tbox:code "data == threshold" ] ;
+    tbox:hasParameters [ tbox:description "Required value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Required value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Required value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Required value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Required value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ] .
+
+abox:ImpConstraintIsIncludedIn a tbox:Implementation ;
+    tbox:forOp odrl:Constraint ;
+    tbox:forOperator "odrl:isIncludedIn" ;
+    tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "constraint_is_included_in" .
+
+abox:ImpQualityMetric a tbox:Implementation ;
+    tbox:dependsOn [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ] ;
+    tbox:forOp abox:CheckCompleteness,
+        abox:qM ;
+    tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "expect_column_values_to_not_be_null" ;
+    tbox:hasCode [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ],
+        [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ] ;
+    tbox:hasParameters [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ] ;
+    ns1:comment "DQRP2 (DQR1EH): Completeness check",
+        "DQRP2 (DQR1EH): Completeness check - calculates percentage of non-null values for an attribute" .
+
+abox:ImpQualityMetricConsistency a tbox:Implementation ;
+    tbox:dependsOn [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ] ;
+    tbox:forOp abox:CheckConsistency ;
+    tbox:forType abox:Tabular ;
+    tbox:gxClass "ExpectColumnValuesToBeNull" ;
+    tbox:gxConstraintMode "row_condition" ;
+    tbox:gxExpectationType "expect_column_values_to_be_null" ;
+    tbox:gxNeedsDataframe false ;
+    tbox:gxParams [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ] ;
+    tbox:hasCode [ tbox:code "data.loc[data[condition_attr].isin(condition_values.split(',')), attr].isna().all() if expected_value == 'NULL' else (data.loc[data[condition_attr].isin(condition_values.split(',')), attr] == expected_value).all()" ],
+        [ tbox:code "data.loc[data[condition_attr].isin(condition_values.split(',')), attr].isna().all() if expected_value == 'NULL' else (data.loc[data[condition_attr].isin(condition_values.split(',')), attr] == expected_value).all()" ] ;
+    tbox:hasParameters [ tbox:description "Column used as condition filter" ;
+            tbox:name "condition_attr" ;
+            tbox:role "conditionAttribute" ;
+            tbox:type "string" ],
+        [ tbox:description "Target column to check" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Expected value for target column (NULL for missing)" ;
+            tbox:name "expected_value" ;
+            tbox:role "expectedValue" ;
+            tbox:type "string" ],
+        [ tbox:description "Comma-separated values for condition filter" ;
+            tbox:name "condition_values" ;
+            tbox:role "conditionValues" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Expected value for target column (NULL for missing)" ;
+            tbox:name "expected_value" ;
+            tbox:role "expectedValue" ;
+            tbox:type "string" ],
+        [ tbox:description "Comma-separated values for condition filter" ;
+            tbox:name "condition_values" ;
+            tbox:role "conditionValues" ;
+            tbox:type "string" ],
+        [ tbox:description "Column used as condition filter" ;
+            tbox:name "condition_attr" ;
+            tbox:role "conditionAttribute" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Target column to check" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ] ;
+    ns1:comment "DQRP4: Consistency check - conditional column null validation",
+        "DQRP4: Consistency check - conditional value validation using refinement parameters" .
+
+abox:ImpQualityMetricValidity a tbox:Implementation ;
+    tbox:dependsOn [ tbox:name "pycountry" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pycountry" ],
+        [ tbox:name "great_expectations" ] ;
+    tbox:forOp abox:CheckValidity,
+        abox:qM_Validity ;
+    tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "expect_column_values_to_be_in_set" ;
+    tbox:hasCode [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ],
+        [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ],
+        [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ],
+        [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ] ;
+    tbox:hasParameters [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ],
+        [ tbox:description "Data to assess" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
+            tbox:name "attr" ;
+            tbox:role "attributeReference" ;
+            tbox:type "string" ] ;
+    ns1:comment "DQRP3: Validity check - percentage of values adhering to ISO 3166 alpha-2" .
+
+abox:TimelinessDimension a dqv:Dimension ;
+    rdfs:label "Timeliness (ISO/IEC 25012)" .
+
+abox:ValidationReport-295c7d80 a tbox:ValidationReport ;
+    tbox:executionDuration "13.42445683479309"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckCompleteness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToNotBeNull(**{'column': 'local_patient_id', 'mostly': 1.0}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T16:21:49.624325"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:21:36.199873"^^xsd:dateTime .
+
+abox:ValidationReport-2a61787c a tbox:ValidationReport ;
+    tbox:executionDuration "0.019097328186035156"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
+    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
+    result_0 = pandas.read_csv(p)
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM_Validity
+    result_1 = (result_0[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(result_0) * 100
+
+    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
+    result_2 = result_1 == threshold
+
+    return result_2
+""" ;
+    tbox:resultType "bool" ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-02-20T10:10:17.514033"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-20T10:10:17.494938"^^xsd:dateTime .
+
+abox:ValidationReport-39df4616 a tbox:ValidationReport ;
+    tbox:executionDuration "0.018839120864868164"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:resultRowCount 500 ;
+    tbox:resultType "Series" ;
+    tbox:resultValue "{0: False, 1: False, 2: False, 3: False, 4: False}" ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-02-20T10:10:21.192552"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-20T10:10:21.173716"^^xsd:dateTime .
+
+abox:ValidationReport-3e0d56eb a tbox:ValidationReport ;
+    tbox:executionDuration "18.13837242126465"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T16:19:04.947097"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:18:46.808728"^^xsd:dateTime .
+
+abox:ValidationReport-45440955 a tbox:ValidationReport ;
+    tbox:executionDuration "21.916553258895874"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckCompleteness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToNotBeNull(**{'column': 'local_patient_id', 'mostly': 1.0}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T16:15:52.831764"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:15:30.915213"^^xsd:dateTime .
+
+abox:ValidationReport-47cc296e a tbox:ValidationReport ;
+    tbox:executionDuration "10.428019046783447"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFairness
+    _kw = {'column': 'gender', 'threshold': 0.05}
+    _cats = sorted(_df['gender'].dropna().unique().tolist())
+    _uniform = {"values": _cats, "weights": [1.0/len(_cats)]*len(_cats)}
+    _kw['partition_object'] = _uniform
+    suite.add_expectation(gx.expectations.ExpectColumnKLDivergenceToBeLessThan(**_kw))
+
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T19:07:29.486136"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:07:19.058119"^^xsd:dateTime .
+
+abox:ValidationReport-5aeefb02 a tbox:ValidationReport ;
+    tbox:executionDuration "0.009784698486328125"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
+    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
+    result_0 = pandas.read_csv(p)
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM
+    result_1 = (1 - result_0[attr].isna().sum() / len(result_0)) * 100
+
+    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
+    result_2 = result_1 == threshold
+
+    return result_2
+""" ;
+    tbox:resultType "bool" ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-02-20T10:10:23.488537"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-20T10:10:23.478755"^^xsd:dateTime .
+
+abox:ValidationReport-6cd03e8d a tbox:ValidationReport ;
+    tbox:executionDuration "5.962836742401123"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "true" ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T15:44:16.665632"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:44:10.702800"^^xsd:dateTime .
+
+abox:ValidationReport-724d19ee a tbox:ValidationReport ;
+    tbox:executionDuration "5.73594331741333"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**{'column': 'countryOfAffiliation', 'value_set': ['AW', 'AF', 'AO', 'AI', 'AX', 'AL', 'AD', 'AE', 'AR', 'AM', 'AS', 'AQ', 'TF', 'AG', 'AU', 'AT', 'AZ', 'BI', 'BE', 'BJ', 'BQ', 'BF', 'BD', 'BG', 'BH', 'BS', 'BA', 'BL', 'BY', 'BZ', 'BM', 'BO', 'BR', 'BB', 'BN', 'BT', 'BV', 'BW', 'CF', 'CA', 'CC', 'CH', 'CL', 'CN', 'CI', 'CM', 'CD', 'CG', 'CK', 'CO', 'KM', 'CV', 'CR', 'CU', 'CW', 'CX', 'KY', 'CY', 'CZ', 'DE', 'DJ', 'DM', 'DK', 'DO', 'DZ', 'EC', 'EG', 'ER', 'EH', 'ES', 'EE', 'ET', 'FI', 'FJ', 'FK', 'FR', 'FO', 'FM', 'GA', 'GB', 'GE', 'GG', 'GH', 'GI', 'GN', 'GP', 'GM', 'GW', 'GQ', 'GR', 'GD', 'GL', 'GT', 'GF', 'GU', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IM', 'IN', 'IO', 'IE', 'IR', 'IQ', 'IS', 'IL', 'IT', 'JM', 'JE', 'JO', 'JP', 'KZ', 'KE', 'KG', 'KH', 'KI', 'KN', 'KR', 'KW', 'LA', 'LB', 'LR', 'LY', 'LC', 'LI', 'LK', 'LS', 'LT', 'LU', 'LV', 'MO', 'MF', 'MA', 'MC', 'MD', 'MG', 'MV', 'MX', 'MH', 'MK', 'ML', 'MT', 'MM', 'ME', 'MN', 'MP', 'MZ', 'MR', 'MS', 'MQ', 'MU', 'MW', 'MY', 'YT', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NU', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PK', 'PA', 'PN', 'PE', 'PH', 'PW', 'PG', 'PL', 'PR', 'KP', 'PT', 'PY', 'PS', 'PF', 'QA', 'RE', 'RO', 'RU', 'RW', 'SA', 'SD', 'SN', 'SG', 'GS', 'SH', 'SJ', 'SB', 'SL', 'SV', 'SM', 'SO', 'PM', 'RS', 'SS', 'ST', 'SR', 'SK', 'SI', 'SE', 'SZ', 'SX', 'SC', 'SY', 'TC', 'TD', 'TG', 'TH', 'TJ', 'TK', 'TM', 'TL', 'TO', 'TT', 'TN', 'TR', 'TV', 'TW', 'TZ', 'UG', 'UA', 'UM', 'UY', 'US', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'ZA', 'ZM', 'ZW']}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "false" ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T15:52:41.788958"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:52:36.053016"^^xsd:dateTime .
+
+abox:ValidationReport-74df38d7 a tbox:ValidationReport ;
+    tbox:executionDuration "4.357327938079834"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T13:13:54.663008"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:13:50.305679"^^xsd:dateTime .
+
+abox:ValidationReport-83d4fd03 a tbox:ValidationReport ;
+    tbox:executionDuration "0.020926237106323242"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
+    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
+    result_0 = pandas.read_csv(p)
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM_Fairness
+    result_1 = result_0[attr].value_counts(normalize=True).max() * 100
+
+    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
+    result_2 = result_1 == threshold
+
+    return result_2
+""" ;
+    tbox:resultType "bool" ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-02-20T10:10:19.632994"^^xsd:dateTime ;
+    prov:startedAtTime "2026-02-20T10:10:19.612070"^^xsd:dateTime .
+
+abox:ValidationReport-851d3152 a tbox:ValidationReport ;
+    tbox:executionDuration "15.446852445602417"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T16:42:29.611223"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:42:14.164372"^^xsd:dateTime .
+
+abox:ValidationReport-8b818d4d a tbox:ValidationReport ;
+    tbox:executionDuration "4.38369345664978"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**{'column': 'countryOfAffiliation', 'value_set': ['AW', 'AF', 'AO', 'AI', 'AX', 'AL', 'AD', 'AE', 'AR', 'AM', 'AS', 'AQ', 'TF', 'AG', 'AU', 'AT', 'AZ', 'BI', 'BE', 'BJ', 'BQ', 'BF', 'BD', 'BG', 'BH', 'BS', 'BA', 'BL', 'BY', 'BZ', 'BM', 'BO', 'BR', 'BB', 'BN', 'BT', 'BV', 'BW', 'CF', 'CA', 'CC', 'CH', 'CL', 'CN', 'CI', 'CM', 'CD', 'CG', 'CK', 'CO', 'KM', 'CV', 'CR', 'CU', 'CW', 'CX', 'KY', 'CY', 'CZ', 'DE', 'DJ', 'DM', 'DK', 'DO', 'DZ', 'EC', 'EG', 'ER', 'EH', 'ES', 'EE', 'ET', 'FI', 'FJ', 'FK', 'FR', 'FO', 'FM', 'GA', 'GB', 'GE', 'GG', 'GH', 'GI', 'GN', 'GP', 'GM', 'GW', 'GQ', 'GR', 'GD', 'GL', 'GT', 'GF', 'GU', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IM', 'IN', 'IO', 'IE', 'IR', 'IQ', 'IS', 'IL', 'IT', 'JM', 'JE', 'JO', 'JP', 'KZ', 'KE', 'KG', 'KH', 'KI', 'KN', 'KR', 'KW', 'LA', 'LB', 'LR', 'LY', 'LC', 'LI', 'LK', 'LS', 'LT', 'LU', 'LV', 'MO', 'MF', 'MA', 'MC', 'MD', 'MG', 'MV', 'MX', 'MH', 'MK', 'ML', 'MT', 'MM', 'ME', 'MN', 'MP', 'MZ', 'MR', 'MS', 'MQ', 'MU', 'MW', 'MY', 'YT', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NU', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PK', 'PA', 'PN', 'PE', 'PH', 'PW', 'PG', 'PL', 'PR', 'KP', 'PT', 'PY', 'PS', 'PF', 'QA', 'RE', 'RO', 'RU', 'RW', 'SA', 'SD', 'SN', 'SG', 'GS', 'SH', 'SJ', 'SB', 'SL', 'SV', 'SM', 'SO', 'PM', 'RS', 'SS', 'ST', 'SR', 'SK', 'SI', 'SE', 'SZ', 'SX', 'SC', 'SY', 'TC', 'TD', 'TG', 'TH', 'TJ', 'TK', 'TM', 'TL', 'TO', 'TT', 'TN', 'TR', 'TV', 'TW', 'TZ', 'UG', 'UA', 'UM', 'UY', 'US', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'ZA', 'ZM', 'ZW']}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T15:56:44.575887"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:56:40.192517"^^xsd:dateTime .
+
+abox:ValidationReport-8da6d7af a tbox:ValidationReport ;
+    tbox:executionDuration "3.5382726192474365"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "true" ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T15:44:57.544519"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:44:54.006249"^^xsd:dateTime .
+
+abox:ValidationReport-90779109 a tbox:ValidationReport ;
+    tbox:executionDuration "4.53017520904541"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T13:01:06.362415"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:01:01.832241"^^xsd:dateTime .
+
+abox:ValidationReport-9605a9b2 a tbox:ValidationReport ;
+    tbox:executionDuration "7.184939384460449"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**{'column': 'countryOfAffiliation', 'value_set': ['AW', 'AF', 'AO', 'AI', 'AX', 'AL', 'AD', 'AE', 'AR', 'AM', 'AS', 'AQ', 'TF', 'AG', 'AU', 'AT', 'AZ', 'BI', 'BE', 'BJ', 'BQ', 'BF', 'BD', 'BG', 'BH', 'BS', 'BA', 'BL', 'BY', 'BZ', 'BM', 'BO', 'BR', 'BB', 'BN', 'BT', 'BV', 'BW', 'CF', 'CA', 'CC', 'CH', 'CL', 'CN', 'CI', 'CM', 'CD', 'CG', 'CK', 'CO', 'KM', 'CV', 'CR', 'CU', 'CW', 'CX', 'KY', 'CY', 'CZ', 'DE', 'DJ', 'DM', 'DK', 'DO', 'DZ', 'EC', 'EG', 'ER', 'EH', 'ES', 'EE', 'ET', 'FI', 'FJ', 'FK', 'FR', 'FO', 'FM', 'GA', 'GB', 'GE', 'GG', 'GH', 'GI', 'GN', 'GP', 'GM', 'GW', 'GQ', 'GR', 'GD', 'GL', 'GT', 'GF', 'GU', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IM', 'IN', 'IO', 'IE', 'IR', 'IQ', 'IS', 'IL', 'IT', 'JM', 'JE', 'JO', 'JP', 'KZ', 'KE', 'KG', 'KH', 'KI', 'KN', 'KR', 'KW', 'LA', 'LB', 'LR', 'LY', 'LC', 'LI', 'LK', 'LS', 'LT', 'LU', 'LV', 'MO', 'MF', 'MA', 'MC', 'MD', 'MG', 'MV', 'MX', 'MH', 'MK', 'ML', 'MT', 'MM', 'ME', 'MN', 'MP', 'MZ', 'MR', 'MS', 'MQ', 'MU', 'MW', 'MY', 'YT', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NU', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PK', 'PA', 'PN', 'PE', 'PH', 'PW', 'PG', 'PL', 'PR', 'KP', 'PT', 'PY', 'PS', 'PF', 'QA', 'RE', 'RO', 'RU', 'RW', 'SA', 'SD', 'SN', 'SG', 'GS', 'SH', 'SJ', 'SB', 'SL', 'SV', 'SM', 'SO', 'PM', 'RS', 'SS', 'ST', 'SR', 'SK', 'SI', 'SE', 'SZ', 'SX', 'SC', 'SY', 'TC', 'TD', 'TG', 'TH', 'TJ', 'TK', 'TM', 'TL', 'TO', 'TT', 'TN', 'TR', 'TV', 'TW', 'TZ', 'UG', 'UA', 'UM', 'UY', 'US', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'ZA', 'ZM', 'ZW']}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T15:55:33.983211"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:55:26.798272"^^xsd:dateTime .
+
+abox:ValidationReport-9f2a6a56 a tbox:ValidationReport ;
+    tbox:executionDuration "20.008041620254517"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T16:23:16.789366"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:22:56.781325"^^xsd:dateTime .
+
+abox:ValidationReport-a766cc5e a tbox:ValidationReport ;
+    tbox:executionDuration "4.3275978565216064"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**{'column': 'countryOfAffiliation', 'value_set': ['AW', 'AF', 'AO', 'AI', 'AX', 'AL', 'AD', 'AE', 'AR', 'AM', 'AS', 'AQ', 'TF', 'AG', 'AU', 'AT', 'AZ', 'BI', 'BE', 'BJ', 'BQ', 'BF', 'BD', 'BG', 'BH', 'BS', 'BA', 'BL', 'BY', 'BZ', 'BM', 'BO', 'BR', 'BB', 'BN', 'BT', 'BV', 'BW', 'CF', 'CA', 'CC', 'CH', 'CL', 'CN', 'CI', 'CM', 'CD', 'CG', 'CK', 'CO', 'KM', 'CV', 'CR', 'CU', 'CW', 'CX', 'KY', 'CY', 'CZ', 'DE', 'DJ', 'DM', 'DK', 'DO', 'DZ', 'EC', 'EG', 'ER', 'EH', 'ES', 'EE', 'ET', 'FI', 'FJ', 'FK', 'FR', 'FO', 'FM', 'GA', 'GB', 'GE', 'GG', 'GH', 'GI', 'GN', 'GP', 'GM', 'GW', 'GQ', 'GR', 'GD', 'GL', 'GT', 'GF', 'GU', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IM', 'IN', 'IO', 'IE', 'IR', 'IQ', 'IS', 'IL', 'IT', 'JM', 'JE', 'JO', 'JP', 'KZ', 'KE', 'KG', 'KH', 'KI', 'KN', 'KR', 'KW', 'LA', 'LB', 'LR', 'LY', 'LC', 'LI', 'LK', 'LS', 'LT', 'LU', 'LV', 'MO', 'MF', 'MA', 'MC', 'MD', 'MG', 'MV', 'MX', 'MH', 'MK', 'ML', 'MT', 'MM', 'ME', 'MN', 'MP', 'MZ', 'MR', 'MS', 'MQ', 'MU', 'MW', 'MY', 'YT', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NU', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PK', 'PA', 'PN', 'PE', 'PH', 'PW', 'PG', 'PL', 'PR', 'KP', 'PT', 'PY', 'PS', 'PF', 'QA', 'RE', 'RO', 'RU', 'RW', 'SA', 'SD', 'SN', 'SG', 'GS', 'SH', 'SJ', 'SB', 'SL', 'SV', 'SM', 'SO', 'PM', 'RS', 'SS', 'ST', 'SR', 'SK', 'SI', 'SE', 'SZ', 'SX', 'SC', 'SY', 'TC', 'TD', 'TG', 'TH', 'TJ', 'TK', 'TM', 'TL', 'TO', 'TT', 'TN', 'TR', 'TV', 'TW', 'TZ', 'UG', 'UA', 'UM', 'UY', 'US', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'ZA', 'ZM', 'ZW']}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T15:56:17.567698"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:56:13.240103"^^xsd:dateTime .
+
+abox:ValidationReport-ad90bfa6 a tbox:ValidationReport ;
+    tbox:executionDuration "10.071250438690186"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFairness
+    _kw = {'column': 'gender', 'threshold': 0.05}
+    _cats = sorted(_df['gender'].dropna().unique().tolist())
+    _uniform = {"values": _cats, "weights": [1.0/len(_cats)]*len(_cats)}
+    _kw['partition_object'] = _uniform
+    suite.add_expectation(gx.expectations.ExpectColumnKLDivergenceToBeLessThan(**_kw))
+
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T19:05:22.693997"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:05:12.622735"^^xsd:dateTime .
+
+abox:ValidationReport-b23068ac a tbox:ValidationReport ;
+    tbox:executionDuration "36.62141561508179"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    import pycountry
+    _kwargs = {'column': 'countryOfAffiliation'}
+    _kwargs['value_set'] = [c.alpha_2 for c in pycountry.countries]
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**_kwargs))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T16:14:08.655232"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:13:32.033819"^^xsd:dateTime .
+
+abox:ValidationReport-b7bb7107 a tbox:ValidationReport ;
+    tbox:executionDuration "8.682573080062866"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T12:35:33.462453"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T12:35:24.779881"^^xsd:dateTime .
+
+abox:ValidationReport-c2f4fc44 a tbox:ValidationReport ;
+    tbox:executionDuration "4.964708566665649"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T13:05:14.693637"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:05:09.728928"^^xsd:dateTime .
+
+abox:ValidationReport-c4b930a2 a tbox:ValidationReport ;
+    tbox:executionDuration "4.345124959945679"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T12:35:39.062515"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T12:35:34.717392"^^xsd:dateTime .
+
+abox:ValidationReport-c731a9ac a tbox:ValidationReport ;
+    tbox:executionDuration "0.0246121883392334"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
+    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
+    result_0 = pandas.read_csv(p)
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    result_1 = result_0.loc[result_0[condition_attr].isin(condition_values.split(',')), attr].isna().all() if expected_value == 'NULL' else (result_0.loc[result_0[condition_attr].isin(condition_values.split(',')), attr] == expected_value).all()
+
+    return result_1
+""" ;
+    tbox:resultType "bool" ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T13:29:48.765823"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:29:48.741210"^^xsd:dateTime .
+
+abox:ValidationReport-ca7447cd a tbox:ValidationReport ;
+    tbox:executionDuration "4.1904168128967285"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckConsistency
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeNull(**{'column': 'pregnancyHistory', 'row_condition': 'gender == "male"', 'condition_parser': 'pandas'}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T13:12:44.948441"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:12:40.758025"^^xsd:dateTime .
+
+abox:ValidationReport-ce9860d2 a tbox:ValidationReport ;
+    tbox:executionDuration "13.832809925079346"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    import pycountry
+    _kwargs = {'column': 'countryOfAffiliation'}
+    _kwargs['value_set'] = [c.alpha_2 for c in pycountry.countries]
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**_kwargs))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T16:22:34.933919"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:22:21.101113"^^xsd:dateTime .
+
+abox:ValidationReport-d26ab0ed a tbox:ValidationReport ;
+    tbox:executionDuration "2.6708996295928955"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "true" ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T15:18:13.085709"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:18:10.414812"^^xsd:dateTime .
+
+abox:ValidationReport-d2f95977 a tbox:ValidationReport ;
+    tbox:executionDuration "7.970474004745483"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckValidity
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeInSet(**{'column': 'countryOfAffiliation', 'value_set': ['AW', 'AF', 'AO', 'AI', 'AX', 'AL', 'AD', 'AE', 'AR', 'AM', 'AS', 'AQ', 'TF', 'AG', 'AU', 'AT', 'AZ', 'BI', 'BE', 'BJ', 'BQ', 'BF', 'BD', 'BG', 'BH', 'BS', 'BA', 'BL', 'BY', 'BZ', 'BM', 'BO', 'BR', 'BB', 'BN', 'BT', 'BV', 'BW', 'CF', 'CA', 'CC', 'CH', 'CL', 'CN', 'CI', 'CM', 'CD', 'CG', 'CK', 'CO', 'KM', 'CV', 'CR', 'CU', 'CW', 'CX', 'KY', 'CY', 'CZ', 'DE', 'DJ', 'DM', 'DK', 'DO', 'DZ', 'EC', 'EG', 'ER', 'EH', 'ES', 'EE', 'ET', 'FI', 'FJ', 'FK', 'FR', 'FO', 'FM', 'GA', 'GB', 'GE', 'GG', 'GH', 'GI', 'GN', 'GP', 'GM', 'GW', 'GQ', 'GR', 'GD', 'GL', 'GT', 'GF', 'GU', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IM', 'IN', 'IO', 'IE', 'IR', 'IQ', 'IS', 'IL', 'IT', 'JM', 'JE', 'JO', 'JP', 'KZ', 'KE', 'KG', 'KH', 'KI', 'KN', 'KR', 'KW', 'LA', 'LB', 'LR', 'LY', 'LC', 'LI', 'LK', 'LS', 'LT', 'LU', 'LV', 'MO', 'MF', 'MA', 'MC', 'MD', 'MG', 'MV', 'MX', 'MH', 'MK', 'ML', 'MT', 'MM', 'ME', 'MN', 'MP', 'MZ', 'MR', 'MS', 'MQ', 'MU', 'MW', 'MY', 'YT', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NU', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PK', 'PA', 'PN', 'PE', 'PH', 'PW', 'PG', 'PL', 'PR', 'KP', 'PT', 'PY', 'PS', 'PF', 'QA', 'RE', 'RO', 'RU', 'RW', 'SA', 'SD', 'SN', 'SG', 'GS', 'SH', 'SJ', 'SB', 'SL', 'SV', 'SM', 'SO', 'PM', 'RS', 'SS', 'ST', 'SR', 'SK', 'SI', 'SE', 'SZ', 'SX', 'SC', 'SY', 'TC', 'TD', 'TG', 'TH', 'TJ', 'TK', 'TM', 'TL', 'TO', 'TT', 'TN', 'TR', 'TV', 'TW', 'TZ', 'UG', 'UA', 'UM', 'UY', 'US', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'ZA', 'ZM', 'ZW']}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "false" ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T15:52:12.911216"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:52:04.940747"^^xsd:dateTime .
+
+abox:ValidationReport-d744f0dc a tbox:ValidationReport ;
+    tbox:executionDuration "15.343494892120361"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckCompleteness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToNotBeNull(**{'column': 'local_patient_id', 'mostly': 1.0}))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-14T16:21:03.983422"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T16:20:48.639925"^^xsd:dateTime .
+
+abox:ValidationReport-e990716a a tbox:ValidationReport ;
+    tbox:executionDuration "0.01578521728515625"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "true" ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T15:16:08.144259"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:16:08.128474"^^xsd:dateTime .
+
+abox:ValidationReport-eb9e4fd0 a tbox:ValidationReport ;
+    tbox:executionDuration "3.986321210861206"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue "true" ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-14T15:15:09.360247"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-14T15:15:05.373930"^^xsd:dateTime .
+
+abox:ValidationReport-ecd166f0 a tbox:ValidationReport ;
+    tbox:executionDuration "4.979579925537109"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFreshness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeBetween(**{'column': 'timestamp_age_minutes', 'min_value': 0, 'max_value': 30}))
+
+    # Pre-computation for step 2
+    _df['timestamp_age_minutes'] = (pd.Timestamp.now() - pd.to_datetime(_df['timestamp'])).dt.total_seconds() / 60.0
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T13:13:49.053360"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:13:44.073781"^^xsd:dateTime .
+
+abox:Validity a <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/Metric>,
+        dqv:Metric ;
     rdfs:label "Validity Metric (Abstract)" ;
     dqv:inDimension abox:ValidityDimension .
+
+abox:f5138e72-ebc4-429a-a105-2577d4becfa8 a tbox:SchemaMapping ;
+    tbox:mfrom abox:ticker ;
+    tbox:mto abox:tickerSymbol .
+
+abox:genid-00fecbad7575 tbox:role "expectedValue" ;
+    tbox:value "NULL" .
+
+abox:genid-0184114b8880 tbox:role "operator" ;
+    tbox:value odrl:eq .
+
+abox:genid-023bfe151f45 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-067e32612d0e tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-0738223bab4c tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-0b4cb952dd5c tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-0d2ae0570bfc tbox:role "conditionAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-0ec33f16c91d tbox:role "operator" ;
+    tbox:value abox:genid-767c5276fc14 .
+
+abox:genid-11f52c49ebbb tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-13a6cf1d06b4 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-143ad1db476d tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-152404d49c7d tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-17b5034ccf30 tbox:role "targetAttribute" ;
+    tbox:value abox:local_patient_id .
+
+abox:genid-17e2f0148ce2 tbox:role "operator" ;
+    tbox:value abox:genid-2ecc4f290528 .
+
+abox:genid-1a1742fedd5d tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-1c96a5f210c8 tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-1d56a6094bb0 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-1d99944afe95 tbox:role "threshold" ;
+    tbox:value 30 .
+
+abox:genid-1edf540d196e tbox:role "threshold" ;
+    tbox:value 100 .
+
+abox:genid-21f7a355f197 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-246054c96504 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-251aa4bfc9b8 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-255215c65f8f tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-258aa59c8e26 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-27726ec37330 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-2bdcf71d7aa3 tbox:role "operator" ;
+    tbox:value odrl:eq .
+
+abox:genid-2c17ab3236f7 tbox:role "threshold" ;
+    tbox:value 30 .
+
+abox:genid-2e64a1e5a3a8 tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-31fc53465d51 tbox:role "targetAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-32a9ec25dfee tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-36f91380613b tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-3bbbca1a3d4f tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-3d5f37fd49e5 tbox:role "threshold" ;
+    tbox:value 100 .
+
+abox:genid-41dce8530cf5 tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-4204ae4b43de tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-43633cb57aaf tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-437960a83e0a tbox:role "targetAttribute" ;
+    tbox:value abox:pregnancyHistory .
+
+abox:genid-4384a5228ebf tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-443cdddace7a a tbox:Operation ;
+    tbox:hasAbstract abox:LoadData ;
+    tbox:hasImplementation abox:Imp1 ;
+    tbox:hasOutput abox:data .
+
+abox:genid-473ca234a376 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-51e24afd319b tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-5292520f591d tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-54623f40e001 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-5aae7d644da1 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-5c12f72b6373 tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-5e7bc15cda4d tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-611f2c6d6e10 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-64b16b474025 tbox:role "targetAttribute" ;
+    tbox:value abox:pregnancyHistory .
+
+abox:genid-677f55491f2c tbox:role "targetAttribute" ;
+    tbox:value abox:pregnancyHistory .
+
+abox:genid-680f6b3d254b tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-6ceb91b62fe5 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-6dd5f8d1fea2 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-6e5912644fa9 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-6e7a7d8844b8 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-6f1bb4de48cf tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-70eff017def3 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-7365f039aa01 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-75212fc4b30d tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-75cd6d81d27e tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-762532d4c775 tbox:role "conditionValues" ;
+    tbox:value "male" .
+
+abox:genid-762bf58d5e5a tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-787bdffb28b3 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-78869f0fe643 tbox:role "threshold" ;
+    tbox:value 50 .
+
+abox:genid-78d66470c70e tbox:role "threshold" ;
+    tbox:value 5 .
+
+abox:genid-799361301d7b tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-7a68e14e62ad a tbox:PolicyChecker ;
+    tbox:hasValidationReport abox:ValidationReport-6f73792d,
+        abox:ValidationReport-c9a01e95,
+        abox:ValidationReport-f57a348c ;
+    tbox:nextStep abox:genid-85cdf241b3ab .
+
+abox:genid-7bfa8aa3e38c tbox:role "targetAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-7cd2f01f7f3e tbox:role "threshold" ;
+    tbox:value 100 .
+
+abox:genid-7d7dbdf28b55 tbox:role "conditionValues" ;
+    tbox:value "male" .
+
+abox:genid-7f778442a9f4 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-7f9f8dfee2f6 tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-81be2cf5fee7 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-84ab6706f365 tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-8552cb383557 tbox:role "threshold" ;
+    tbox:value 5 .
+
+abox:genid-87435e2f17b9 tbox:role "conditionAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-87b8d76ad246 tbox:role "targetAttribute" ;
+    tbox:value abox:local_patient_id .
+
+abox:genid-884c1285da6e tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-889f31d47d94 tbox:role "operator" ;
+    tbox:value odrl:eq .
+
+abox:genid-89444c3f996b tbox:role "targetAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-8a32b7b0a825 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-8ae551e65f6b tbox:role "operator" ;
+    tbox:value odrl:lt .
+
+abox:genid-8fa676b287c3 tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-8fa728d2f28a tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-93b5e16dca8e tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-95132efea731 tbox:role "threshold" ;
+    tbox:value 30 .
+
+abox:genid-951392046a55 tbox:role "operator" ;
+    tbox:value odrl:lt .
+
+abox:genid-95942e33437c tbox:role "expectedValue" ;
+    tbox:value "NULL" .
+
+abox:genid-96dff6596835 a tbox:PolicyChecker ;
+    tbox:hasValidationReport abox:ValidationReport-6f73792d ;
+    tbox:nextStep abox:genid-88b6d6fa8496 .
+
+abox:genid-97bfb3fa5096 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-9c4fa6141a40 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-9d17f906386a tbox:role "expectedValue" ;
+    tbox:value "NULL" .
+
+abox:genid-9f88bdc8eef4 tbox:role "conditionAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-9fdb60f1688c tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-a5f81ef50980 tbox:role "filePath" .
+
+abox:genid-a94d1f60dba9 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-aa060a51fee2 tbox:role "filePath" .
+
+abox:genid-ad043e5a0d81 tbox:role "targetAttribute" ;
+    tbox:value abox:pregnancyHistory .
+
+abox:genid-afc121aba95d tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-b20addba56b9 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-b48bdeab9edd tbox:role "conditionValues" ;
+    tbox:value "male" .
+
+abox:genid-b564387e7354 tbox:role "conditionAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-b67119f09d9f tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-b78b97e21e9e tbox:role "targetAttribute" ;
+    tbox:value abox:local_patient_id .
+
+abox:genid-b80dd7748978 a tbox:Operation ;
+    tbox:hasAbstract odrl:Constraint ;
+    tbox:hasInput abox:genid-5c358a16fad1,
+        abox:genid-b7400abf3dc4,
+        abox:genid-eef2714a6771 ;
+    tbox:hasOutput abox:data ;
+    tbox:isTerminal true .
+
+abox:genid-b83a2a1e5bbb tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-bb711501da69 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-bbe39210e75a tbox:role "expectedValue" ;
+    tbox:value "NULL" .
+
+abox:genid-bcbc4d5b17cc tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-bf0bd0619e60 tbox:role "targetAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-bf490700a038 tbox:role "operator" ;
+    tbox:value odrl:eq .
+
+abox:genid-c32aca68452e tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-c34aed3f95c0 tbox:role "operator" ;
+    tbox:value abox:genid-12987fabeb1f .
+
+abox:genid-c46ad6229130 tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-c9796fab53ca tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-ca945735ef5d tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-cddad0175e87 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-cf3e70ccd3ba tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-cf70238316d5 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-d4d4e72a2eef tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-d687b094ec8a tbox:role "threshold" ;
+    tbox:value 5 .
+
+abox:genid-d705ed43aa83 tbox:role "operator" ;
+    tbox:value odrl:lt .
+
+abox:genid-d99c98dee27f tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-dbb272bb2ec3 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-e384c665f920 tbox:role "conditionValues" ;
+    tbox:value "male" .
+
+abox:genid-e4ef22163087 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-e8d9eebc2538 tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-ecda1fd6f305 tbox:role "targetAttribute" ;
+    tbox:value abox:countryOfAffiliation .
+
+abox:genid-ed464f309017 tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-ed9fb7a835ee tbox:role "operator" ;
+    tbox:value odrl:eq .
+
+abox:genid-f0c82349303e tbox:role "threshold" ;
+    tbox:value abox:ISO_3166 .
+
+abox:genid-f4e0d0425026 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-f5bbce01bfbe tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
+
+abox:genid-fa523bc8080e tbox:role "threshold" ;
+    tbox:value 100 .
+
+abox:genid-fabd3e2532c3 tbox:role "operator" ;
+    tbox:value odrl:isIncludedIn .
+
+abox:genid-fadcceb4dfd9 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-ff43108d723d tbox:role "previousResult" ;
+    tbox:value abox:data .
 
 <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox> a owl:Ontology ;
     rdfs:label "HealthMesh Ontology"@en ;
@@ -263,8 +1838,6 @@ csvw:TableSchema a owl:Class .
 
 dcat:DataService a owl:Class .
 
-odrl:Duty a owl:Class .
-
 odrl:Privacy a owl:Class ;
     rdfs:subClassOf odrl:Policy .
 
@@ -280,14 +1853,122 @@ abox:09ba2284-e7aa-479d-b7e9-8aafb275c638 a tbox:SchemaMapping ;
     tbox:mfrom abox:hospitalCountry ;
     tbox:mto abox:HospitalCountry .
 
+abox:1b33fb3c-6279-4210-a655-9c14caebe76d a tbox:SchemaMapping ;
+    tbox:mfrom abox:lastUpdated ;
+    tbox:mto abox:lastUpdated .
+
+abox:29b32ceb-de84-4473-bbf2-17f32737b125 a tbox:SchemaMapping ;
+    tbox:mfrom abox:pregnancyHistory ;
+    tbox:mto abox:pregnancyHistory .
+
+abox:3aed6d1b-2806-44b8-8055-5614f4574d1c a tbox:SchemaMapping ;
+    tbox:mfrom abox:countryOfAffiliation ;
+    tbox:mto abox:countryOfAffiliation .
+
+abox:3d08fa26-b799-4516-9ac1-3deb1eec9637 a tbox:SchemaMapping ;
+    tbox:mfrom abox:hospitalCountry ;
+    tbox:mto abox:hospitalCountry .
+
+abox:41bb7384-a7a5-4481-aa89-a1779250fdd8 a tbox:SchemaMapping ;
+    tbox:mfrom abox:timestamp ;
+    tbox:mto abox:insertionTime .
+
+abox:8089151f-e2f8-4f55-bfde-6a3ac4bc8665 a tbox:SchemaMapping ;
+    tbox:mfrom abox:price ;
+    tbox:mto abox:price .
+
+abox:9bf3b986-f60b-4ea3-adc7-811d1fecc4bd a tbox:SchemaMapping .
+
 abox:CompletenessDimension a dqv:Dimension ;
     rdfs:label "Completeness (ISO/IEC 25012)" .
 
-abox:CompletenessMeasurement a dqv:Metric,
+abox:ConsistencyDimension a dqv:Dimension ;
+    rdfs:label "Consistency (ISO/IEC 25012)" .
+
+abox:ConsistencyMeasurement a dqv:Metric,
         dqv:QualityMeasurement ;
-    rdfs:label "Completeness Measurement" ;
-    rdfs:comment "Measures the completeness of an attribute (percentage of non-null values)" ;
-    dqv:isMeasurementOf abox:qM .
+    rdfs:label "Consistency Measurement" ;
+    dqv:isMeasurementOf abox:CheckConsistency .
+
+abox:DQR1EH_Constraint a odrl:Constraint ;
+    odrl:leftOperand abox:CompletenessMeasurement ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand 100 ;
+    odrl:unit qudt:PERCENT .
+
+abox:DQR1EH_Permission a odrl:Permission ;
+    odrl:action "odrl:distribute" ;
+    odrl:assignee abox:DataProvider ;
+    odrl:constraint abox:DQR1EH_Constraint ;
+    odrl:target abox:nationalHealthcarePatientID .
+
+abox:DQR1LS_Constraint a odrl:Constraint ;
+    odrl:leftOperand abox:DataAgeMeasurement ;
+    odrl:operator odrl:lteq ;
+    odrl:rightOperand 30 ;
+    odrl:unit qudt:MIN .
+
+abox:DQR1LS_Permission a odrl:Permission ;
+    odrl:action "odrl:distribute" ;
+    odrl:assignee abox:DataProvider ;
+    odrl:assigner abox:DataSpaceGovernanceAuthority ;
+    odrl:constraint abox:DQR1LS_Constraint ;
+    odrl:target abox:price .
+
+abox:DQR2EH_Constraint a odrl:Constraint ;
+    odrl:leftOperand abox:ValidityMeasurement ;
+    odrl:operator odrl:isIncludedIn ;
+    odrl:rightOperand abox:ISO_3166 .
+
+abox:DQR2EH_Permission a odrl:Permission ;
+    odrl:action "odrl:distribute" ;
+    odrl:assignee abox:DataProvider ;
+    odrl:constraint abox:DQR2EH_Constraint ;
+    odrl:target abox:countryOfAffiliation .
+
+abox:DQR3EH_Action a odrl:Action ;
+    rdf:value abox:CheckConsistency ;
+    odrl:refinement abox:DQR3EH_Refinement .
+
+abox:DQR3EH_Constraint a odrl:Constraint ;
+    odrl:leftOperand abox:ConsistencyMeasurement ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand "NULL"^^xsd:string .
+
+abox:DQR3EH_Duty a odrl:Duty ;
+    odrl:action abox:DQR3EH_Action ;
+    odrl:constraint abox:DQR3EH_Constraint .
+
+abox:DQR3EH_Permission a odrl:Permission ;
+    odrl:action "odrl:distribute" ;
+    odrl:assignee abox:DataProvider ;
+    odrl:duty abox:DQR3EH_Duty ;
+    odrl:target abox:pregnancyHistory .
+
+abox:DQR3EH_Refinement a odrl:Constraint ;
+    odrl:leftOperand abox:gender ;
+    odrl:operator odrl:isAnyOf ;
+    odrl:rightOperand "male"^^xsd:string .
+
+abox:DQR5EH_Constraint a odrl:Constraint ;
+    odrl:leftOperand abox:FairnessMeasurement ;
+    odrl:operator odrl:lt ;
+    odrl:rightOperand 5 ;
+    odrl:unit qudt:PERCENT .
+
+abox:DQR5EH_Permission a odrl:Permission ;
+    odrl:action "odrl:distribute" ;
+    odrl:assignee abox:DataProvider ;
+    odrl:constraint abox:DQR5EH_Constraint ;
+    odrl:target abox:gender .
+
+abox:DQRP1 a dqv:QualityPolicy ;
+    rdfs:label "DQRP1 - Timeliness Requirement" ;
+    tbox:derivedFrom "DQRP1" ;
+    tbox:qualityDimension "Timeliness" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 1: A specific data age is required for the data in an attribute of an entity. The lastUpdated timestamp must not exceed 30 minutes from the current time (ISO/IEC 25012 Timeliness)" ;
+    odrl:permission abox:DQRP1_Permission .
 
 abox:DQRP1_Constraint a odrl:Constraint ;
     rdfs:comment "Data age must not exceed 30 minutes" ;
@@ -301,8 +1982,15 @@ abox:DQRP1_Permission a odrl:Permission ;
     odrl:action "odrl:distribute" ;
     odrl:assignee abox:DataProvider ;
     odrl:assigner abox:DataSpaceGovernanceAuthority ;
-    odrl:constraint abox:DQRP1_Constraint ;
-    odrl:target abox:timestamp .
+    odrl:constraint abox:DQRP1_Constraint .
+
+abox:DQRP2 a dqv:QualityPolicy ;
+    rdfs:label "DQRP2 - Completeness Requirement" ;
+    tbox:derivedFrom "DQRP2" ;
+    tbox:qualityDimension "Completeness" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 2: Completeness check. In the PatientIdentification entity, the nationalHealthcarePatientID feature must contain exactly 100 percent non-empty values." ;
+    odrl:permission abox:DQRP2_Permission .
 
 abox:DQRP2_Constraint a odrl:Constraint ;
     rdfs:comment "Completeness must be exactly 100" ;
@@ -319,6 +2007,14 @@ abox:DQRP2_Permission a odrl:Permission ;
     odrl:constraint abox:DQRP2_Constraint ;
     odrl:target abox:nationalHealthcarePatientID .
 
+abox:DQRP3 a dqv:QualityPolicy ;
+    rdfs:label "DQRP3 - Validity Requirement" ;
+    tbox:derivedFrom "DQRP3" ;
+    tbox:qualityDimension "Validity" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 3: Values of an attribute must follow a specific format. The countryOfAffiliation must follow the ISO 3166 standard." ;
+    odrl:permission abox:DQRP3_Permission .
+
 abox:DQRP3_Constraint a odrl:Constraint ;
     rdfs:comment "Validity adherence must be exactly 100" ;
     odrl:leftOperand abox:ValidityMeasurement ;
@@ -333,6 +2029,14 @@ abox:DQRP3_Permission a odrl:Permission ;
     odrl:assigner abox:DataSpaceGovernanceAuthority ;
     odrl:constraint abox:DQRP3_Constraint ;
     odrl:target abox:AffiliationCountry .
+
+abox:DQRP6 a dqv:QualityPolicy ;
+    rdfs:label "DQRP6 - Fairness Requirement" ;
+    tbox:derivedFrom "DQRP6" ;
+    tbox:qualityDimension "Fairness" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    rdfs:comment "Data Quality Requirement Pattern 6: Entity composition includes groups in appropriate proportions. Gender must be exactly 50% / 50%." ;
+    odrl:permission abox:DQRP6_Permission .
 
 abox:DQRP6_Constraint a odrl:Constraint ;
     rdfs:comment "The maximum group representation must be exactly 50" ;
@@ -355,29 +2059,84 @@ abox:DataAge a dqv:Metric,
     rdfs:comment "Measures the time elapsed since data was recorded/updated via the lastUpdated attribute" ;
     dqv:isMeasurementOf abox:Freshness .
 
-abox:FairnessDimension a dqv:Dimension ;
-    rdfs:label "Fairness (Automated data validation in ML systems)" .
-
-abox:FairnessMeasurement a dqv:Metric,
+abox:DataAgeMeasurement a dqv:Metric,
         dqv:QualityMeasurement ;
-    rdfs:label "Fairness Measurement" ;
-    rdfs:comment "Measures the maximum percentage representation of any discrete group in an attribute" ;
-    dqv:isMeasurementOf abox:qM_Fairness .
+    rdfs:label "Data Age Measurement (minutes)" ;
+    dqv:computedOn abox:insertionTime ;
+    dqv:isMeasurementOf abox:CheckFreshness .
+
+abox:FairnessDimension a dqv:Dimension ;
+    rdfs:label "Fairness (Automated data validation in ML systems)",
+        "Fairness (Biessmann, F., Golebiowski, J., Rukat, T., Lange, D., Schmidt, P.: Automated data validation in machine learning systems. IEEE Data Eng. Bull. 44, 51–65 (2021))" .
 
 abox:Freshness a dqv:Metric ;
     rdfs:label "Freshness Metric" ;
     dqv:inDimension abox:Timeliness .
 
 abox:ImpCheckFreshness a tbox:Implementation ;
-    tbox:dependsOn [ tbox:name "pandas" ],
+    tbox:dependsOn [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "datetime" ],
         [ tbox:name "datetime" ],
         [ tbox:name "pandas" ],
-        [ tbox:name "datetime" ] ;
+        [ tbox:name "pandas" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "datetime" ],
+        [ tbox:name "great_expectations" ] ;
     tbox:forOp abox:CheckFreshness ;
     tbox:forType abox:Tabular ;
+    tbox:gxClass "ExpectColumnValuesToBeBetween" ;
+    tbox:gxConstraintMode "range_0_max" ;
+    tbox:gxExpectationType "expect_column_values_to_be_between" ;
+    tbox:gxNeedsDataframe true ;
+    tbox:gxParams [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ],
+        [ tbox:gxParam "column" ;
+            tbox:gxSource "computed" ;
+            tbox:gxValue "{ts_attr}_age_minutes" ] ;
+    tbox:gxSetupCode "_df['{ts_attr}_age_minutes'] = (pd.Timestamp.now() - pd.to_datetime(_df['{ts_attr}'])).dt.total_seconds() / 60.0" ;
     tbox:hasCode [ tbox:code "(datetime.now() - pd.to_datetime(data[ts_attr], utc=True).dt.tz_convert(None)).dt.total_seconds() / 60" ],
         [ tbox:code "(datetime.now() - pd.to_datetime(data[ts_attr], utc=True).dt.tz_convert(None)).dt.total_seconds() / 60" ] ;
-    tbox:hasParameters [ tbox:description "Name of timestamp column" ;
+    tbox:hasParameters [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Name of timestamp column" ;
             tbox:name "ts_attr" ;
             tbox:role "attributeReference" ;
             tbox:type "string" ],
@@ -385,22 +2144,52 @@ abox:ImpCheckFreshness a tbox:Implementation ;
             tbox:name "data" ;
             tbox:role "previousResult" ;
             tbox:type "DataFrame" ],
-        [ tbox:description "Data from previous operation" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
         [ tbox:description "Name of timestamp column" ;
             tbox:name "ts_attr" ;
             tbox:role "attributeReference" ;
-            tbox:type "string" ] .
+            tbox:type "string" ] ;
+    ns1:comment "Check Freshness" .
+
+abox:ImpConstraintLt a tbox:Implementation ;
+    tbox:forOp odrl:Constraint ;
+    tbox:forOperator "odrl:lt" ;
+    tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "constraint_lt" .
 
 abox:ImpConstraintLteq a tbox:Implementation ;
     tbox:forOp odrl:Constraint ;
     tbox:forOperator "odrl:lteq" ;
     tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "constraint_lteq" ;
     tbox:hasCode [ tbox:code "data <= threshold" ],
+        [ tbox:code "data <= threshold" ],
+        [ tbox:code "data <= threshold" ],
         [ tbox:code "data <= threshold" ] ;
-    tbox:hasParameters [ tbox:description "Maximum allowed value" ;
+    tbox:hasParameters [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Maximum allowed value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Data from previous operation" ;
+            tbox:name "data" ;
+            tbox:role "previousResult" ;
+            tbox:type "DataFrame" ],
+        [ tbox:description "Maximum allowed value" ;
+            tbox:name "threshold" ;
+            tbox:role "threshold" ;
+            tbox:type "number" ],
+        [ tbox:description "ODRL operator URI" ;
+            tbox:name "operator" ;
+            tbox:role "operator" ;
+            tbox:type "string" ],
+        [ tbox:description "Maximum allowed value" ;
             tbox:name "threshold" ;
             tbox:role "threshold" ;
             tbox:type "number" ],
@@ -425,27 +2214,32 @@ abox:ImpConstraintLteq a tbox:Implementation ;
             tbox:role "threshold" ;
             tbox:type "number" ] .
 
-abox:ImpQualityMetric a tbox:Implementation ;
-    tbox:dependsOn [ tbox:name "pandas" ] ;
-    tbox:forOp abox:qM ;
-    tbox:forType abox:Tabular ;
-    tbox:hasCode [ tbox:code "(1 - data[attr].isna().sum() / len(data)) * 100" ] ;
-    tbox:hasParameters [ tbox:description "Data to assess" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Column to check for completeness (e.g., patientID)" ;
-            tbox:name "attr" ;
-            tbox:role "attributeReference" ;
-            tbox:type "string" ] ;
-    ns1:comment "DQRP2 (DQR1EH): Completeness check - calculates percentage of non-null values for an attribute" .
-
 abox:ImpQualityMetricFairness a tbox:Implementation ;
-    tbox:dependsOn [ tbox:name "pandas" ],
+    tbox:dependsOn [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
         [ tbox:name "pandas" ],
         [ tbox:name "pandas" ] ;
-    tbox:forOp abox:qM_Fairness ;
+    tbox:forOp abox:CheckFairness,
+        abox:qM_Fairness ;
     tbox:forType abox:Tabular ;
+    tbox:gxClass "ExpectColumnKLDivergenceToBeLessThan" ;
+    tbox:gxConstraintMode "threshold_scaled" ;
+    tbox:gxExpectationType "expect_column_kl_divergence_to_be_less_than" ;
+    tbox:gxNeedsDataframe true ;
+    tbox:gxParams [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ],
+        [ tbox:gxKey "attr" ;
+            tbox:gxParam "column" ;
+            tbox:gxSource "binding" ] ;
+    tbox:gxSetupCode """_cats = sorted(_df['{column}'].dropna().unique().tolist())
+    _uniform = {{"values": _cats, "weights": [1.0/len(_cats)]*len(_cats)}}
+    _kw['partition_object'] = _uniform""" ;
     tbox:hasCode [ tbox:code "data[attr].value_counts(normalize=True).max() * 100" ],
         [ tbox:code "data[attr].value_counts(normalize=True).max() * 100" ],
         [ tbox:code "data[attr].value_counts(normalize=True).max() * 100" ] ;
@@ -473,56 +2267,55 @@ abox:ImpQualityMetricFairness a tbox:Implementation ;
             tbox:name "data" ;
             tbox:role "previousResult" ;
             tbox:type "DataFrame" ] ;
-    ns1:comment "DQRP6 (DQR5EH): Fairness check - calculates max percentage of any discrete group" .
+    ns1:comment "DQRP6 (DQR5EH): Fairness check - calculates max percentage of any discrete group",
+        "DQRP6 (DQR5EH): Fairness check - class imbalance via KL divergence" .
 
-abox:ImpQualityMetricValidity a tbox:Implementation ;
-    tbox:dependsOn [ tbox:name "pycountry" ],
-        [ tbox:name "pandas" ],
-        [ tbox:name "pandas" ],
-        [ tbox:name "pycountry" ],
-        [ tbox:name "pycountry" ],
-        [ tbox:name "pandas" ],
-        [ tbox:name "pandas" ],
-        [ tbox:name "pycountry" ] ;
-    tbox:forOp abox:qM_Validity ;
-    tbox:forType abox:Tabular ;
-    tbox:hasCode [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ],
-        [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ],
-        [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ],
-        [ tbox:code "(data[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(data) * 100" ] ;
-    tbox:hasParameters [ tbox:description "Data to assess" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
-            tbox:name "attr" ;
-            tbox:role "attributeReference" ;
-            tbox:type "string" ],
-        [ tbox:description "Data to assess" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
-            tbox:name "attr" ;
-            tbox:role "attributeReference" ;
-            tbox:type "string" ],
-        [ tbox:description "Data to assess" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
-            tbox:name "attr" ;
-            tbox:role "attributeReference" ;
-            tbox:type "string" ],
-        [ tbox:description "Data to assess" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Column to check for validity (e.g., countryOfAffiliation)" ;
-            tbox:name "attr" ;
-            tbox:role "attributeReference" ;
-            tbox:type "string" ] ;
-    ns1:comment "DQRP3: Validity check - percentage of values adhering to ISO 3166 alpha-2" .
+abox:LiveStocks a tbox:DataProduct,
+        dcat:Dataset ;
+    dcterms:title "LiveStocks Dataset" ;
+    tbox:hasAttribute abox:price,
+        abox:timestamp ;
+    tbox:hasDC abox:dc_LiveStocks ;
+    tbox:hasDTT abox:Tabular ;
+    tbox:hasTA abox:LiveStocks_TA ;
+    csvw:column abox:price,
+        abox:timestamp ;
+    dcat:distribution abox:LiveStocks_TA .
+
+abox:LiveStocks_Acces a tbox:Acces ;
+    rdfs:label abox:Static ;
+    tbox:path "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_LiveStocks/Data/LiveStocks.csv" .
+
+abox:Patient_Summary a tbox:DataProduct,
+        dcat:Dataset ;
+    dcterms:creator "Unknown"@en ;
+    dcterms:identifier "210aa5e452e171fdb7e6a91a502fbf4035d76f9415e9d9241ce4dd5111507377" ;
+    dcterms:title "Patient_Summary Dataset"@en ;
+    tbox:hasAttribute abox:countryOfAffiliation,
+        abox:dateOfBirth,
+        abox:familyName,
+        abox:gender,
+        abox:givenName,
+        abox:hospitalCode,
+        abox:hospitalCountry,
+        abox:lastUpdated,
+        abox:local_patient_id,
+        abox:pregnancyHistory ;
+    tbox:hasDC abox:dc_Patient_Summary ;
+    tbox:hasDTT abox:Tabular ;
+    tbox:hasTA abox:Patient_Summary_TA ;
+    tbox:owner "Unknown" ;
+    csvw:column abox:countryOfAffiliation,
+        abox:dateOfBirth,
+        abox:familyName,
+        abox:gender,
+        abox:givenName,
+        abox:hospitalCode,
+        abox:hospitalCountry,
+        abox:lastUpdated,
+        abox:local_patient_id,
+        abox:pregnancyHistory ;
+    dcat:distribution abox:Patient_Summary_TA .
 
 abox:Patient_Summary_Acces a tbox:Acces ;
     rdfs:label abox:Static ;
@@ -531,29 +2324,140 @@ abox:Patient_Summary_Acces a tbox:Acces ;
 abox:Timeliness a dqv:Dimension ;
     rdfs:label "Timeliness (ISO/IEC 25012)" .
 
-abox:ValidationReport-2a61787c a tbox:ValidationReport ;
-    tbox:executionDuration "0.019097328186035156"^^xsd:float ;
+abox:ValidationReport-1a94dbf1 a tbox:ValidationReport ;
+    tbox:executionDuration "11.302210092544556"^^xsd:float ;
     tbox:executionMode "COMPOSED_UDF" ;
-    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
-    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
-    result_0 = pandas.read_csv(p)
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
 
-    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM_Validity
-    result_1 = (result_0[attr].astype(str).str.upper().isin({country.alpha_2 for country in __import__('pycountry').countries})).sum() / len(result_0) * 100
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
 
-    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
-    result_2 = result_1 == threshold
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFreshness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeBetween(**{'column': 'timestamp_age_minutes', 'min_value': 0, 'max_value': 30}))
 
-    return result_2
+    # Pre-computation for step 2
+    _df['timestamp_age_minutes'] = (pd.Timestamp.now() - pd.to_datetime(_df['timestamp'])).dt.total_seconds() / 60.0
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
 """ ;
     tbox:resultType "bool" ;
+    tbox:resultValue false ;
     tbox:validationStatus "FAILED" ;
-    prov:endedAtTime "2026-02-20T10:10:17.514033"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-20T10:10:17.494938"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-524d9c35ea0c .
+    prov:endedAtTime "2026-03-18T19:07:16.027544"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:07:04.725333"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-34d91a5c88a9 .
 
-abox:ValidationReport-39df4616 a tbox:ValidationReport ;
-    tbox:executionDuration "0.018839120864868164"^^xsd:float ;
+abox:ValidationReport-24f15fbf a tbox:ValidationReport ;
+    tbox:executionDuration "14.858793020248413"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFreshness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeBetween(**{'column': 'timestamp_age_minutes', 'min_value': 0, 'max_value': 30}))
+
+    # Pre-computation for step 2
+    _df['timestamp_age_minutes'] = (pd.Timestamp.now() - pd.to_datetime(_df['timestamp'])).dt.total_seconds() / 60.0
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T19:05:10.202506"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:04:55.343714"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-34d91a5c88a9 .
+
+abox:ValidationReport-2d27f23c a tbox:ValidationReport ;
+    tbox:executionDuration "10.16798210144043"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFreshness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeBetween(**{'column': 'timestamp_age_minutes', 'min_value': 0, 'max_value': 30}))
+
+    # Pre-computation for step 2
+    _df['timestamp_age_minutes'] = (pd.Timestamp.now() - pd.to_datetime(_df['timestamp'])).dt.total_seconds() / 60.0
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T19:24:52.343989"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:24:42.176008"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-34d91a5c88a9 .
+
+abox:ValidationReport-56ffc799 a tbox:ValidationReport ;
+    tbox:executionDuration "10.028660535812378"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFreshness
+    suite.add_expectation(gx.expectations.ExpectColumnValuesToBeBetween(**{'column': 'timestamp_age_minutes', 'min_value': 0, 'max_value': 30}))
+
+    # Pre-computation for step 2
+    _df['timestamp_age_minutes'] = (pd.Timestamp.now() - pd.to_datetime(_df['timestamp'])).dt.total_seconds() / 60.0
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T19:26:01.885989"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:25:51.857333"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-34d91a5c88a9 .
+
+abox:ValidationReport-5c9f19b2 a tbox:ValidationReport ;
+    tbox:executionDuration "0.025493383407592773"^^xsd:float ;
     tbox:executionMode "COMPOSED_UDF" ;
     tbox:hasComposedCode """def composed_pipeline(initial_data=None):
     # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
@@ -571,284 +2475,285 @@ abox:ValidationReport-39df4616 a tbox:ValidationReport ;
     tbox:resultType "Series" ;
     tbox:resultValue "{0: False, 1: False, 2: False, 3: False, 4: False}" ;
     tbox:validationStatus "FAILED" ;
-    prov:endedAtTime "2026-02-20T10:10:21.192552"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-20T10:10:21.173716"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-b652e40ac685 .
+    prov:endedAtTime "2026-03-18T13:29:37.176040"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:29:37.150548"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-34d91a5c88a9 .
 
-abox:ValidationReport-5aeefb02 a tbox:ValidationReport ;
-    tbox:executionDuration "0.009784698486328125"^^xsd:float ;
+abox:ValidationReport-f1c24119 a tbox:ValidationReport ;
+    tbox:executionDuration "8.729987382888794"^^xsd:float ;
     tbox:executionMode "COMPOSED_UDF" ;
-    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
-    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
-    result_0 = pandas.read_csv(p)
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
 
-    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM
-    result_1 = (1 - result_0[attr].isna().sum() / len(result_0)) * 100
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
 
-    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
-    result_2 = result_1 == threshold
+    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#CheckFairness
+    _kw = {'column': 'gender', 'threshold': 0.05}
+    _cats = sorted(_df['gender'].dropna().unique().tolist())
+    _uniform = {"values": _cats, "weights": [1.0/len(_cats)]*len(_cats)}
+    _kw['partition_object'] = _uniform
+    suite.add_expectation(gx.expectations.ExpectColumnKLDivergenceToBeLessThan(**_kw))
 
-    return result_2
+    ds = context.data_sources.add_pandas('pandas_source')
+    da = ds.add_dataframe_asset(name='df_asset')
+    batch_def = da.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run(batch_parameters={'dataframe': _df})
+    return result.success
 """ ;
     tbox:resultType "bool" ;
-    tbox:validationStatus "FAILED" ;
-    prov:endedAtTime "2026-02-20T10:10:23.488537"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-20T10:10:23.478755"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-f2fbf6060334 .
-
-abox:ValidationReport-83d4fd03 a tbox:ValidationReport ;
-    tbox:executionDuration "0.020926237106323242"^^xsd:float ;
-    tbox:executionMode "COMPOSED_UDF" ;
-    tbox:hasComposedCode """def composed_pipeline(initial_data=None):
-    # Step 1: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#LoadData
-    result_0 = pandas.read_csv(p)
-
-    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM_Fairness
-    result_1 = result_0[attr].value_counts(normalize=True).max() * 100
-
-    # Step 3: http://www.w3.org/ns/odrl/2/Constraint
-    result_2 = result_1 == threshold
-
-    return result_2
-""" ;
-    tbox:resultType "bool" ;
-    tbox:validationStatus "FAILED" ;
-    prov:endedAtTime "2026-02-20T10:10:19.632994"^^xsd:dateTime ;
-    prov:startedAtTime "2026-02-20T10:10:19.612070"^^xsd:dateTime ;
-    prov:wasGeneratedBy abox:genid-836078b0b9e5 .
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T19:26:13.114534"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T19:26:04.384547"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-cc9ad7e32c19 .
 
 abox:ValidityDimension a dqv:Dimension ;
-    rdfs:label "Validity (DAMA-DMBOK)" .
-
-abox:ValidityMeasurement a dqv:Metric,
-        dqv:QualityMeasurement ;
-    rdfs:label "Validity ISO3166 Measurement" ;
-    rdfs:comment "Measures the adherence of a string attribute to ISO 3166-1 alpha-2 standards" ;
-    dqv:isMeasurementOf abox:qM_Validity .
+    rdfs:label "Validity (DAMA-DMBOK)",
+        "Validity (Data Management Body of Knowledge DAMA-DMBOK)" .
 
 abox:a099b355-7109-42e3-bfbf-b9a2d10a8a14 a tbox:SchemaMapping ;
     tbox:mfrom abox:local_patient_id ;
     tbox:mto abox:nationalHealthcarePatientID .
 
+abox:a5f6e601-d31b-4e7b-a7f4-fe495c19d45e a tbox:SchemaMapping ;
+    tbox:mfrom abox:gender ;
+    tbox:mto abox:gender .
+
 abox:bbbf75cf-75e2-4db3-9be7-4a1e9e9f3c67 a tbox:SchemaMapping ;
     tbox:mfrom abox:countryOfAffiliation ;
     tbox:mto abox:AffiliationCountry .
 
+abox:dc_LiveStocks a tbox:DataContract,
+        odrl:Agreement ;
+    tbox:hasMapping abox:41bb7384-a7a5-4481-aa89-a1779250fdd8,
+        abox:8089151f-e2f8-4f55-bfde-6a3ac4bc8665,
+        abox:9bf3b986-f60b-4ea3-adc7-811d1fecc4bd ;
+    tbox:hasPolicy abox:DQR1LSRule .
+
 abox:dc_Patient_Summary a tbox:DataContract,
         odrl:Agreement ;
     tbox:hasMapping abox:09ba2284-e7aa-479d-b7e9-8aafb275c638,
+        abox:1b33fb3c-6279-4210-a655-9c14caebe76d,
+        abox:29b32ceb-de84-4473-bbf2-17f32737b125,
+        abox:3aed6d1b-2806-44b8-8055-5614f4574d1c,
+        abox:3d08fa26-b799-4516-9ac1-3deb1eec9637,
         abox:a099b355-7109-42e3-bfbf-b9a2d10a8a14,
+        abox:a5f6e601-d31b-4e7b-a7f4-fe495c19d45e,
         abox:bbbf75cf-75e2-4db3-9be7-4a1e9e9f3c67,
         abox:fdd6bfad-7aa7-4bf5-8911-82b0ad49582c,
         abox:fe5d324b-2149-4a2e-8ae9-48bfacc0a384 ;
-    tbox:hasPolicy abox:DQRP1,
-        abox:DQRP2,
-        abox:DQRP3,
-        abox:DQRP6 ;
+    tbox:hasPolicy abox:DQR5EHRule ;
     odrl:permission abox:DQRP1,
         abox:DQRP2,
         abox:DQRP3,
         abox:DQRP6 .
 
 abox:fdd6bfad-7aa7-4bf5-8911-82b0ad49582c a tbox:SchemaMapping ;
-    tbox:mfrom abox:lastUpdated ;
-    tbox:mto abox:timestamp .
+    tbox:mfrom abox:lastUpdated .
 
 abox:fe5d324b-2149-4a2e-8ae9-48bfacc0a384 a tbox:SchemaMapping ;
     tbox:mfrom abox:gender ;
     tbox:mto abox:Sex .
 
-abox:genid-0184114b8880 tbox:role "operator" ;
-    tbox:value odrl:eq .
+abox:genid-021eb78c9464 tbox:role "filePath" .
 
-abox:genid-0eead7a7bd1c a tbox:Operation ;
-    tbox:hasAbstract odrl:Constraint ;
-    tbox:hasImplementation abox:ImpConstraintEq ;
-    tbox:hasInput abox:genid-0184114b8880,
-        abox:genid-13a6cf1d06b4,
-        abox:genid-1edf540d196e ;
-    tbox:hasOutput abox:boolean ;
-    tbox:isTerminal true .
+abox:genid-0f4442235969 tbox:role "operator" ;
+    tbox:value abox:genid-4a0226881fc4 .
 
-abox:genid-13a6cf1d06b4 tbox:role "previousResult" ;
+abox:genid-203fecf7a128 tbox:role "previousResult" ;
     tbox:value abox:data .
 
-abox:genid-17b5034ccf30 tbox:role "targetAttribute" ;
-    tbox:value abox:local_patient_id .
+abox:genid-215869ad29d4 tbox:role "previousResult" ;
+    tbox:value abox:data .
 
-abox:genid-1c96a5f210c8 tbox:role "targetAttribute" ;
-    tbox:value abox:countryOfAffiliation .
-
-abox:genid-1d56a6094bb0 tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
-
-abox:genid-1da49c1e5b4f a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasImplementation abox:Imp1 ;
-    tbox:hasInput abox:genid-1d56a6094bb0 ;
+abox:genid-24b680e4db84 a tbox:Operation ;
+    tbox:hasInput abox:genid-ac34c836b706 ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-584031d5e905 .
+    tbox:nextStep abox:genid-671c25ce5774 .
 
-abox:genid-1edf540d196e tbox:role "threshold" ;
-    tbox:value 100 .
+abox:genid-25cbf7b600db a tbox:Operation ;
+    tbox:hasAbstract abox:CheckFairness ;
+    tbox:hasImplementation abox:ImpQualityMetricFairness ;
+    tbox:hasInput abox:genid-203fecf7a128,
+        abox:genid-a7790cb74868 ;
+    tbox:hasOutput abox:score ;
+    tbox:nextStep abox:genid-7b9efc98e8e6 .
 
-abox:genid-23e9f8093160 a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasImplementation abox:Imp1 ;
-    tbox:hasInput abox:genid-ed464f309017 ;
-    tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-d48bd7ef40e2 .
+abox:genid-3153331b512f tbox:role "previousResult" ;
+    tbox:value abox:data .
 
-abox:genid-2bdcf71d7aa3 tbox:role "operator" ;
-    tbox:value odrl:eq .
+abox:genid-3d5fa1d56ecb tbox:role "previousResult" ;
+    tbox:value abox:data .
 
-abox:genid-2c17ab3236f7 tbox:role "threshold" ;
+abox:genid-4dcb2cfc0de2 tbox:role "filePath" .
+
+abox:genid-55beb50d6313 tbox:role "threshold" ;
     tbox:value 30 .
 
-abox:genid-36542b8e891e a tbox:Operation ;
-    tbox:hasAbstract abox:LoadData ;
-    tbox:hasImplementation abox:Imp1 ;
-    tbox:hasInput abox:genid-b67119f09d9f ;
+abox:genid-5c358a16fad1 tbox:role "threshold" ;
+    tbox:value 30 .
+
+abox:genid-5dffaaeb0168 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-5eea7278f69b tbox:role "operator" ;
+    tbox:value abox:genid-b2e687d928ea .
+
+abox:genid-63703cf20af7 tbox:role "threshold" ;
+    tbox:value 30 .
+
+abox:genid-66a07151fcce tbox:role "filePath" ;
+    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_LiveStocks/Data/LiveStocks.csv" .
+
+abox:genid-671c25ce5774 a tbox:Operation ;
+    tbox:hasAbstract odrl:Constraint ;
+    tbox:hasInput abox:genid-0f4442235969,
+        abox:genid-215869ad29d4,
+        abox:genid-55beb50d6313 ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-f38910b3332d .
+    tbox:isTerminal true .
 
-abox:genid-3d5f37fd49e5 tbox:role "threshold" ;
-    tbox:value 100 .
+abox:genid-7b82e76ebf21 tbox:role "filePath" .
 
-abox:genid-524d9c35ea0c a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP3 ;
-    tbox:hasValidationReport abox:ValidationReport-2a61787c ;
-    tbox:nextStep abox:genid-36542b8e891e ;
-    tbox:validates abox:Patient_Summary .
+abox:genid-7b9efc98e8e6 a tbox:Operation ;
+    tbox:hasAbstract odrl:Constraint ;
+    tbox:hasImplementation abox:ImpConstraintLt ;
+    tbox:hasInput abox:genid-3d5fa1d56ecb,
+        abox:genid-a4cec3557f4e,
+        abox:genid-fd0b2b548b36 ;
+    tbox:hasOutput abox:boolean ;
+    tbox:isTerminal true .
 
-abox:genid-584031d5e905 a tbox:Operation ;
+abox:genid-84fa8238f1d8 a tbox:Operation ;
     tbox:hasAbstract abox:CheckFreshness ;
     tbox:hasImplementation abox:ImpCheckFreshness ;
-    tbox:hasInput abox:genid-787bdffb28b3,
-        abox:genid-9310589c82ff ;
+    tbox:hasInput abox:genid-5dffaaeb0168,
+        abox:genid-997736914d7a ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-5aa1510e03fd .
+    tbox:nextStep abox:genid-d089bb3c2b4d .
 
-abox:genid-5aa1510e03fd a tbox:Operation ;
-    tbox:hasAbstract odrl:Constraint ;
-    tbox:hasImplementation abox:ImpConstraintLteq ;
-    tbox:hasInput abox:genid-2c17ab3236f7,
-        abox:genid-97bfb3fa5096,
-        abox:genid-c34aed3f95c0 ;
-    tbox:hasOutput abox:data ;
-    tbox:isTerminal true .
-
-abox:genid-5e7bc15cda4d tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
-
-abox:genid-680f6b3d254b tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-6ceb91b62fe5 tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-6e7a7d8844b8 tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-6f1bb4de48cf tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-787bdffb28b3 tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-78869f0fe643 tbox:role "threshold" ;
-    tbox:value 50 .
-
-abox:genid-81be2cf5fee7 tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-836078b0b9e5 a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP6 ;
-    tbox:hasValidationReport abox:ValidationReport-83d4fd03 ;
-    tbox:nextStep abox:genid-dfc20f511ce2 ;
-    tbox:validates abox:Patient_Summary .
-
-abox:genid-889f31d47d94 tbox:role "operator" ;
-    tbox:value odrl:eq .
-
-abox:genid-91009127ef40 a tbox:Operation ;
-    tbox:hasAbstract odrl:Constraint ;
-    tbox:hasImplementation abox:ImpConstraintEq ;
-    tbox:hasInput abox:genid-2bdcf71d7aa3,
-        abox:genid-6e7a7d8844b8,
-        abox:genid-78869f0fe643 ;
-    tbox:hasOutput abox:boolean ;
-    tbox:isTerminal true .
-
-abox:genid-9310589c82ff tbox:role "timestampAttribute" ;
-    tbox:value abox:lastUpdated .
-
-abox:genid-97bfb3fa5096 tbox:role "previousResult" ;
-    tbox:value abox:data .
-
-abox:genid-9c44e15f93b2 a tbox:Operation ;
-    tbox:hasAbstract odrl:Constraint ;
-    tbox:hasImplementation abox:ImpConstraintEq ;
-    tbox:hasInput abox:genid-3d5f37fd49e5,
-        abox:genid-680f6b3d254b,
-        abox:genid-889f31d47d94 ;
-    tbox:hasOutput abox:boolean ;
-    tbox:isTerminal true .
-
-abox:genid-b652e40ac685 a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP1 ;
-    tbox:hasValidationReport abox:ValidationReport-39df4616 ;
-    tbox:nextStep abox:genid-1da49c1e5b4f ;
-    tbox:validates abox:Patient_Summary .
-
-abox:genid-b67119f09d9f tbox:role "filePath" ;
-    tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
-
-abox:genid-bf0bd0619e60 tbox:role "targetAttribute" ;
-    tbox:value abox:gender .
-
-abox:genid-c34aed3f95c0 tbox:role "operator" ;
-    tbox:value abox:genid-12987fabeb1f .
-
-abox:genid-d48bd7ef40e2 a tbox:Operation ;
-    tbox:hasAbstract abox:qM ;
-    tbox:hasImplementation abox:ImpQualityMetric ;
-    tbox:hasInput abox:genid-17b5034ccf30,
-        abox:genid-6f1bb4de48cf ;
-    tbox:hasOutput abox:score ;
-    tbox:nextStep abox:genid-0eead7a7bd1c .
-
-abox:genid-dfc20f511ce2 a tbox:Operation ;
+abox:genid-85cdf241b3ab a tbox:Operation ;
     tbox:hasAbstract abox:LoadData ;
     tbox:hasImplementation abox:Imp1 ;
-    tbox:hasInput abox:genid-5e7bc15cda4d ;
+    tbox:hasInput abox:genid-4dcb2cfc0de2 ;
     tbox:hasOutput abox:data ;
-    tbox:nextStep abox:genid-fff3247c7443 .
+    tbox:nextStep abox:genid-a47bc98307c2 .
 
-abox:genid-ed464f309017 tbox:role "filePath" ;
+abox:genid-88b6d6fa8496 a tbox:Operation ;
+    tbox:hasAbstract abox:LoadData ;
+    tbox:hasImplementation abox:Imp1 ;
+    tbox:hasInput abox:genid-021eb78c9464 ;
+    tbox:hasOutput abox:data .
+
+abox:genid-8ceb7395eaa1 tbox:role "filePath" ;
     tbox:value "/home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_EHDS_AMR/Data/Patient_Summary.csv" .
 
-abox:genid-f2fbf6060334 a tbox:PolicyChecker ;
-    tbox:accordingTo abox:DQRP2 ;
-    tbox:hasValidationReport abox:ValidationReport-5aeefb02 ;
-    tbox:nextStep abox:genid-23e9f8093160 ;
+abox:genid-8e3f8573b431 a tbox:Operation ;
+    tbox:hasAbstract abox:LoadData ;
+    tbox:hasImplementation abox:Imp1 ;
+    tbox:hasInput abox:genid-66a07151fcce ;
+    tbox:hasOutput abox:data ;
+    tbox:nextStep abox:genid-84fa8238f1d8 .
+
+abox:genid-997736914d7a tbox:role "timestampAttribute" ;
+    tbox:value abox:timestamp .
+
+abox:genid-a47bc98307c2 a tbox:Operation ;
+    tbox:hasInput abox:genid-ce1b35494a9c ;
+    tbox:hasOutput abox:data ;
+    tbox:nextStep abox:genid-b448d7fde6ca .
+
+abox:genid-a4cec3557f4e tbox:role "threshold" ;
+    tbox:value 5 .
+
+abox:genid-a7790cb74868 tbox:role "targetAttribute" ;
+    tbox:value abox:gender .
+
+abox:genid-ac34c836b706 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-b448d7fde6ca a tbox:Operation ;
+    tbox:hasAbstract odrl:Constraint ;
+    tbox:hasInput abox:genid-3153331b512f,
+        abox:genid-5eea7278f69b,
+        abox:genid-f77d5956b966 ;
+    tbox:hasOutput abox:data ;
+    tbox:isTerminal true .
+
+abox:genid-b7400abf3dc4 tbox:role "operator" ;
+    tbox:value abox:genid-f3ae6b773f50 .
+
+abox:genid-c7830a6c2992 a tbox:Operation ;
+    tbox:hasAbstract abox:LoadData ;
+    tbox:hasImplementation abox:Imp1 ;
+    tbox:hasInput abox:genid-7b82e76ebf21 ;
+    tbox:hasOutput abox:data ;
+    tbox:nextStep abox:genid-24b680e4db84 .
+
+abox:genid-cc9ad7e32c19 a tbox:PolicyChecker ;
+    tbox:accordingTo abox:DQR5EHRule ;
+    tbox:hasValidationReport abox:ValidationReport-f1c24119 ;
+    tbox:nextStep abox:genid-fdfa313dbe34 ;
     tbox:validates abox:Patient_Summary .
 
-abox:genid-f38910b3332d a tbox:Operation ;
-    tbox:hasAbstract abox:qM_Validity ;
-    tbox:hasImplementation abox:ImpQualityMetricValidity ;
-    tbox:hasInput abox:genid-1c96a5f210c8,
-        abox:genid-6ceb91b62fe5 ;
-    tbox:hasOutput abox:score ;
-    tbox:nextStep abox:genid-9c44e15f93b2 .
+abox:genid-ce1b35494a9c tbox:role "previousResult" ;
+    tbox:value abox:data .
 
-abox:genid-fff3247c7443 a tbox:Operation ;
-    tbox:hasAbstract abox:qM_Fairness ;
-    tbox:hasImplementation abox:ImpQualityMetricFairness ;
-    tbox:hasInput abox:genid-81be2cf5fee7,
-        abox:genid-bf0bd0619e60 ;
-    tbox:hasOutput abox:score ;
-    tbox:nextStep abox:genid-91009127ef40 .
+abox:genid-d089bb3c2b4d a tbox:Operation ;
+    tbox:hasAbstract odrl:Constraint ;
+    tbox:hasImplementation abox:ImpConstraintLteq ;
+    tbox:hasInput abox:genid-63703cf20af7,
+        abox:genid-e05ef9c01e8e,
+        abox:genid-f648e12aa607 ;
+    tbox:hasOutput abox:data ;
+    tbox:isTerminal true .
+
+abox:genid-e05ef9c01e8e tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-eef2714a6771 tbox:role "previousResult" ;
+    tbox:value abox:data .
+
+abox:genid-f648e12aa607 tbox:role "operator" ;
+    tbox:value abox:genid-f9aa5fa64182 .
+
+abox:genid-f77d5956b966 tbox:role "threshold" ;
+    tbox:value 30 .
+
+abox:genid-fd0b2b548b36 tbox:role "operator" ;
+    tbox:value odrl:lt .
+
+abox:genid-fdfa313dbe34 a tbox:Operation ;
+    tbox:hasAbstract abox:LoadData ;
+    tbox:hasImplementation abox:Imp1 ;
+    tbox:hasInput abox:genid-8ceb7395eaa1 ;
+    tbox:hasOutput abox:data ;
+    tbox:nextStep abox:genid-25cbf7b600db .
+
+abox:ticker a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "ticker" ;
+    tbox:semanticFeature "tickerSymbol" ;
+    csvw:datatype "string" ;
+    csvw:name "ticker" ;
+    csvw:propertyUrl schema1:propertyValue .
+
+abox:volume a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "volume" ;
+    tbox:semanticFeature "tradingVolume" ;
+    csvw:datatype "string" ;
+    csvw:name "volume" ;
+    csvw:propertyUrl schema1:propertyValue .
+
+odrl:Duty a owl:Class .
 
 prov:Agent a owl:Class .
 
@@ -892,6 +2797,34 @@ prov:SoftwareAgent a owl:Class ;
             schema1:inDefinedTermSet "http://purl.obolibrary.org/obo/NCIT_C164337" ;
             schema1:name "Patient Identifier" ] .
 
+abox:CompletenessMeasurement a <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/Metric>,
+        dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Completeness Measurement" ;
+    rdfs:comment "Measures the completeness of an attribute (percentage of non-null values)" ;
+    dqv:isMeasurementOf abox:CheckCompleteness,
+        abox:qM .
+
+abox:DQR1LSRule a dqv:QualityPolicy ;
+    rdfs:label "DQR1LS - Timeliness of Live Stocks price data" ;
+    tbox:derivedFrom "DQR1LS" ;
+    tbox:qualityDimension "Timeliness" ;
+    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
+    odrl:permission abox:DQR1LS_Permission .
+
+abox:DQR5EHRule a dqv:QualityPolicy ;
+    ns2:label "ab:DQR5EHRule - QualityPolicy" ;
+    tbox:derivedFrom "DQR5EH" ;
+    tbox:qualityDimension "Fairness" ;
+    odrl:permission abox:DQR5EH_Permission .
+
+abox:FairnessMeasurement a dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Fairness Measurement" ;
+    rdfs:comment "Measures the maximum percentage representation of any discrete group in an attribute" ;
+    dqv:isMeasurementOf abox:CheckFairness,
+        abox:qM_Fairness .
+
 abox:HospitalCountry a schema1:PropertyValue ;
     schema1:description "Country of the treating hospital (ISO 3166-1 alpha-2)" ;
     schema1:name "Hospital Country" ;
@@ -903,6 +2836,13 @@ abox:HospitalCountry a schema1:PropertyValue ;
             schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
             schema1:name "Country Code" ] .
 
+abox:LiveStocks_TA a tbox:TechnologyAspects,
+        dcat:Distribution ;
+    dcterms:format "CSV" ;
+    tbox:hasAcces abox:LiveStocks_Acces ;
+    dcat:accessURL <file:///home/acraf/psr/Fdatavalidation-1/DataProductLayer/DataProduct_LiveStocks/Data/LiveStocks.csv> ;
+    dcat:mediaType "text/csv" .
+
 abox:Patient_Summary_TA a tbox:TechnologyAspects,
         dcat:Distribution ;
     dcterms:format "CSV" ;
@@ -913,11 +2853,48 @@ abox:Patient_Summary_TA a tbox:TechnologyAspects,
 abox:Sex a odrl:Asset ;
     odrl:partOf abox:EHDS_Patient_Summary .
 
+abox:ValidationReport-c9a01e95 a tbox:ValidationReport ;
+    tbox:executionDuration "6.178781986236572"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T13:05:08.266480"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:05:02.087700"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-4d189e8d5e85 .
+
+abox:ValidationReport-f57a348c a tbox:ValidationReport ;
+    tbox:executionDuration "6.134445905685425"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue false ;
+    tbox:validationStatus "FAILED" ;
+    prov:endedAtTime "2026-03-18T13:01:00.354564"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:00:54.220120"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-4d189e8d5e85 .
+
+abox:ValidityMeasurement a <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/Metric>,
+        dqv:Metric,
+        dqv:QualityMeasurement ;
+    rdfs:label "Validity ISO3166 Measurement",
+        "Validity Measurement" ;
+    rdfs:comment "Measures the adherence of a string attribute to ISO 3166-1 alpha-2 standards" ;
+    dqv:isMeasurementOf abox:CheckValidity,
+        abox:qM_Validity .
+
 abox:dateOfBirth a tbox:Attribute,
         csvw:Column ;
     tbox:attribute "dateOfBirth" ;
     csvw:datatype "string" ;
     csvw:name "dateOfBirth" .
+
+abox:exchange a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "exchange" ;
+    tbox:semanticFeature "exchange" ;
+    csvw:datatype "string" ;
+    csvw:name "exchange" ;
+    csvw:propertyUrl schema1:propertyValue .
 
 abox:familyName a tbox:Attribute,
         csvw:Column ;
@@ -937,12 +2914,6 @@ abox:hospitalCode a tbox:Attribute,
     csvw:datatype "string" ;
     csvw:name "hospitalCode" .
 
-abox:nationalHealthcarePatientID a odrl:Asset ;
-    odrl:partOf abox:EHDS_Patient_Summary .
-
-abox:timestamp a odrl:Asset ;
-    odrl:partOf abox:EHDS_Patient_Summary .
-
 tbox:Code a owl:Class ;
     rdfs:label "Code"@en ;
     rdfs:comment "Source code or template for operation execution"@en .
@@ -958,16 +2929,6 @@ tbox:Feature a owl:Class ;
     rdfs:comment "Semantic feature in a data model. Consider using schema:PropertyValue"@en ;
     owl:equivalentClass schema1:PropertyValue .
 
-tbox:TechnologyAspects a owl:Class ;
-    rdfs:label "Technology Aspects"@en ;
-    rdfs:comment "Technical access and storage details. Aligns with DCAT Distribution"@en ;
-    rdfs:subClassOf dcat:Distribution .
-
-dcat:Distribution a owl:Class .
-
-odrl:Agreement a owl:Class ;
-    rdfs:subClassOf odrl:Policy .
-
 prov:Activity a owl:Class .
 
 abox:AffiliationCountry a schema1:PropertyValue,
@@ -982,113 +2943,6 @@ abox:AffiliationCountry a schema1:PropertyValue,
             schema1:inDefinedTermSet "https://www.iso.org/iso-3166-country-codes.html" ;
             schema1:name "Country Code" ] ;
     odrl:partOf abox:EHDS_Patient_Summary .
-
-abox:DQRP1 a dqv:QualityPolicy ;
-    rdfs:label "DQRP1 - Timeliness Requirement" ;
-    tbox:derivedFrom "DQRP1" ;
-    tbox:qualityDimension "Timeliness" ;
-    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
-    rdfs:comment "Data Quality Requirement Pattern 1: A specific data age is required for the data in an attribute of an entity. The lastUpdated timestamp must not exceed 30 minutes from the current time (ISO/IEC 25012 Timeliness)" ;
-    odrl:permission abox:DQRP1_Permission .
-
-abox:DQRP2 a dqv:QualityPolicy ;
-    rdfs:label "DQRP2 - Completeness Requirement" ;
-    tbox:derivedFrom "DQRP2" ;
-    tbox:qualityDimension "Completeness" ;
-    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
-    rdfs:comment "Data Quality Requirement Pattern 2: Completeness check. In the PatientIdentification entity, the nationalHealthcarePatientID feature must contain exactly 100 percent non-empty values." ;
-    odrl:permission abox:DQRP2_Permission .
-
-abox:DQRP3 a dqv:QualityPolicy ;
-    rdfs:label "DQRP3 - Validity Requirement" ;
-    tbox:derivedFrom "DQRP3" ;
-    tbox:qualityDimension "Validity" ;
-    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
-    rdfs:comment "Data Quality Requirement Pattern 3: Values of an attribute must follow a specific format. The countryOfAffiliation must follow the ISO 3166 standard." ;
-    odrl:permission abox:DQRP3_Permission .
-
-abox:DQRP6 a dqv:QualityPolicy ;
-    rdfs:label "DQRP6 - Fairness Requirement" ;
-    tbox:derivedFrom "DQRP6" ;
-    tbox:qualityDimension "Fairness" ;
-    tbox:sourceEntity abox:DataSpaceGovernanceAuthority ;
-    rdfs:comment "Data Quality Requirement Pattern 6: Entity composition includes groups in appropriate proportions. Gender must be exactly 50% / 50%." ;
-    odrl:permission abox:DQRP6_Permission .
-
-abox:ImpConstraintEq a tbox:Implementation ;
-    tbox:forOp odrl:Constraint ;
-    tbox:forOperator "odrl:eq" ;
-    tbox:forType abox:Tabular ;
-    tbox:hasCode [ tbox:code "data == threshold" ],
-        [ tbox:code "data == threshold" ],
-        [ tbox:code "data == threshold" ],
-        [ tbox:code "data == threshold" ] ;
-    tbox:hasParameters [ tbox:description "ODRL operator URI" ;
-            tbox:name "operator" ;
-            tbox:role "operator" ;
-            tbox:type "string" ],
-        [ tbox:description "Data from previous operation" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Required value" ;
-            tbox:name "threshold" ;
-            tbox:role "threshold" ;
-            tbox:type "number" ],
-        [ tbox:description "Data from previous operation" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Required value" ;
-            tbox:name "threshold" ;
-            tbox:role "threshold" ;
-            tbox:type "number" ],
-        [ tbox:description "ODRL operator URI" ;
-            tbox:name "operator" ;
-            tbox:role "operator" ;
-            tbox:type "string" ],
-        [ tbox:description "Required value" ;
-            tbox:name "threshold" ;
-            tbox:role "threshold" ;
-            tbox:type "number" ],
-        [ tbox:description "Data from previous operation" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "ODRL operator URI" ;
-            tbox:name "operator" ;
-            tbox:role "operator" ;
-            tbox:type "string" ],
-        [ tbox:description "ODRL operator URI" ;
-            tbox:name "operator" ;
-            tbox:role "operator" ;
-            tbox:type "string" ],
-        [ tbox:description "Data from previous operation" ;
-            tbox:name "data" ;
-            tbox:role "previousResult" ;
-            tbox:type "DataFrame" ],
-        [ tbox:description "Required value" ;
-            tbox:name "threshold" ;
-            tbox:role "threshold" ;
-            tbox:type "number" ] .
-
-abox:hospitalCountry a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "hospitalCountry" ;
-    tbox:semanticFeature "HospitalCountry" ;
-    csvw:datatype "string" ;
-    csvw:name "hospitalCountry" ;
-    csvw:propertyUrl schema1:propertyValue .
-
-tbox:DataContract a owl:Class ;
-    rdfs:label "Data Contract"@en ;
-    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
-    rdfs:subClassOf odrl:Agreement .
-
-tbox:DatasetTypeTemplate a owl:Class ;
-    rdfs:label "Dataset Type Template"@en ;
-    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
-    rdfs:subClassOf dcterms:FileFormat .
 
 abox:EHDS_Patient_Summary a tbox:CommonDataModel,
         <schema:Dataset> ;
@@ -1120,14 +2974,163 @@ abox:EHDS_Patient_Summary a tbox:CommonDataModel,
         <schema:identifier> ;
     schema1:version "1.0" .
 
+abox:ValidationReport-6f73792d a tbox:ValidationReport ;
+    tbox:executionDuration "5.467851877212524"^^xsd:float ;
+    tbox:executionMode "COMPOSED_UDF" ;
+    tbox:hasComposedCode """import great_expectations as gx
+import pandas as pd
+
+def run_gx_validation(data_path):
+    context = gx.get_context(mode='ephemeral')
+    _df = pd.read_csv(data_path)
+    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+
+    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
+    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
+    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
+    context.validation_definitions.add(validation_definition)
+    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
+    context.checkpoints.add(checkpoint)
+    result = checkpoint.run()
+    return result.success
+""" ;
+    tbox:resultType "bool" ;
+    tbox:resultValue true ;
+    tbox:validationStatus "PASSED" ;
+    prov:endedAtTime "2026-03-18T13:12:39.422770"^^xsd:dateTime ;
+    prov:startedAtTime "2026-03-18T13:12:33.954919"^^xsd:dateTime ;
+    prov:wasGeneratedBy abox:genid-4d189e8d5e85 .
+
+abox:genid-4d189e8d5e85 a tbox:PolicyChecker ;
+    tbox:hasValidationReport abox:ValidationReport-6f73792d,
+        abox:ValidationReport-c9a01e95,
+        abox:ValidationReport-f57a348c ;
+    tbox:nextStep abox:genid-c7830a6c2992 .
+
+abox:nationalHealthcarePatientID a odrl:Asset ;
+    odrl:partOf <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/>,
+        abox:EHDS_Patient_Summary .
+
+tbox:DatasetTypeTemplate a owl:Class ;
+    rdfs:label "Dataset Type Template"@en ;
+    rdfs:comment "Template defining dataset format and structure. Aligns with DCAT MediaTypeOrExtent"@en ;
+    rdfs:subClassOf dcterms:FileFormat .
+
+tbox:TechnologyAspects a owl:Class ;
+    rdfs:label "Technology Aspects"@en ;
+    rdfs:comment "Technical access and storage details. Aligns with DCAT Distribution"@en ;
+    rdfs:subClassOf dcat:Distribution .
+
+dcat:Distribution a owl:Class .
+
+odrl:Agreement a owl:Class ;
+    rdfs:subClassOf odrl:Policy .
+
+abox:timestamp a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "timestamp" ;
+    tbox:semanticFeature "insertionTime" ;
+    csvw:datatype "string" ;
+    csvw:name "timestamp" ;
+    csvw:propertyUrl schema1:propertyValue .
+
+tbox:DataContract a owl:Class ;
+    rdfs:label "Data Contract"@en ;
+    rdfs:comment "Governance agreement that defines policies and schema mappings for data products"@en ;
+    rdfs:subClassOf odrl:Agreement .
+
+tbox:Library a owl:Class ;
+    rdfs:label "Library"@en ;
+    rdfs:comment "Software library that provides implementations (e.g., pandas, numpy)"@en ;
+    rdfs:subClassOf prov:SoftwareAgent .
+
+abox:genid-34d91a5c88a9 a tbox:PolicyChecker ;
+    tbox:accordingTo abox:DQR1LSRule ;
+    tbox:hasValidationReport abox:ValidationReport-1a94dbf1,
+        abox:ValidationReport-24f15fbf,
+        abox:ValidationReport-2d27f23c,
+        abox:ValidationReport-56ffc799,
+        abox:ValidationReport-5c9f19b2 ;
+    tbox:nextStep abox:genid-8e3f8573b431 ;
+    tbox:validates abox:LiveStocks .
+
+abox:hospitalCountry a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "hospitalCountry" ;
+    tbox:semanticFeature "HospitalCountry" ;
+    csvw:datatype "string" ;
+    csvw:name "hospitalCountry" ;
+    csvw:propertyUrl schema1:propertyValue .
+
+abox:lastUpdated a tbox:Attribute,
+        csvw:Column ;
+    tbox:attribute "lastUpdated" ;
+    tbox:semanticFeature "timestamp" ;
+    csvw:datatype "string" ;
+    csvw:name "lastUpdated" ;
+    csvw:propertyUrl schema1:dateCreated .
+
+abox:price a tbox:Attribute,
+        csvw:Column,
+        odrl:Asset ;
+    tbox:attribute "price" ;
+    tbox:semanticFeature "price" ;
+    csvw:datatype "string" ;
+    csvw:name "price" ;
+    csvw:propertyUrl schema1:propertyValue ;
+    odrl:partOf <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/> .
+
+schema1:PropertyValue a owl:Class .
+
 abox:Imp1 a tbox:Implementation ;
-    tbox:dependsOn [ tbox:name "pandas" ],
+    tbox:dependsOn [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
         [ tbox:name "pandas" ],
         [ tbox:name "pandas" ],
-        [ tbox:name "pandas" ] ;
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "pandas" ],
+        [ tbox:name "great_expectations" ],
+        [ tbox:name "great_expectations" ] ;
     tbox:forOp abox:LoadData ;
     tbox:forType abox:Tabular ;
+    tbox:gxExpectationType "load_data" ;
     tbox:hasCode [ tbox:code "pandas.read_csv(p)" ],
+        [ tbox:code "pandas.read_csv(p)" ],
+        [ tbox:code "pandas.read_csv(p)" ],
+        [ tbox:code "pandas.read_csv(p)" ],
         [ tbox:code "pandas.read_csv(p)" ],
         [ tbox:code "pandas.read_csv(p)" ],
         [ tbox:code "pandas.read_csv(p)" ] ;
@@ -1146,60 +3149,19 @@ abox:Imp1 a tbox:Implementation ;
         [ tbox:description "Path to CSV file" ;
             tbox:name "p" ;
             tbox:role "filePath" ;
+            tbox:type "string" ],
+        [ tbox:description "Path to CSV file" ;
+            tbox:name "p" ;
+            tbox:role "filePath" ;
+            tbox:type "string" ],
+        [ tbox:description "Path to CSV file" ;
+            tbox:name "p" ;
+            tbox:role "filePath" ;
+            tbox:type "string" ],
+        [ tbox:description "Path to CSV file" ;
+            tbox:name "p" ;
+            tbox:role "filePath" ;
             tbox:type "string" ] .
-
-abox:Patient_Summary a tbox:DataProduct,
-        dcat:Dataset ;
-    dcterms:creator "Unknown"@en ;
-    dcterms:identifier "210aa5e452e171fdb7e6a91a502fbf4035d76f9415e9d9241ce4dd5111507377" ;
-    dcterms:title "Patient_Summary Dataset"@en ;
-    tbox:hasAttribute abox:countryOfAffiliation,
-        abox:dateOfBirth,
-        abox:familyName,
-        abox:gender,
-        abox:givenName,
-        abox:hospitalCode,
-        abox:hospitalCountry,
-        abox:lastUpdated,
-        abox:local_patient_id ;
-    tbox:hasDC abox:dc_Patient_Summary ;
-    tbox:hasDTT abox:Tabular ;
-    tbox:hasTA abox:Patient_Summary_TA ;
-    tbox:owner "Unknown" ;
-    csvw:column abox:countryOfAffiliation,
-        abox:dateOfBirth,
-        abox:familyName,
-        abox:gender,
-        abox:givenName,
-        abox:hospitalCode,
-        abox:hospitalCountry,
-        abox:lastUpdated,
-        abox:local_patient_id ;
-    dcat:distribution abox:Patient_Summary_TA .
-
-abox:countryOfAffiliation a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "countryOfAffiliation" ;
-    tbox:semanticFeature "AffiliationCountry" ;
-    csvw:datatype "string" ;
-    csvw:name "countryOfAffiliation" ;
-    csvw:propertyUrl schema1:propertyValue .
-
-abox:gender a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "gender" ;
-    tbox:semanticFeature "Sex" ;
-    csvw:datatype "string" ;
-    csvw:name "gender" ;
-    csvw:propertyUrl schema1:propertyValue .
-
-abox:lastUpdated a tbox:Attribute,
-        csvw:Column ;
-    tbox:attribute "lastUpdated" ;
-    tbox:semanticFeature "timestamp" ;
-    csvw:datatype "string" ;
-    csvw:name "lastUpdated" ;
-    csvw:propertyUrl schema1:dateCreated .
 
 abox:local_patient_id a tbox:Attribute,
         csvw:Column ;
@@ -1209,27 +3171,31 @@ abox:local_patient_id a tbox:Attribute,
     csvw:name "local_patient_id" ;
     csvw:propertyUrl schema1:propertyValue .
 
-tbox:Library a owl:Class ;
-    rdfs:label "Library"@en ;
-    rdfs:comment "Software library that provides implementations (e.g., pandas, numpy)"@en ;
-    rdfs:subClassOf prov:SoftwareAgent .
+dcat:Dataset a owl:Class .
 
 dqv:Dimension a owl:Class .
 
 dqv:QualityMeasurement a owl:Class .
 
+odrl:Policy a owl:Class .
+
+abox:ISO_3166 a tbox:ReferenceStandard ;
+    rdfs:label "ISO 3166" .
+
+abox:pregnancyHistory a tbox:Attribute,
+        csvw:Column,
+        odrl:Asset ;
+    tbox:attribute "pregnancyHistory" ;
+    tbox:semanticFeature "pregnancyHistory" ;
+    csvw:datatype "string" ;
+    csvw:name "pregnancyHistory" ;
+    csvw:propertyUrl schema1:propertyValue ;
+    odrl:partOf <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/> .
+
 dqv:QualityPolicy a owl:Class ;
     rdfs:subClassOf odrl:Policy .
 
 odrl:Permission a owl:Class .
-
-dcat:Dataset a owl:Class .
-
-schema1:PropertyValue a owl:Class .
-
-odrl:Policy a owl:Class .
-
-dqv:Metric a owl:Class .
 
 tbox:DataProduct a owl:Class ;
     rdfs:label "Data Product"@en ;
@@ -1237,7 +3203,39 @@ tbox:DataProduct a owl:Class ;
     rdfs:subClassOf dcat:Dataset,
         odrl:Asset .
 
+dqv:Metric a owl:Class .
+
+tbox:PolicyChecker a owl:Class ;
+    rdfs:label "Policy Checker"@en ;
+    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
+    rdfs:subClassOf prov:Activity .
+
 odrl:Asset a owl:Class .
+
+abox:countryOfAffiliation a tbox:Attribute,
+        csvw:Column,
+        odrl:Asset ;
+    tbox:attribute "countryOfAffiliation" ;
+    tbox:semanticFeature "AffiliationCountry" ;
+    csvw:datatype "string" ;
+    csvw:name "countryOfAffiliation" ;
+    csvw:propertyUrl schema1:propertyValue ;
+    odrl:partOf <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/> .
+
+tbox:Implementation a owl:Class ;
+    rdfs:label "Implementation"@en ;
+    rdfs:comment "Executable implementation of an operation with code template and library reference"@en ;
+    rdfs:subClassOf prov:Plan .
+
+abox:gender a tbox:Attribute,
+        csvw:Column,
+        odrl:Asset ;
+    tbox:attribute "gender" ;
+    tbox:semanticFeature "Sex" ;
+    csvw:datatype "string" ;
+    csvw:name "gender" ;
+    csvw:propertyUrl schema1:propertyValue ;
+    odrl:partOf <http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/> .
 
 csvw:Column a owl:Class .
 
@@ -1247,23 +3245,108 @@ tbox:Attribute a owl:Class ;
     owl:deprecated true ;
     owl:equivalentClass csvw:Column .
 
-tbox:PolicyChecker a owl:Class ;
-    rdfs:label "Policy Checker"@en ;
-    rdfs:comment "Executable representation of a policy that validates data products. Contains operation chain and parameter bindings."@en ;
+tbox:Operation a owl:Class ;
+    rdfs:label "Operation"@en ;
     rdfs:subClassOf prov:Activity .
-
-tbox:Implementation a owl:Class ;
-    rdfs:label "Implementation"@en ;
-    rdfs:comment "Executable implementation of an operation with code template and library reference"@en ;
-    rdfs:subClassOf prov:Plan .
 
 tbox:ValidationReport a owl:Class ;
     rdfs:label "Validation Report"@en ;
     rdfs:comment "Report generated from PolicyChecker execution containing status, timing, and result metadata"@en ;
     rdfs:subClassOf prov:Entity .
 
-tbox:Operation a owl:Class ;
-    rdfs:label "Operation"@en ;
-    rdfs:comment "Individual operation in a validation chain (e.g., LoadData, CheckFreshness, QualityMetric)"@en ;
-    rdfs:subClassOf prov:Activity .
+[] tbox:name "great_expectations" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "pandas" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "pandas" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:name "datetime" .
+
+[] tbox:name "great_expectations" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:gxParam "column" ;
+    tbox:gxSource "computed" ;
+    tbox:gxValue "{ts_attr}_age_minutes" .
+
+[] tbox:code "(datetime.now() - pd.to_datetime(data[ts_attr], utc=True).dt.tz_convert(None)).dt.total_seconds() / 60" .
+
+[] tbox:code "(datetime.now() - pd.to_datetime(data[ts_attr], utc=True).dt.tz_convert(None)).dt.total_seconds() / 60" .
+
+[] tbox:description "Name of timestamp column" ;
+    tbox:name "ts_attr" ;
+    tbox:role "attributeReference" ;
+    tbox:type "string" .
+
+[] tbox:description "Data from previous operation" ;
+    tbox:name "data" ;
+    tbox:role "previousResult" ;
+    tbox:type "DataFrame" .
+
+[] tbox:description "Data from previous operation" ;
+    tbox:name "data" ;
+    tbox:role "previousResult" ;
+    tbox:type "DataFrame" .
+
+[] tbox:description "Name of timestamp column" ;
+    tbox:name "ts_attr" ;
+    tbox:role "attributeReference" ;
+    tbox:type "string" .
 

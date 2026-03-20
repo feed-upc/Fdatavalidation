@@ -1,0 +1,1 @@
+{"name": "LiveStocks", "mappings": {"ticker": "tickerSymbol", "price": "price", "volume": "tradingVolume", "exchange": "exchange", "timestamp": "insertionTime"}, "policies": ["DQR1LSRule"]}
