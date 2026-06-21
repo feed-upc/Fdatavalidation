@@ -246,7 +246,7 @@ def inject_policies_into_sdm():
             print(f"  + Created mapping {physical} → {semantic}")
 
     # ── Load ODRL policies ──
-    odrl_dir = Path(BASE) / 'FederatedComputationalGovernance' / 'ComputationalCatalogues' / 'ODRL_policies'
+    odrl_dir = Path(BASE) / 'FederatedComputationalGovernance' / 'ComputationalCatalogues' / 'prototype' / 'odrl_rules'
 
     for policy_name in requested_policies:
         policy_uri = abox[policy_name]
@@ -256,11 +256,10 @@ def inject_policies_into_sdm():
             print(f"  ✓ {policy_name} ODRL already in SDM")
         else:
             # Try to find the ODRL JSON-LD file
-            # Convention: DQRP_{dqr_id}_odrl.json  where policy_name = "{dqr_id}Rule"
+            # Convention: {dqr_id}_odrl.json  where policy_name = "{dqr_id}Rule"
             dqr_id = policy_name.replace('Rule', '')
             candidates = [
-                odrl_dir / f"DQRP_{dqr_id}_odrl.json",
-                Path(BASE) / 'FederatedComputationalGovernance' / 'ComputationalCatalogues' / 'prototype' / 'odrl_rules' / f"{dqr_id}_odrl.json",
+                odrl_dir / f"{dqr_id}_odrl.json",
             ]
 
             loaded = False

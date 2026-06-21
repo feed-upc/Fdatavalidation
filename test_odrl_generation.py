@@ -352,7 +352,7 @@ def check_n3_compatibility(rule, req_id, dim):
             else:
                 measurement_concept = measurement_of
     
-    if dim == "Validity" and req_id == "DQR4EH":
+    if dim == "Completeness" and req_id == "DQR4EH":
         # DQR4EH uses Volume measurement concept
         if measurement_concept != "ab:CheckVolume":
             issues.append(f"DQR4EH: metric dqv:isMeasurementOf should be 'ab:CheckVolume', got '{measurement_concept}'")
@@ -370,11 +370,11 @@ def main():
     # Mapping: requirement_id -> (pattern_id, quality_dimension)
     requirements_map = {
         "DQR1EH": ("DQRP2", "Completeness"),
-        "DQR2EH": ("DQRP3", "Validity"),
+        "DQR2EH": ("DQRP3", "Compliance"),
         "DQR3EH": ("DQRP4", "Consistency"),
-        "DQR4EH": ("DQRP5", "Validity"),  # uses measurementConcept=Volume
+        "DQR4EH": ("DQRP5", "Completeness"),  # uses measurementConcept=Volume
         "DQR5EH": ("DQRP6", "Fairness"),
-        "DQR6EH": ("DQRP3", "Validity"),  # same pattern as DQR2EH
+        "DQR6EH": ("DQRP3", "Compliance"),  # same pattern as DQR2EH
     }
     
     all_passed = True
@@ -456,14 +456,14 @@ def main():
         else:
             print(f"  ⚠ No saved ODRL rule at {saved_path} (MISSING - needs generation)")
     
-    # ========== Cross-check: verify DQR7EH (Timeliness) is manually crafted ==========
+    # ========== Cross-check: verify DQR7EH (Currentness) is manually crafted ==========
     print(f"\n{'─' * 60}")
-    print(f"INFO: DQR7EH (Timeliness) - manually crafted ODRL rule")
+    print(f"INFO: DQR7EH (Currentness) - manually crafted ODRL rule")
     print(f"{'─' * 60}")
     dqr7_path = RULES_DIR / "DQR7EH_odrl.json"
     if dqr7_path.exists():
         dqr7 = load_json(dqr7_path)
-        n3_issues = check_n3_compatibility(dqr7, "DQR7EH", "Timeliness")
+        n3_issues = check_n3_compatibility(dqr7, "DQR7EH", "Currentness")
         if n3_issues:
             print(f"  ⚠ N3 COMPATIBILITY ISSUES for DQR7EH:")
             for issue in n3_issues:
@@ -471,7 +471,7 @@ def main():
         else:
             print(f"  ✓ DQR7EH N3 compatibility OK")
         
-        # Verify it has the qudt:MIN unit and dqv:computedOn expected by Timeliness.n3
+        # Verify it has the qudt:MIN unit and dqv:computedOn expected by Currentness.n3
         graph = dqr7.get("@graph", [])
         constraint = None
         for node in graph:
@@ -491,18 +491,18 @@ def main():
             if isinstance(left, dict) and "dqv:computedOn" in left:
                 print(f"  ✓ DQR7EH has dqv:computedOn in leftOperand")
             else:
-                print(f"  ⚠ DQR7EH missing dqv:computedOn in leftOperand (needed by Timeliness.n3)")
+                print(f"  ⚠ DQR7EH missing dqv:computedOn in leftOperand (needed by Currentness.n3)")
     else:
         print(f"  ⚠ DQR7EH_odrl.json not found")
     
-    # ========== Cross-check: DQR1LS (Timeliness - LiveStocks) ==========
+    # ========== Cross-check: DQR1LS (Currentness - LiveStocks) ==========
     print(f"\n{'─' * 60}")
-    print(f"INFO: DQR1LS (Timeliness) - manually crafted ODRL rule")
+    print(f"INFO: DQR1LS (Currentness) - manually crafted ODRL rule")
     print(f"{'─' * 60}")
     dqr1ls_path = RULES_DIR / "DQR1LS_odrl.json"
     if dqr1ls_path.exists():
         dqr1ls = load_json(dqr1ls_path)
-        n3_issues = check_n3_compatibility(dqr1ls, "DQR1LS", "Timeliness")
+        n3_issues = check_n3_compatibility(dqr1ls, "DQR1LS", "Currentness")
         if n3_issues:
             print(f"  ⚠ N3 COMPATIBILITY ISSUES for DQR1LS:")
             for issue in n3_issues:
@@ -527,7 +527,7 @@ def main():
             
             op = constraint.get("odrl:operator")
             if op == "odrl:lteq":
-                print(f"  ✓ DQR1LS operator is odrl:lteq (correct for Timeliness)")
+                print(f"  ✓ DQR1LS operator is odrl:lteq (correct for Currentness)")
             else:
                 print(f"  ⚠ DQR1LS operator should be odrl:lteq, got '{op}'")
             
@@ -535,7 +535,7 @@ def main():
             if isinstance(left, dict) and "dqv:computedOn" in left:
                 print(f"  ✓ DQR1LS has dqv:computedOn in leftOperand")
             else:
-                print(f"  ⚠ DQR1LS missing dqv:computedOn in leftOperand (needed by Timeliness.n3)")
+                print(f"  ⚠ DQR1LS missing dqv:computedOn in leftOperand (needed by Currentness.n3)")
             
             threshold = constraint.get("odrl:rightOperand", {}).get("@value")
             if threshold == "30":
@@ -635,10 +635,10 @@ def main():
             ],
         },
         "DQR2EH": {
-            "n3_rule": "Validity.n3",
+            "n3_rule": "Compliance.n3",
             "chain": "LoadData → CheckValidity → Constraint",
             "checks": [
-                ("tb:qualityDimension == 'Validity'", lambda r: r["@graph"][0].get("tb:qualityDimension") == "Validity"),
+                ("tb:qualityDimension == 'Compliance'", lambda r: r["@graph"][0].get("tb:qualityDimension") == "Compliance"),
                 ("permission has odrl:constraint", lambda r: "odrl:constraint" in r["@graph"][0]["odrl:permission"][0]),
                 ("constraint operator is odrl:isIncludedIn", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:operator"] == "odrl:isIncludedIn"),
                 ("rightOperand is @id reference (ab:ISO_3166)", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:rightOperand"].get("@id") == "ab:ISO_3166"),
@@ -654,18 +654,18 @@ def main():
                 ("permission has odrl:duty", lambda r: "odrl:duty" in r["@graph"][0]["odrl:permission"][0]),
                 ("duty action has rdf:value ab:CheckConsistency", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]["odrl:action"]["rdf:value"]["@id"] == "ab:CheckConsistency"),
                 ("action has odrl:refinement", lambda r: "odrl:refinement" in r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]["odrl:action"]),
-                ("refinement leftOperand is ab:gender", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]["odrl:action"]["odrl:refinement"][0]["odrl:leftOperand"]["@id"] == "ab:gender"),
+                ("refinement leftOperand is ab:PatientSummary.PatientSummaryHeader.PatientIdentification.gender", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]["odrl:action"]["odrl:refinement"][0]["odrl:leftOperand"]["@id"] == "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.gender"),
                 ("refinement rightOperand is 'male'", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]["odrl:action"]["odrl:refinement"][0]["odrl:rightOperand"]["@value"] == "male"),
                 ("duty has odrl:constraint", lambda r: "odrl:constraint" in r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]),
                 ("duty constraint rightOperand is 'NULL'", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:duty"][0]["odrl:constraint"][0]["odrl:rightOperand"]["@value"] == "NULL"),
-                ("permission target is ab:pregnancyHistory", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:target"]["@id"] == "ab:pregnancyHistory"),
+                ("permission target is ab:PatientSummary.PatientSummaryHeader.PatientIdentification.pregnancyHistory", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:target"]["@id"] == "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.pregnancyHistory"),
             ],
         },
         "DQR4EH": {
             "n3_rule": "Volume.n3",
             "chain": "LoadData → CheckVolume → Constraint",
             "checks": [
-                ("tb:qualityDimension == 'Validity'", lambda r: r["@graph"][0].get("tb:qualityDimension") == "Validity"),
+                ("tb:qualityDimension == 'Completeness'", lambda r: r["@graph"][0].get("tb:qualityDimension") == "Completeness"),
                 ("permission has odrl:constraint", lambda r: "odrl:constraint" in r["@graph"][0]["odrl:permission"][0]),
                 ("constraint operator is odrl:gteq", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:operator"] == "odrl:gteq"),
                 ("constraint rightOperand value is '2000'", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:rightOperand"]["@value"] == "2000"),
@@ -684,18 +684,18 @@ def main():
                 ("constraint rightOperand value is '5'", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:rightOperand"]["@value"] == "5"),
                 ("constraint unit is qudt:PERCENT", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0].get("odrl:unit", {}).get("@id") == "qudt:PERCENT"),
                 ("metric isMeasurementOf ab:CheckFairness", lambda r: any(n.get("dqv:isMeasurementOf", {}).get("@id") == "ab:CheckFairness" for n in r["@graph"] if "dqv:isMeasurementOf" in n)),
-                ("permission target is ab:gender", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:target"]["@id"] == "ab:gender"),
+                ("permission target is ab:PatientSummary.PatientSummaryHeader.PatientIdentification.gender", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:target"]["@id"] == "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.gender"),
             ],
         },
         "DQR6EH": {
-            "n3_rule": "Validity.n3",
+            "n3_rule": "Compliance.n3",
             "chain": "LoadData → CheckValidity → Constraint",
             "checks": [
-                ("tb:qualityDimension == 'Validity'", lambda r: r["@graph"][0].get("tb:qualityDimension") == "Validity"),
+                ("tb:qualityDimension == 'Compliance'", lambda r: r["@graph"][0].get("tb:qualityDimension") == "Compliance"),
                 ("constraint operator is odrl:isIncludedIn", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:operator"] == "odrl:isIncludedIn"),
                 ("rightOperand is @id reference (ab:ISO_3166_International_Standard)", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:constraint"][0]["odrl:rightOperand"].get("@id") == "ab:ISO_3166_International_Standard"),
                 ("ReferenceStandard label is 'ISO 3166 International Standard'", lambda r: any(n.get("rdfs:label") == "ISO 3166 International Standard" for n in r["@graph"] if n.get("@type") == "tb:ReferenceStandard")),
-                ("permission target is ab:country", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:target"]["@id"] == "ab:country"),
+                ("permission target is ab:Hospital.country", lambda r: r["@graph"][0]["odrl:permission"][0]["odrl:target"]["@id"] == "ab:Hospital.country"),
             ],
         },
     }
@@ -728,13 +728,13 @@ def main():
     # Expected rules and their matching N3 rules
     coverage = {
         "DQR1EH": ("Completeness.n3", "Matches on tb:qualityDimension='Completeness', odrl:constraint"),
-        "DQR2EH": ("Validity.n3", "Matches on tb:qualityDimension='Validity', odrl:constraint"),
+        "DQR2EH": ("Compliance.n3", "Matches on tb:qualityDimension='Compliance', odrl:constraint"),
         "DQR3EH": ("Consistency.n3", "Matches on tb:qualityDimension='Consistency', odrl:duty with refinement"),
         "DQR4EH": ("Volume.n3", "Matches on dqv:isMeasurementOf=ab:CheckVolume (cross-dimension)"),
         "DQR5EH": ("Fairness.n3", "Matches on tb:qualityDimension='Fairness', odrl:constraint"),
-        "DQR6EH": ("Validity.n3", "Matches on tb:qualityDimension='Validity', odrl:constraint"),
-        "DQR7EH": ("Timeliness.n3", "Matches on tb:qualityDimension='Timeliness', odrl:unit=qudt:MIN"),
-        "DQR1LS": ("Timeliness.n3", "Matches on tb:qualityDimension='Timeliness', odrl:unit=qudt:MIN"),
+        "DQR6EH": ("Compliance.n3", "Matches on tb:qualityDimension='Compliance', odrl:constraint"),
+        "DQR7EH": ("Currentness.n3", "Matches on tb:qualityDimension='Currentness', odrl:unit=qudt:MIN"),
+        "DQR1LS": ("Currentness.n3", "Matches on tb:qualityDimension='Currentness', odrl:unit=qudt:MIN"),
     }
     
     n3_dir = Path("Connector/ValidationFramework/planner/rules_n3")

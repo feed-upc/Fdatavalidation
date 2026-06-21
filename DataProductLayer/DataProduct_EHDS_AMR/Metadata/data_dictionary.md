@@ -19,9 +19,9 @@ Patient identification and demographic data derived from the EHDS Patient Summar
 | `givenName`                   | String    | Patient given name                                       | PatientIdentification | —                     |
 | `dateOfBirth`                 | Date      | Birth date (`YYYY-MM-DD`)                                | PatientIdentification | —                     |
 | `gender`                      | String    | Patient gender (`M`/`F`)                                 | PatientIdentification | DQR3EH, DQR5EH        |
-| `countryOfAffiliation`        | String    | Country of affiliation (ISO 3166-1 alpha-2)              | PatientIdentification | DQR2EH (Validity)     |
+| `countryOfAffiliation`        | String    | Country of affiliation (ISO 3166-1 alpha-2)              | PatientIdentification | DQR2EH (Compliance)   |
 | `hospitalCode`                | String    | Assigned hospital reference (`HOSP-XXXX`)                | Hospital (FK)         | —                     |
-| `hospitalCountry`             | String    | Hospital country (ISO 3166-1 alpha-2)                    | Hospital              | DQR6EH (Validity)     |
+| `hospitalCountry`             | String    | Hospital country (ISO 3166-1 alpha-2)                    | Hospital              | DQR6EH (Compliance)   |
 | `lastUpdated`                 | Timestamp | Last update timestamp (ISO 8601)                         | —                     | —                     |
 
 ### Injected Violations

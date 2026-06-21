@@ -28,7 +28,7 @@
 			"dateModified": "2026-02-13",
 			"variableMeasured": [
 				{
-					"@id": "schema:identifier",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.nationalHealthcarePatientID",
 					"@type": "PropertyValue",
 					"name": "National Healthcare Patient ID",
 					"description": "National healthcare patient identifier (EHDS-PT-XXXXX)",
@@ -40,28 +40,28 @@
 					}
 				},
 				{
-					"@id": "ab:familyName",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.familyName",
 					"@type": "PropertyValue",
 					"name": "Family Name",
 					"description": "Patient family name",
 					"propertyID": "familyName"
 				},
 				{
-					"@id": "ab:givenName",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.givenName",
 					"@type": "PropertyValue",
 					"name": "Given Name",
 					"description": "Patient given name",
 					"propertyID": "givenName"
 				},
 				{
-					"@id": "ab:dateOfBirth",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.dateOfBirth",
 					"@type": "PropertyValue",
 					"name": "Date of Birth",
 					"description": "Patient birth date (YYYY-MM-DD)",
 					"propertyID": "dateOfBirth"
 				},
 				{
-					"@id": "schema:gender",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.gender",
 					"@type": "PropertyValue",
 					"name": "Gender",
 					"description": "Patient gender (M/F)",
@@ -73,7 +73,7 @@
 					}
 				},
 				{
-					"@id": "ab:countryOfAffiliation",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.countryOfAffiliation",
 					"@type": "PropertyValue",
 					"name": "Country of Affiliation",
 					"description": "Patient country of affiliation (ISO 3166-1 alpha-2)",
@@ -85,14 +85,14 @@
 					}
 				},
 				{
-					"@id": "ab:hospitalCode",
+					"@id": "ab:Hospital.hospitalCode",
 					"@type": "PropertyValue",
 					"name": "Hospital Code",
 					"description": "Assigned hospital reference (HOSP-XXXX)",
 					"propertyID": "hospitalCode"
 				},
 				{
-					"@id": "ab:hospitalCountry",
+					"@id": "ab:Hospital.hospitalCountry",
 					"@type": "PropertyValue",
 					"name": "Hospital Country",
 					"description": "Hospital country (ISO 3166-1 alpha-2)",
@@ -104,7 +104,7 @@
 					}
 				},
 				{
-					"@id": "schema:dateCreated",
+					"@id": "ab:PatientSummary.lastUpdated",
 					"@type": "PropertyValue",
 					"name": "Last Updated",
 					"description": "Last update timestamp (ISO 8601)",
@@ -116,126 +116,126 @@
 					}
 				},
 				{
-					"@id": "ab:pregnancyHistory",
+					"@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.pregnancyHistory",
 					"@type": "PropertyValue",
 					"name": "Pregnancy History",
 					"description": "Pregnancy history linked to patient (derived from PregnancyHistory/CurrencyPregnancyStatus UML entities)",
 					"propertyID": "pregnancyHistory"
 				},
 				{
-					"@id": "ab:dateOfObservation",
+					"@id": "ab:PatientSummary.PatientSummaryBody.PregnancyHistory.CurrencyPregnancyStatus.dateOfObservation",
 					"@type": "PropertyValue",
 					"name": "Date of Observation",
 					"description": "Pregnancy observation date (YYYY-MM-DD)",
 					"propertyID": "dateOfObservation"
 				},
 				{
-					"@id": "ab:pregnancyStatus",
+					"@id": "ab:PatientSummary.PatientSummaryBody.PregnancyHistory.CurrencyPregnancyStatus.pregnancyStatus",
 					"@type": "PropertyValue",
 					"name": "Pregnancy Status",
 					"description": "Pregnancy outcome (Delivered, Miscarriage, Ectopic, Stillbirth)",
 					"propertyID": "pregnancyStatus"
 				},
 				{
-					"@id": "ab:expectedDateOfDelivery",
+					"@id": "ab:PatientSummary.PatientSummaryBody.PregnancyHistory.CurrencyPregnancyStatus.expectedDateOfDelivery",
 					"@type": "PropertyValue",
 					"name": "Expected Date of Delivery",
 					"description": "Expected delivery date (if applicable)",
 					"propertyID": "expectedDateOfDelivery"
 				},
 				{
-					"@id": "ab:allergyDescription",
+					"@id": "ab:PatientSummary.Alerts.Allergy.allergyDescription",
 					"@type": "PropertyValue",
 					"name": "Allergy Description",
 					"description": "Description of the allergy",
 					"propertyID": "allergyDescription"
 				},
 				{
-					"@id": "ab:typeOfPropensity",
+					"@id": "ab:PatientSummary.Alerts.Allergy.typeOfPropensity",
 					"@type": "PropertyValue",
 					"name": "Type of Propensity",
 					"description": "Allergy or Intolerance",
 					"propertyID": "typeOfPropensity"
 				},
 				{
-					"@id": "ab:allergyManifestation",
+					"@id": "ab:PatientSummary.Alerts.Allergy.allergyManifestation",
 					"@type": "PropertyValue",
 					"name": "Allergy Manifestation",
 					"description": "Clinical manifestation of the allergy",
 					"propertyID": "allergyManifestation"
 				},
 				{
-					"@id": "ab:severity",
+					"@id": "ab:PatientSummary.Alerts.Allergy.severity",
 					"@type": "PropertyValue",
 					"name": "Severity",
 					"description": "Allergy severity (Mild, Moderate, Severe, Life-threatening)",
 					"propertyID": "severity"
 				},
 				{
-					"@id": "ab:criticality",
+					"@id": "ab:PatientSummary.Alerts.Allergy.criticality",
 					"@type": "PropertyValue",
 					"name": "Criticality",
 					"description": "Allergy criticality (Low, High, Unable to assess)",
 					"propertyID": "criticality"
 				},
 				{
-					"@id": "ab:onSetDate",
+					"@id": "ab:PatientSummary.Alerts.Allergy.onSetDate",
 					"@type": "PropertyValue",
 					"name": "Onset Date",
 					"description": "Allergy onset date",
 					"propertyID": "onSetDate"
 				},
 				{
-					"@id": "ab:endDate",
+					"@id": "ab:PatientSummary.Alerts.Allergy.endDate",
 					"@type": "PropertyValue",
 					"name": "End Date",
 					"description": "Allergy end date (if resolved)",
 					"propertyID": "endDate"
 				},
 				{
-					"@id": "ab:allergyStatus",
+					"@id": "ab:PatientSummary.Alerts.Allergy.allergyStatus",
 					"@type": "PropertyValue",
 					"name": "Allergy Status",
 					"description": "Allergy status (Active, Resolved, Inactive)",
 					"propertyID": "allergyStatus"
 				},
 				{
-					"@id": "ab:certainty",
+					"@id": "ab:PatientSummary.Alerts.Allergy.certainty",
 					"@type": "PropertyValue",
 					"name": "Certainty",
 					"description": "Allergy certainty (Confirmed, Suspected, Refuted)",
 					"propertyID": "certainty"
 				},
 				{
-					"@id": "ab:agentOrAllergen",
+					"@id": "ab:PatientSummary.Alerts.Allergy.agentOrAllergen",
 					"@type": "PropertyValue",
 					"name": "Agent or Allergen",
 					"description": "Causative agent of the allergy",
 					"propertyID": "agentOrAllergen"
 				},
 				{
-					"@id": "ab:laboratoryCode",
+					"@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.laboratoryCode",
 					"@type": "PropertyValue",
 					"name": "Laboratory Code",
 					"description": "Laboratory identifier for isolate data",
 					"propertyID": "laboratoryCode"
 				},
 				{
-					"@id": "ab:specimenDate",
+					"@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.specimenDate",
 					"@type": "PropertyValue",
 					"name": "Specimen Date",
 					"description": "Specimen collection date",
 					"propertyID": "specimenDate"
 				},
 				{
-					"@id": "ab:specimen",
+					"@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.specimen",
 					"@type": "PropertyValue",
 					"name": "Specimen",
 					"description": "Specimen type (Blood, Urine, etc.)",
 					"propertyID": "specimen"
 				},
 				{
-					"@id": "ab:pathogen",
+					"@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.pathogen",
 					"@type": "PropertyValue",
 					"name": "Pathogen",
 					"description": "Organism identified in isolate",
