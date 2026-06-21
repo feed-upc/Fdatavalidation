@@ -9,3 +9,15 @@ node_modules/*
 node_modules
 package-lock.json
 frontend
+
+# Papers (kept out of GitHub)
+PositionPaper/
+DataProductLayer/DataProduct_EHDS_AMR/Code/generate_paper_sections.py
+DataProductLayer/DataProduct_EHDS_AMR/Metadata/section6_rewrite.md
+DataProductLayer/DataProduct_EHDS_AMR/Metadata/sections5_6_generated.md
+
+# Tooling / local-only
+.claude/
+.vscode/
+memory/
+__pycache__/

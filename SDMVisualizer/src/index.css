@@ -1,0 +1,21 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f0f2f5;
+  color: #2c3e50;
+  overflow: hidden;
+}
+
+:root {
+  --red:    #e74c3c;
+  --red-l:  #f9a89e;
+  --green:  #27ae60;
+  --green-l:#a9dfbf;
+  --yellow: #e6a817;
+  --yellow-l:#fdeaa7;
+  --purple: #8e44ad;
+  --purple-l:#d2b4de;
+  --root:   #2c3e50;
+  --grey:   #95a5a6;
+}

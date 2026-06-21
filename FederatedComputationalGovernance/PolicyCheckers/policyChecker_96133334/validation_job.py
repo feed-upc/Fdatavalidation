@@ -1,23 +1,17 @@
-import great_expectations
-
 import great_expectations as gx
 import pandas as pd
 
 def run_gx_validation(data_path):
-    context = gx.get_context(mode='ephemeral')
-    suite = context.suites.add(gx.ExpectationSuite(name='semantic_suite'))
+    # DQR5EH: Fairness check on gender column
+    # Metric: max deviation from uniform distribution (%) — consistent with ImpQualityMetricFairness
+    # Derived from ODRL: target=gender, operator=odrl:lt, rightOperand=5, unit=qudt:PERCENT
+    attr = 'gender'
+    threshold = 5  # percValue from ODRL odrl:rightOperand
 
-    # Step 2: http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/abox#qM_Fairness
-    suite.add_expectation(gx.expectations.ExpectColumnKLDivergenceToBeLessThan(**{'column': 'gender', 'threshold': 0.5, 'partition_object': {'values': ['M', 'F'], 'weights': [0.5, 0.5]}}))
-
-    csv_asset = context.data_sources.add_pandas('pandas_source').add_csv_asset('csv_asset', filepath_or_buffer=data_path)
-    batch_def = csv_asset.add_batch_definition_whole_dataframe('dataframe_batch_def')
-    validation_definition = gx.ValidationDefinition(name='semantic_validation', data=batch_def, suite=suite)
-    context.validation_definitions.add(validation_definition)
-    checkpoint = gx.Checkpoint(name='semantic_checkpoint', validation_definitions=[validation_definition])
-    context.checkpoints.add(checkpoint)
-    result = checkpoint.run()
-    return result.success
+    df = pd.read_csv(data_path)
+    n_groups = df[attr].nunique()
+    fairness_score = (df[attr].value_counts(normalize=True).max() - 1 / n_groups) * 100
+    return fairness_score < threshold  # odrl:lt
 
 
 if __name__ == "__main__":

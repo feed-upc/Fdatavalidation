@@ -16,35 +16,119 @@
       "@type": "tb:CommonDataModel",
       "tb:owner": "FederatedTeam",
       "dcterms:identifier": "123456",
-      "rdfs:comment": "EHDS Patient Summary Common Data Model — based on the EHDS AMR UML",
-      "tb:hasFeature": [
-        { "@id": "ab:nationalHealthcarePatientID", "@type": "tb:Feature" },
-        { "@id": "ab:familyName", "@type": "tb:Feature" },
-        { "@id": "ab:givenName", "@type": "tb:Feature" },
-        { "@id": "ab:dateOfBirth", "@type": "tb:Feature" },
-        { "@id": "ab:gender", "@type": "tb:Feature" },
-        { "@id": "ab:countryOfAffiliation", "@type": "tb:Feature" },
-        { "@id": "ab:hospitalCode", "@type": "tb:Feature" },
-        { "@id": "ab:hospitalCountry", "@type": "tb:Feature" },
-        { "@id": "ab:lastUpdated", "@type": "tb:Feature" },
-        { "@id": "ab:pregnancyHistory", "@type": "tb:Feature" },
-        { "@id": "ab:dateOfObservation", "@type": "tb:Feature" },
-        { "@id": "ab:pregnancyStatus", "@type": "tb:Feature" },
-        { "@id": "ab:expectedDateOfDelivery", "@type": "tb:Feature" },
-        { "@id": "ab:allergyDescription", "@type": "tb:Feature" },
-        { "@id": "ab:typeOfPropensity", "@type": "tb:Feature" },
-        { "@id": "ab:allergyManifestation", "@type": "tb:Feature" },
-        { "@id": "ab:severity", "@type": "tb:Feature" },
-        { "@id": "ab:criticality", "@type": "tb:Feature" },
-        { "@id": "ab:onSetDate", "@type": "tb:Feature" },
-        { "@id": "ab:endDate", "@type": "tb:Feature" },
-        { "@id": "ab:allergyStatus", "@type": "tb:Feature" },
-        { "@id": "ab:certainty", "@type": "tb:Feature" },
-        { "@id": "ab:agentOrAllergen", "@type": "tb:Feature" },
-        { "@id": "ab:laboratoryCode", "@type": "tb:Feature" },
-        { "@id": "ab:specimenDate", "@type": "tb:Feature" },
-        { "@id": "ab:specimen", "@type": "tb:Feature" },
-        { "@id": "ab:pathogen", "@type": "tb:Feature" }
+      "rdfs:comment": "EHDS Patient Summary Common Data Model — hierarchical entity structure based on the EHDS AMR UML, following FHIR-style entity-scoped element paths",
+      "tb:hasEntity": [
+        {
+          "@id": "ab:PatientSummary",
+          "@type": "tb:Entity",
+          "rdfs:label": "PatientSummary",
+          "tb:hasFeature": [
+            { "@id": "ab:PatientSummary.lastUpdated", "@type": "tb:Feature", "rdfs:label": "lastUpdated" }
+          ],
+          "tb:hasEntity": [
+            {
+              "@id": "ab:PatientSummaryHeader",
+              "@type": "tb:Entity",
+              "rdfs:label": "PatientSummaryHeader",
+              "tb:hasEntity": [
+                {
+                  "@id": "ab:PatientIdentification",
+                  "@type": "tb:Entity",
+                  "rdfs:label": "PatientIdentification",
+                  "tb:hasFeature": [
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.nationalHealthcarePatientID", "@type": "tb:Feature", "rdfs:label": "nationalHealthcarePatientID" },
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.familyName", "@type": "tb:Feature", "rdfs:label": "familyName" },
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.givenName", "@type": "tb:Feature", "rdfs:label": "givenName" },
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.dateOfBirth", "@type": "tb:Feature", "rdfs:label": "dateOfBirth" },
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.gender", "@type": "tb:Feature", "rdfs:label": "gender" },
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.countryOfAffiliation", "@type": "tb:Feature", "rdfs:label": "countryOfAffiliation" },
+                    { "@id": "ab:PatientSummary.PatientSummaryHeader.PatientIdentification.pregnancyHistory", "@type": "tb:Feature", "rdfs:label": "pregnancyHistory" }
+                  ]
+                }
+              ]
+            },
+            {
+              "@id": "ab:Alerts",
+              "@type": "tb:Entity",
+              "rdfs:label": "Alerts",
+              "tb:hasEntity": [
+                {
+                  "@id": "ab:Allergy",
+                  "@type": "tb:Entity",
+                  "rdfs:label": "Allergy",
+                  "tb:hasFeature": [
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.allergyDescription", "@type": "tb:Feature", "rdfs:label": "allergyDescription" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.typeOfPropensity", "@type": "tb:Feature", "rdfs:label": "typeOfPropensity" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.allergyManifestation", "@type": "tb:Feature", "rdfs:label": "allergyManifestation" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.severity", "@type": "tb:Feature", "rdfs:label": "severity" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.criticality", "@type": "tb:Feature", "rdfs:label": "criticality" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.onSetDate", "@type": "tb:Feature", "rdfs:label": "onSetDate" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.endDate", "@type": "tb:Feature", "rdfs:label": "endDate" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.allergyStatus", "@type": "tb:Feature", "rdfs:label": "allergyStatus" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.certainty", "@type": "tb:Feature", "rdfs:label": "certainty" },
+                    { "@id": "ab:PatientSummary.Alerts.Allergy.agentOrAllergen", "@type": "tb:Feature", "rdfs:label": "agentOrAllergen" }
+                  ]
+                }
+              ]
+            },
+            {
+              "@id": "ab:PatientSummaryBody",
+              "@type": "tb:Entity",
+              "rdfs:label": "PatientSummaryBody",
+              "tb:hasEntity": [
+                {
+                  "@id": "ab:PregnancyHistory",
+                  "@type": "tb:Entity",
+                  "rdfs:label": "PregnancyHistory",
+                  "tb:hasEntity": [
+                    {
+                      "@id": "ab:CurrencyPregnancyStatus",
+                      "@type": "tb:Entity",
+                      "rdfs:label": "CurrencyPregnancyStatus",
+                      "tb:hasFeature": [
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.PregnancyHistory.CurrencyPregnancyStatus.dateOfObservation", "@type": "tb:Feature", "rdfs:label": "dateOfObservation" },
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.PregnancyHistory.CurrencyPregnancyStatus.pregnancyStatus", "@type": "tb:Feature", "rdfs:label": "pregnancyStatus" },
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.PregnancyHistory.CurrencyPregnancyStatus.expectedDateOfDelivery", "@type": "tb:Feature", "rdfs:label": "expectedDateOfDelivery" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "@id": "ab:IsolateHistory",
+                  "@type": "tb:Entity",
+                  "rdfs:label": "IsolateHistory",
+                  "tb:hasEntity": [
+                    {
+                      "@id": "ab:Isolate",
+                      "@type": "tb:Entity",
+                      "rdfs:label": "Isolate",
+                      "tb:hasFeature": [
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.laboratoryCode", "@type": "tb:Feature", "rdfs:label": "laboratoryCode" },
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.specimenDate", "@type": "tb:Feature", "rdfs:label": "specimenDate" },
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.specimen", "@type": "tb:Feature", "rdfs:label": "specimen" },
+                        { "@id": "ab:PatientSummary.PatientSummaryBody.IsolateHistory.Isolate.pathogen", "@type": "tb:Feature", "rdfs:label": "pathogen" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "ab:Hospital",
+          "@type": "tb:Entity",
+          "rdfs:label": "Hospital",
+          "tb:hasFeature": [
+            { "@id": "ab:Hospital.hospitalCode", "@type": "tb:Feature", "rdfs:label": "hospitalCode" },
+            { "@id": "ab:Hospital.hospitalCountry", "@type": "tb:Feature", "rdfs:label": "hospitalCountry" }
+          ]
+        },
+        {
+          "@id": "ab:AMRStudy",
+          "@type": "tb:Entity",
+          "rdfs:label": "AMRStudy"
+        }
       ]
     }
   ]

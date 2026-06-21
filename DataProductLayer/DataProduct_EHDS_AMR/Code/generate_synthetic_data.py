@@ -153,7 +153,7 @@ PREGNANCY_STATUSES = [
 # DQR1EH: NULL patient IDs (Completeness) — 5 violations
 DQR1_NULL_PATIENT_INDICES = [19, 115, 334, 410, 423]
 
-# DQR2EH: Invalid affiliation country codes (Validity) — 10 violations
+# DQR2EH: Invalid affiliation country codes (Compliance) — 10 violations
 DQR2_INVALID_AFFILIATION_INDICES = [10, 35, 59, 62, 111, 190, 212, 328, 357, 497]
 
 # DQR3EH: Males with pregnancy history (Consistency) — 5 violations
@@ -162,7 +162,7 @@ DQR3_MALE_PREGNANCY_INDICES = [138, 209, 220, 270, 363]
 # DQR5EH: Gender imbalance — first 250 patients are 60% M / 40% F
 # (structural, not per-index; implemented via generation logic)
 
-# DQR6EH: Invalid hospital country codes (Validity) — 10 violations
+# DQR6EH: Invalid hospital country codes (Compliance) — 10 violations
 DQR6_INVALID_HOSPITAL_INDICES = [46, 129, 193, 253, 264, 279, 383, 441, 462, 495]
 
 # Invalid country assignment — cycles through INVALID_COUNTRIES

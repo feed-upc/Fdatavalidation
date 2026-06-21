@@ -54,11 +54,11 @@ Six DQRs are defined by the EHDS Data Space Governance Authority. Violations are
 | DQR        | Description                                         | Dimension          | Violation Count            |
 | ---------- | --------------------------------------------------- | ------------------ | -------------------------- |
 | **DQR1EH** | Patient ID must not be null                         | Completeness       | 5                          |
-| **DQR2EH** | Affiliation country must be a valid ISO 3166 code   | Validity           | 10                         |
+| **DQR2EH** | Affiliation country must be a valid ISO 3166 code   | Compliance         | 10                         |
 | **DQR3EH** | Male patients shall not have pregnancy records      | Consistency        | 5                          |
 | **DQR4EH** | Minimum 2,000 total isolates for reliable AMR rates | Sample Size        | Verified in AMR\_Study.csv |
 | **DQR5EH** | Balanced male/female representation (1:1 ratio)     | Representativeness | First 250 rows: 60%M/40%F  |
-| **DQR6EH** | Hospital country must be a valid ISO 3166 code      | Validity           | 10                         |
+| **DQR6EH** | Hospital country must be a valid ISO 3166 code      | Compliance         | 10                         |
 
 See [`Metadata/data_dictionary.md`](Metadata/data_dictionary.md) for exact violation indices and column-level documentation.
 

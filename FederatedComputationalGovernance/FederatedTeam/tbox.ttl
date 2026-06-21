@@ -43,10 +43,15 @@ tb:hasDTT rdf:type owl:ObjectProperty ;
           rdfs:range tb:DatasetTypeTemplate .
 
 
+###  http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#hasEntity
+tb:hasEntity rdf:type owl:ObjectProperty ;
+             rdfs:range tb:Entity .
+
+
 ###  http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#hasFeature
 tb:hasFeature rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:domain tb:CommonDataModel ;
+              rdfs:domain tb:Entity ;
               rdfs:range tb:Feature .
 
 
@@ -188,6 +193,10 @@ tb:Code rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#CommonDataModel
 tb:CommonDataModel rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#Entity
+tb:Entity rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/acraf/ontologies/2024/healthmesh/tbox#DataContract
