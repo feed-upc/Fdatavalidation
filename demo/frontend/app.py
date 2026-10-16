@@ -15,9 +15,9 @@ CORS(app)
 
 # ──────────────────── Configuration ────────────────────
 
-BASE = str(Path(__file__).resolve().parent.parent)
-# Add node_modules/.bin to PATH for 'eye'
-os.environ["PATH"] = str(Path(BASE) / "node_modules/.bin") + os.pathsep + os.environ["PATH"]
+BASE = str(Path(__file__).resolve().parent.parent.parent)   # repo root (this file is demo/frontend/app.py)
+# Add demo/node_modules/.bin to PATH for 'eye'
+os.environ["PATH"] = str(Path(BASE) / "demo/node_modules/.bin") + os.pathsep + os.environ["PATH"]
 
 PATHS = {
     'sdm':         os.path.join(BASE, 'FederatedComputationalGovernance/SemanticDataModel/sdm.ttl'),

@@ -82,6 +82,13 @@ Generates validation reports and annotations
 | Connector                        | experiments/transforming_bottleneck             | Workflow vs RDFValidation                                                                   |
 | Connector                        | experiments/ecosystem                           | Measure parsing scalability                                                                 |
 
+| **DEMO AND TOOLS**                   |                                                 |                                                                                             |
+| demo                             | demo.ipynb, run_demo.py                         | End-to-end walkthrough; the validation engine's API also runs run_demo.py                  |
+| demo                             | SDMVisualizer/                                  | React app that visualizes the Semantic Data Model                                           |
+| demo                             | frontend/                                       | Flask interface that runs the workflow notebooks, planner and executor                      |
+| demo                             | node_modules/, package.json                     | npm build of the EYE reasoner, used by the demo and the frontend when `eye` is not on PATH  |
+| experiments                      | datavalidation-workflow/                        | Efficiency experiments                                                                      |
+| scripts                          | see scripts/README.md                           | Small utilities, run from the repository root                                               |
 
 ## Quick-Start Instructions
 

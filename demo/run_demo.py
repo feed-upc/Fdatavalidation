@@ -17,9 +17,9 @@ import argparse
 from pathlib import Path
 from textwrap import dedent
 
-# Add local node_modules/.bin to PATH for 'eye' reasoner
+# Add demo/node_modules/.bin to PATH for 'eye' reasoner
 BASE_DIR = Path(__file__).resolve().parent.parent
-os.environ["PATH"] = str(BASE_DIR / "node_modules/.bin") + os.pathsep + os.environ["PATH"]
+os.environ["PATH"] = str(BASE_DIR / "demo/node_modules/.bin") + os.pathsep + os.environ["PATH"]
 
 # ──────────────────── helpers ────────────────────
 
