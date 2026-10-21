@@ -71,9 +71,9 @@ Wetlands, sites and observations are drawn exactly as the DQVP pipeline's own ge
 
 ## Validation Services
 
-The HELEADE validation services are in the DQR catalogue (`FederatedComputationalGovernance/ComputationalCatalogues/services/heleade/`). Each one reads this folder:
+The HELEADE validation services are in the DQR catalogue (`FederatedComputationalGovernance/ComputationalCatalogues/services/`), one `policyChecker_<hash>` folder per DQR; its `service.json` says which. Each one reads this folder. For DQR4HL:
 
 ```bash
-docker build -t dqr4hl FederatedComputationalGovernance/ComputationalCatalogues/services/heleade/DQR4HL
+docker build -t dqr4hl FederatedComputationalGovernance/ComputationalCatalogues/services/policyChecker_567fdac1
 docker run --rm -v "$PWD/DataProductLayer/DataProduct_HELEADE/Data":/data dqr4hl /data
 ```
